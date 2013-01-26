@@ -4,13 +4,14 @@ using System.Collections.Generic;
 
 public class TowerController : MonoBehaviour {
 
-    private List<Collider> mTargets = new List<Collider>();
     private float timeBeforeNextAttack;
 
+    public float attackRange;
     public float attacksPerSecond;
     public int bulletDamage;
     public float bulletSpeed;
     public Transform bulletTemplate;
+    public LayerMask targetLayer;
 
     private float AttackDelay
     {
@@ -25,22 +26,14 @@ public class TowerController : MonoBehaviour {
         if (bulletSpeed == 0)
             Debug.LogError("Bullets have a zero speed");
 	}
-
-    public void OnTriggerEnter(Collider other)
-    {
-        mTargets.Add(other);
-    }
-
-    public void OnTriggerExit(Collider other)
-    {
-        mTargets.Remove(other);
-    }
 	
 	// Update is called once per frame
 	public void Update()
     {
         timeBeforeNextAttack -= Time.deltaTime;
-        Collider target = FindClosestTarget();
+        var collidedWith = Physics.OverlapSphere(transform.position, attackRange, targetLayer);
+        
+        Collider target = FindClosestTarget(collidedWith);
         if (target != null)
         {
             Vector3 lookAt = target.transform.position;
@@ -49,27 +42,33 @@ public class TowerController : MonoBehaviour {
 
             if (timeBeforeNextAttack <= 0)
             {
-                Transform bullet = (Transform)Instantiate(bulletTemplate);
-                Bullet component = bullet.GetComponent<Bullet>();
-                component.target = target;
-                component.damage = bulletDamage;
-                component.speed = bulletSpeed;
-
+                Attack(target);
                 timeBeforeNextAttack = AttackDelay;
             }
         }
 	}
 
-    private Collider FindClosestTarget()
+    private void Attack(Collider target)
     {
-        if (mTargets.Count == 0)
+        Transform bullet = (Transform)Instantiate(bulletTemplate);
+        bullet.position = transform.position;
+
+        Bullet component = bullet.GetComponent<Bullet>();
+        component.target = target;
+        component.damage = bulletDamage;
+        component.speed = bulletSpeed;
+    }
+
+    private Collider FindClosestTarget(Collider[] targets)
+    {
+        if (targets.Length == 0)
             return null;
 
-        Collider closest = mTargets[0];
+        Collider closest = targets[0];
         float closestMagnitude = closest.ClosestPointOnBounds(transform.position).sqrMagnitude;
-        for (int i = 1; i < mTargets.Count; i++)
+        for (int i = 1; i < targets.Length; i++)
         {
-            Collider target = mTargets[i];
+            Collider target = targets[i];
             float magnitude = target.ClosestPointOnBounds(transform.position).sqrMagnitude;
             if (magnitude < closestMagnitude)
             {
