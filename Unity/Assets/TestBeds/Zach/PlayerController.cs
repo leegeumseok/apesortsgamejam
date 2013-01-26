@@ -178,7 +178,15 @@ public class PlayerController : MonoBehaviour {
 			Vector3 toOther = hit.transform.position - mTransform.position;
 			if(hit.rigidbody && hit.tag != "Player" && Vector3.Dot(forward, toOther) > 0f)
 			{
-				hit.rigidbody.AddExplosionForce(punchPower,punchPos,punchRadius, 3.0f);
+				//hit.rigidbody.AddExplosionForce(punchPower,punchPos,punchRadius, 3.0f);
+				
+				
+				Vector3 closestPoint = hit.ClosestPointOnBounds(mRightHand.position);
+				Vector3 direction = closestPoint - mRightHand.position;
+				direction.Normalize();
+				direction *= punchPower;
+				hit.rigidbody.AddForce(direction, ForceMode.Acceleration);
+				
 			}
 		}
 	}

@@ -752,6 +752,10 @@ Prefab:
       propertyPath: AvoidanceRule
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
   m_RootGameObject: {fileID: 1028147615}
@@ -1022,7 +1026,7 @@ MonoBehaviour:
   mMaxSpeed: 9
   mRotSpeed: 5
   punchRadius: 3
-  punchPower: 1000
+  punchPower: 5
   grabRadius: 3
 --- !u!1 &1466922272
 GameObject:
