@@ -65,11 +65,11 @@ public class TowerController : MonoBehaviour {
             return null;
 
         Collider closest = targets[0];
-        float closestMagnitude = closest.ClosestPointOnBounds(transform.position).sqrMagnitude;
+        float closestMagnitude = SquaredDistance(closest);
         for (int i = 1; i < targets.Length; i++)
         {
             Collider target = targets[i];
-            float magnitude = target.ClosestPointOnBounds(transform.position).sqrMagnitude;
+            float magnitude = SquaredDistance(target);
             if (magnitude < closestMagnitude)
             {
                 closest = target;
@@ -77,5 +77,10 @@ public class TowerController : MonoBehaviour {
             }
         }
         return closest;
+    }
+
+    private float SquaredDistance(Collider collider)
+    {
+        return (collider.ClosestPointOnBounds(transform.position) - transform.position).sqrMagnitude;
     }
 }
