@@ -44,7 +44,7 @@ public class Boids : MonoBehaviour
         get;
         set;
     }
-    
+
     public float GoalFilterDistance
     {
         get;
@@ -57,53 +57,15 @@ public class Boids : MonoBehaviour
         set;
     }
 
-    public float AvoidanceFilterDistance
-    {
-        get;
-        set;
-    }
+    public List<GameObject> GoalList = new List<GameObject>();
 
-    public float AlignmentFilterDistance
-    {
-        get;
-        set;
-    }
+    public List<GameObject> AvoidanceList = new List<GameObject>();
 
-    public float CohesionFilterDistance
-    {
-        get;
-        set;
-    }
+    public List<GameObject> CohesionList = new List<GameObject>();
 
-    public List<GameObject> GoalList
-    {
-        get;
-        set;
-    }
+    public List<GameObject> AlignmentList = new List<GameObject>();
 
-    public List<GameObject> AvoidanceList
-    {
-        get;
-        set;
-    }
-
-    public List<GameObject> CohesionList
-    {
-        get;
-        set;
-    }
-
-    public List<GameObject> AlignmentList
-    {
-        get;
-        set;
-    }
-
-    public List<GameObject> SeparationList
-    {
-        get;
-        set;
-    }
+    public List<GameObject> SeparationList = new List<GameObject>();
 
     public Vector3 CurrentVelocity
     {
@@ -111,7 +73,7 @@ public class Boids : MonoBehaviour
         protected set;
     }
 
-    public void Update()
+    public void UpdateVelocity()
     {
         Vector3 newVelocity = new Vector3();
         if (SeparationRule)
@@ -119,7 +81,7 @@ public class Boids : MonoBehaviour
             foreach (GameObject boid in SeparationList)
             {
                 float separationFilterSqd = SeparationDistance * SeparationDistance;
-                if (Vector3.SqrMagnitude(transform.position - boid.transform.position) < separationFilterSqd && SeparationDistance != 0)
+                if (Vector3.SqrMagnitude(transform.position - boid.transform.position) < separationFilterSqd || SeparationDistance != 0)
                 {
                     newVelocity -= (boid.transform.position - transform.position);
                 }
@@ -129,33 +91,21 @@ public class Boids : MonoBehaviour
         {
             foreach (GameObject boid in GoalList)
             {
-                float goalFilterSqd = GoalFilterDistance*GoalFilterDistance;
-                if (Vector3.SqrMagnitude(boid.transform.position - transform.position) < goalFilterSqd && GoalFilterDistance != 0)
-                {
-                    newVelocity += Vector3.one * (GoalStrength + 1f) / Vector3.SqrMagnitude(boid.transform.position - transform.position);
-                }
+                newVelocity += Vector3.Normalize(boid.transform.position - transform.position) * (GoalStrength + 1f) / Vector3.SqrMagnitude(boid.transform.position - transform.position);
             }
         }
         if (AvoidanceRule)
         {
             foreach (GameObject boid in AvoidanceList)
             {
-                float avoidanceFilterSqd = AvoidanceFilterDistance * AvoidanceFilterDistance;
-                if (Vector3.SqrMagnitude(boid.transform.position - transform.position) < avoidanceFilterSqd && AvoidanceFilterDistance != 0)
-                {
-                    newVelocity -= Vector3.one * (GoalStrength + 1f) / Vector3.SqrMagnitude(boid.transform.position - transform.position);
-                }
+                newVelocity -= Vector3.Normalize(boid.transform.position - transform.position) * (GoalStrength + 1f) / Vector3.SqrMagnitude(boid.transform.position - transform.position);
             }
         }
         if (AlignmentRule)
         {
             foreach (GameObject boid in AlignmentList)
             {
-                float alignmentFilterSqd = AlignmentFilterDistance * AlignmentFilterDistance;
-                if (Vector3.SqrMagnitude(boid.transform.position - transform.position) < alignmentFilterSqd && AlignmentFilterDistance != 0)
-                {
-                    newVelocity += boid.GetComponent<Boids>().CurrentVelocity;
-                }
+                newVelocity += boid.GetComponent<Boids>().CurrentVelocity;
             }
         }
         if (CohesionRule)
@@ -164,11 +114,7 @@ public class Boids : MonoBehaviour
 
             foreach (GameObject boid in AlignmentList)
             {
-                float cohesionFilterSqd = CohesionFilterDistance * CohesionFilterDistance;
-                if (Vector3.SqrMagnitude(boid.transform.position - transform.position) < cohesionFilterSqd && CohesionFilterDistance != 0)
-                {
-                    cohesion += boid.transform.position;
-                }
+                cohesion += boid.transform.position;
             }
             cohesion /= CohesionList.Count;
             newVelocity += cohesion;
