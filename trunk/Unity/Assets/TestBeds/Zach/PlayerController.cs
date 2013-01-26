@@ -29,8 +29,16 @@ public class PlayerController : MonoBehaviour {
 	 * Combat Variables
 	 */
 	
-	private Transform mAttackZone;
-	private float mAttackDamage;
+	private Transform mLeftHand;
+	private Transform mRightHand;
+	
+	//Determines physics placed in punch
+	public float punchRadius;
+	public float punchPower;
+	
+	//Grab Variables
+	private Transform mGrabItem;
+	public float grabRadius;
 	
 	
 	#endregion
@@ -40,27 +48,92 @@ public class PlayerController : MonoBehaviour {
 	 */
 	private enum MState
 	{
-		Idle, Attacking
+		Idle, Attacking,
 	}
 	
-	private MState mState = MState.Idle;
-	
+	//Each hand has a different state
+	private MState mLeftState = MState.Idle;
+	private MState mRightState = MState.Idle;
 
 	// Use this for initialization
 	void Awake () {
 		
 		mRigidbody = rigidbody;
 		mTransform = transform;
-		mAttackZone = mTransform.FindChild("AttackZone");
+		mLeftHand = mTransform.FindChild("LeftHand");
+		mRightHand = mTransform.FindChild("RightHand");
+
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if(mGrabItem)
+			Debug.Log(mGrabItem.name);
+		else
+			Debug.Log("NULL");
+		
+		//Left Hand States
+		switch(mLeftState)
+		{
+		case MState.Idle:
+			if (Input.GetButtonDown("Fire1"))
+			{
+				AttackEnter();	
+			}
+			
+			break;
+		case MState.Attacking:
+			if (Input.GetButtonUp("Fire1"))
+			{
+				AttackExit();	
+			}
+
+			break;
+		default:
+			break;
+		}
+		
+		//Right Hand States
+		switch(mRightState)
+		{
+		case MState.Idle:
+			if (Input.GetButtonDown("Fire2"))
+			{
+				GrabEnter();	
+			}
+			
+			break;
+		case MState.Attacking:
+			if (Input.GetButtonUp("Fire2"))
+			{
+				GrabExit();	
+			}
+			
+			if (mGrabItem != null)
+			{
+				float distance = CalculateDistance(mGrabItem.position, mRightHand);
+				if (distance > 1f)
+					mGrabItem.position = Vector3.Lerp(mGrabItem.position,
+						mRightHand.position, Time.deltaTime * 8f);
+				//else
+					//mGrabItem.position = mRightHand.position;
+				
+				mGrabItem.LookAt(mTransform);
+			}
+			
+
+			break;
+		default:
+			break;
+		}
 	
 	}
 			
 	void FixedUpdate() {
+		
+		//Remove physics simulation from player controller
+		mRigidbody.angularVelocity = Vector3.zero;
 		
 		//Get Direction Player is Moving
 		mHorizInput = Input.GetAxis("Horizontal");
@@ -96,12 +169,75 @@ public class PlayerController : MonoBehaviour {
 	
 	#region State Functions
 	void AttackEnter() {
-		mAttackZone.renderer.enabled = true;
+		mLeftHand.renderer.enabled = true;
+		mLeftState = MState.Attacking;
+		//mLeftHand.collider.enabled = true;
+		
+		Vector3 punchPos = mLeftHand.position;
+		Collider[] colliders = Physics.OverlapSphere(punchPos, punchRadius);
+		
+		foreach (Collider hit in colliders)
+		{
+			if(hit.rigidbody && hit.tag != "Player")
+			{
+				hit.rigidbody.AddExplosionForce(punchPower,punchPos,punchRadius, 3.0f);
+			}
+		}
 	}
 	
 	void AttackExit() {
-		mAttackZone.renderer.enabled = false;	
+		mLeftHand.renderer.enabled = false;	
+		mLeftState = MState.Idle;
+		//mLeftHand.collider.enabled = false;
 	}
 	
+	void GrabEnter() {
+		mRightHand.renderer.enabled = true;
+		mRightState = MState.Attacking;
+		
+		if (mGrabItem == null)
+		{
+			float closestEnemyDist = Mathf.Infinity;
+			Vector3 grabPos = mRightHand.position;
+			Collider closestEnemy = null;
+			Collider[] colliders = Physics.OverlapSphere(grabPos, grabRadius);
+			
+			foreach (Collider hit in colliders)
+			{
+				if(hit.rigidbody && hit.tag != "Player")
+				{
+					Vector3 closestPoint = hit.ClosestPointOnBounds(mRightHand.position);
+					float tempDistance = CalculateDistance(closestPoint, mRightHand);
+					if (tempDistance < closestEnemyDist)
+					{
+						closestEnemyDist = tempDistance;
+						closestEnemy = hit;
+					}
+				}
+			}
+			
+			if(closestEnemy != null)
+				mGrabItem = closestEnemy.transform;
+		}
+		
+		//mRightHand.collider.enabled = true;
+	}
+	
+	void GrabExit() {
+		mRightHand.renderer.enabled = false;
+		mRightState = MState.Idle;
+		mGrabItem = null;
+		//mRightHand.collider.enabled = false;
+	}
+	
+	#endregion
+	
+	#region Utility Functions
+	private float CalculateDistance (Vector3 target, Transform point)
+	{
+		Vector3 toTarget = target - point.position;
+		float distance = toTarget.magnitude;
+		return distance;
+	}
 	#endregion
 }
