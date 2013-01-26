@@ -56,8 +56,8 @@ public class BoidController : MonoBehaviour
         {
             Vector3 newVelocity = boidScript.CurrentVelocity;
             newVelocity.y = 0;
-            Vector3 newForce = Vector3.Normalize(newVelocity) * acceleration;
-            transform.rigidbody.AddForce(newForce, ForceMode.Acceleration);
+            Vector3 newForce = Vector3.Normalize(newVelocity) * acceleration / rigidbody.mass;
+            transform.rigidbody.AddForce(newForce, ForceMode.Force);
         }
     }
 
