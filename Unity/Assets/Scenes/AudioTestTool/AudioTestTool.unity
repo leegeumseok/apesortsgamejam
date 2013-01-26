@@ -198,6 +198,46 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!1001 &315618584
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: da2ed2f2c80a4c2498a1717ce75c4fd7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.98023224e-08
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: da2ed2f2c80a4c2498a1717ce75c4fd7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.37737894
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: da2ed2f2c80a4c2498a1717ce75c4fd7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: .742236793
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: da2ed2f2c80a4c2498a1717ce75c4fd7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: da2ed2f2c80a4c2498a1717ce75c4fd7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: da2ed2f2c80a4c2498a1717ce75c4fd7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: da2ed2f2c80a4c2498a1717ce75c4fd7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: da2ed2f2c80a4c2498a1717ce75c4fd7, type: 2}
+  m_RootGameObject: {fileID: 1976841187}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &348415963
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +438,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 830f96b140fd19e459c692cc8197c33c, type: 3}
   m_Name: 
-  beatReceiver: {fileID: 1963479109}
+  beatReceivers:
+  - {fileID: 1963479109}
 --- !u!114 &773088361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,3 +532,42 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!1 &1976841187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: da2ed2f2c80a4c2498a1717ce75c4fd7, type: 2}
+  m_PrefabInternal: {fileID: 315618584}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1976841188}
+  - 114: {fileID: 1976841189}
+  m_Layer: 0
+  m_Name: SongPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1976841188
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: da2ed2f2c80a4c2498a1717ce75c4fd7, type: 2}
+  m_PrefabInternal: {fileID: 315618584}
+  m_GameObject: {fileID: 1976841187}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.98023224e-08, y: 1.37737894, z: .742236793}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &1976841189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: da2ed2f2c80a4c2498a1717ce75c4fd7,
+    type: 2}
+  m_PrefabInternal: {fileID: 315618584}
+  m_GameObject: {fileID: 1976841187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 830f96b140fd19e459c692cc8197c33c, type: 3}
+  m_Name: 
+  beatReceivers: []
