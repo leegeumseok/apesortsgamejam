@@ -17,15 +17,12 @@ public class BoidController : MonoBehaviour
         boidScript = transform.GetComponent<Boids>();
         boidScript.AvoidanceRule = true;
         boidScript.GoalSeekingRule = true;
-        boidScript.AvoidanceStrength = 7;
-        boidScript.GoalStrength = 10;
     }
 
 
     void FixedUpdate()
     {
         // Handle Avoidance Stuff
-        Debug.Log(gameObject.name + " position = " + transform.position);
         Collider[] avoidanceColliderArray = Physics.OverlapSphere(transform.position, filterRange, avoidanceMask);
         List<GameObject> avoidanceList = new List<GameObject>();
         foreach (Collider collider in avoidanceColliderArray)
@@ -47,12 +44,10 @@ public class BoidController : MonoBehaviour
         }
         if (primaryGoal != null)
         {
-            boidScript.GoalList.Add(primaryGoal);
+            goalList.Add(primaryGoal);
         }
         // Set Up BoidScript
-        Debug.Log(gameObject.name + " goalList count = " + goalList.Count);
         boidScript.GoalList = goalList;
-        Debug.Log(gameObject.name + " avoidanceList count = " + avoidanceList.Count);
         boidScript.AvoidanceList = avoidanceList;
         boidScript.UpdateVelocity();
 
@@ -61,9 +56,8 @@ public class BoidController : MonoBehaviour
         {
             Vector3 newVelocity = boidScript.CurrentVelocity;
             newVelocity.y = 0;
-            Vector3 newAcceleration = Vector3.Normalize(newVelocity) * acceleration;
-            Debug.Log(gameObject.name + " newAcceleration = " + newAcceleration);
-            transform.rigidbody.AddForce(newAcceleration, ForceMode.Acceleration);
+            Vector3 newForce = Vector3.Normalize(newVelocity) * acceleration;
+            transform.rigidbody.AddForce(newForce, ForceMode.Acceleration);
         }
     }
 
