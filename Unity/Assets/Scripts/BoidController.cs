@@ -8,7 +8,7 @@ public class BoidController : MonoBehaviour
     public float filterRange = 5;
     public LayerMask avoidanceMask = new LayerMask();
     public LayerMask goalMask = new LayerMask();
-    public LayerMask mouselookMask = new LayerMask();
+    //public LayerMask mouselookMask = new LayerMask();
     public GameObject primaryGoal;
     public float acceleration;
 
@@ -61,6 +61,7 @@ public class BoidController : MonoBehaviour
         }
     }
 
+    /*
     Vector3 GetMousePosition()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -70,4 +71,5 @@ public class BoidController : MonoBehaviour
         answer.y = 0;
         return answer;
     }
+     * */
 }
