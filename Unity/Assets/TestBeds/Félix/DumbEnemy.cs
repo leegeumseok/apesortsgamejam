@@ -4,6 +4,7 @@ using System.Collections;
 public class DumbEnemy : MonoBehaviour {
 
     const float speed = 0.75f;
+    public Vector3 direction;
 
 	// Use this for initialization
 	void Start () {
@@ -12,6 +13,6 @@ public class DumbEnemy : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        transform.position -= new Vector3(0, 0, speed * Time.deltaTime);
+        transform.position += direction * speed * Time.deltaTime;
 	}
 }

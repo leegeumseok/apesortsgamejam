@@ -12,9 +12,14 @@ public class TowerController : MonoBehaviour {
     public float bulletSpeed;
     public Transform bulletTemplate;
 
+    private float AttackDelay
+    {
+        get { return 1 / attacksPerSecond; }
+    }
+
 	public void Start()
     {
-        timeBeforeNextAttack = attacksPerSecond;
+        timeBeforeNextAttack = AttackDelay;
         if (bulletDamage == 0)
             Debug.LogError("Bullets will not do any damage");
         if (bulletSpeed == 0)
@@ -35,10 +40,14 @@ public class TowerController : MonoBehaviour {
 	public void Update()
     {
         timeBeforeNextAttack -= Time.deltaTime;
-        if (timeBeforeNextAttack <= 0)
+        Collider target = FindClosestTarget();
+        if (target != null)
         {
-            Collider target = FindClosestTarget();
-            if (target != null)
+            Vector3 lookAt = target.transform.position;
+            lookAt.y = transform.position.y;
+            transform.LookAt(lookAt);
+
+            if (timeBeforeNextAttack <= 0)
             {
                 Transform bullet = (Transform)Instantiate(bulletTemplate);
                 Bullet component = bullet.GetComponent<Bullet>();
@@ -46,7 +55,7 @@ public class TowerController : MonoBehaviour {
                 component.damage = bulletDamage;
                 component.speed = bulletSpeed;
 
-                timeBeforeNextAttack = 1 / attacksPerSecond;
+                timeBeforeNextAttack = AttackDelay;
             }
         }
 	}
