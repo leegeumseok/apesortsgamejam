@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour {
 	
 	//Grab Variables
 	private Transform mGrabItem;
+	private float mGrabSpeed = 8f;
+	private float mHoldingDist = .5f;
 	public float grabRadius;
 	
 	
@@ -68,23 +70,19 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(mGrabItem)
-			Debug.Log(mGrabItem.name);
-		else
-			Debug.Log("NULL");
 		
 		//Left Hand States
 		switch(mLeftState)
 		{
 		case MState.Idle:
-			if (Input.GetButtonDown("Fire1"))
+			if (Input.GetButtonDown("Fire1") || Input.GetKeyDown("j"))
 			{
 				AttackEnter();	
 			}
 			
 			break;
 		case MState.Attacking:
-			if (Input.GetButtonUp("Fire1"))
+			if (Input.GetButtonUp("Fire1")|| Input.GetKeyUp("j"))
 			{
 				AttackExit();	
 			}
@@ -98,14 +96,14 @@ public class PlayerController : MonoBehaviour {
 		switch(mRightState)
 		{
 		case MState.Idle:
-			if (Input.GetButtonDown("Fire2"))
+			if (Input.GetButtonDown("Fire2")|| Input.GetKeyDown("k"))
 			{
 				GrabEnter();	
 			}
 			
 			break;
 		case MState.Attacking:
-			if (Input.GetButtonUp("Fire2"))
+			if (Input.GetButtonUp("Fire2") || Input.GetKeyUp("k"))
 			{
 				GrabExit();	
 			}
@@ -115,9 +113,7 @@ public class PlayerController : MonoBehaviour {
 				float distance = CalculateDistance(mGrabItem.position, mRightHand);
 				if (distance > 1f)
 					mGrabItem.position = Vector3.Lerp(mGrabItem.position,
-						mRightHand.position, Time.deltaTime * 8f);
-				//else
-					//mGrabItem.position = mRightHand.position;
+						mRightHand.position + mRightHand.forward*mHoldingDist, Time.deltaTime * mGrabSpeed);
 				
 				mGrabItem.LookAt(mTransform);
 			}
@@ -178,7 +174,9 @@ public class PlayerController : MonoBehaviour {
 		
 		foreach (Collider hit in colliders)
 		{
-			if(hit.rigidbody && hit.tag != "Player")
+			Vector3 forward = mTransform.TransformDirection(Vector3.forward);
+			Vector3 toOther = hit.transform.position - mTransform.position;
+			if(hit.rigidbody && hit.tag != "Player" && Vector3.Dot(forward, toOther) > 0f)
 			{
 				hit.rigidbody.AddExplosionForce(punchPower,punchPos,punchRadius, 3.0f);
 			}
@@ -204,7 +202,9 @@ public class PlayerController : MonoBehaviour {
 			
 			foreach (Collider hit in colliders)
 			{
-				if(hit.rigidbody && hit.tag != "Player")
+				Vector3 forward = mTransform.TransformDirection(Vector3.forward);
+				Vector3 toOther = hit.transform.position - mTransform.position;
+				if(hit.rigidbody && hit.tag != "Player" && Vector3.Dot(forward, toOther) > 0)
 				{
 					Vector3 closestPoint = hit.ClosestPointOnBounds(mRightHand.position);
 					float tempDistance = CalculateDistance(closestPoint, mRightHand);
