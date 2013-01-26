@@ -4,8 +4,6 @@ using System.Collections;
 public class AudioTestGUI : MonoBehaviour
 {
     public string stringToEdit = "C:\\Users\\Alex\\Documents\\GameJam\\trunk\\Unity\\Assets\\Audio\\deadmau5 - Raise Your Weapon.mp3";
-
-    public SongPlayer player;
     public GUIText text;
 
     void OnGUI()
@@ -16,9 +14,8 @@ public class AudioTestGUI : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
-            player.StartSong(stringToEdit);
-        float averageBPM = player.AverageBPM;
-
+            SongPlayer.Instance.PlaySong(stringToEdit);
+        float averageBPM = SongPlayer.Instance.AverageBPM;
         text.text = averageBPM.ToString();
     }
 }

@@ -205,6 +205,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400000, guid: da2ed2f2c80a4c2498a1717ce75c4fd7, type: 2}
+      propertyPath: beatReceivers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: da2ed2f2c80a4c2498a1717ce75c4fd7, type: 2}
       propertyPath: m_LocalPosition.x
       value: 2.98023224e-08
@@ -233,6 +237,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: da2ed2f2c80a4c2498a1717ce75c4fd7, type: 2}
+      propertyPath: beatReceivers.Array.data[0]
+      value: 
+      objectReference: {fileID: 1963479109}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da2ed2f2c80a4c2498a1717ce75c4fd7, type: 2}
   m_RootGameObject: {fileID: 1976841187}
@@ -359,7 +367,6 @@ GameObject:
   - 92: {fileID: 773088356}
   - 124: {fileID: 773088355}
   - 81: {fileID: 773088354}
-  - 114: {fileID: 773088359}
   - 114: {fileID: 773088361}
   m_Layer: 0
   m_Name: Main Camera
@@ -428,18 +435,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!114 &773088359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 773088353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 830f96b140fd19e459c692cc8197c33c, type: 3}
-  m_Name: 
-  beatReceivers:
-  - {fileID: 1963479109}
 --- !u!114 &773088361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,7 +447,6 @@ MonoBehaviour:
   m_Name: 
   stringToEdit: C:\\Users\\Alex\\Documents\\GameJam\\trunk\\Unity\\Assets\\Audio\\deadmau5
     - Raise Your Weapon.mp3
-  player: {fileID: 773088359}
   text: {fileID: 535538815}
 --- !u!1 &1963479108
 GameObject:
@@ -570,4 +564,3 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 830f96b140fd19e459c692cc8197c33c, type: 3}
   m_Name: 
-  beatReceivers: []

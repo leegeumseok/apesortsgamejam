@@ -5,6 +5,11 @@ public class Shrink : BeatReceiver
 {
     public float scale = 1.0f;
 
+    void Start()
+    {
+        SongPlayer.Instance.RegisterReceiver(this);
+    }
+
 	// Update is called once per frame
 	void Update () 
     {

@@ -9,6 +9,6 @@ public class KeyPressSong : MonoBehaviour
 	void Update () 
     {
         if (Input.GetKeyDown(KeyCode.P) == true)
-            songPlayer.StartSong("Assets/Audio/Seventeen Years-Ratatat.mp3");
+            songPlayer.PlaySong("Assets/Audio/Seventeen Years-Ratatat.mp3");
 	}
 }
