@@ -6,32 +6,64 @@ public class BoidController : MonoBehaviour
 
     private Boids boidScript;
     public float filterRange = 5;
-    private Collider[] colliderArray;
     public LayerMask avoidanceMask = new LayerMask();
     public LayerMask goalMask = new LayerMask();
     public LayerMask mouselookMask = new LayerMask();
     public GameObject primaryGoal;
     public float acceleration;
-    public float dragCoefficient;
 
     void Start()
     {
         boidScript = transform.GetComponent<Boids>();
+        boidScript.AvoidanceRule = true;
+        boidScript.GoalSeekingRule = true;
+        boidScript.AvoidanceStrength = 7;
+        boidScript.GoalStrength = 10;
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
-        colliderArray = Physics.OverlapSphere(transform.position, filterRange);
-        List<GameObject> goalList = new List<GameObject>();
-        foreach (Collider collider in colliderArray)
+        // Handle Avoidance Stuff
+        Debug.Log(gameObject.name + " position = " + transform.position);
+        Collider[] avoidanceColliderArray = Physics.OverlapSphere(transform.position, filterRange, avoidanceMask);
+        List<GameObject> avoidanceList = new List<GameObject>();
+        foreach (Collider collider in avoidanceColliderArray)
         {
-            GameObject temp = collider.gameObject;
-            int avoidanceTrue = (avoidanceMask.value & (1 << temp.layer));
-            if (0 != avoidanceTrue)
+            if (collider.gameObject != this.gameObject)
             {
-
+                avoidanceList.Add(collider.gameObject);
             }
+        }
+        // Handle Goal Stuff
+        Collider[] goalColliderArray = Physics.OverlapSphere(transform.position, filterRange, goalMask);
+        List<GameObject> goalList = new List<GameObject>();
+        foreach (Collider collider in goalColliderArray)
+        {
+            if (collider.gameObject != this.gameObject)
+            {
+                goalList.Add(collider.gameObject);
+            }
+        }
+        if (primaryGoal != null)
+        {
+            boidScript.GoalList.Add(primaryGoal);
+        }
+        // Set Up BoidScript
+        Debug.Log(gameObject.name + " goalList count = " + goalList.Count);
+        boidScript.GoalList = goalList;
+        Debug.Log(gameObject.name + " avoidanceList count = " + avoidanceList.Count);
+        boidScript.AvoidanceList = avoidanceList;
+        boidScript.UpdateVelocity();
+
+        // Add Acceleration to Rigidbody
+        if (boidScript.CurrentVelocity.sqrMagnitude > 0 && rigidbody != null)
+        {
+            Vector3 newVelocity = boidScript.CurrentVelocity;
+            newVelocity.y = 0;
+            Vector3 newAcceleration = Vector3.Normalize(newVelocity) * acceleration;
+            Debug.Log(gameObject.name + " newAcceleration = " + newAcceleration);
+            transform.rigidbody.AddForce(newAcceleration, ForceMode.Acceleration);
         }
     }
 
