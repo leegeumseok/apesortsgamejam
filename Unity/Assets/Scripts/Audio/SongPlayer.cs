@@ -32,7 +32,7 @@ public class SongPlayer : MonoBehaviour
     private FMOD.Sound sound1 = null;
     private FMOD.Channel channel = null;
 
-    public BeatReceiver beatReceiver;
+    public BeatReceiver[] beatReceivers;
 
     void Start()
     {
@@ -126,11 +126,10 @@ public class SongPlayer : MonoBehaviour
             for (int i = 0; i < 1024; i++)
                 subspectrum[i] = spectrum[i];
 
-            if (analyzer.AddSamples(subspectrum) == true 
-                && this.beatReceiver != null)
-            {
-                this.beatReceiver.OnBeat();
-            }
+            if (analyzer.AddSamples(subspectrum) == true)
+                foreach (BeatReceiver receiver in this.beatReceivers)
+                    if (receiver != null)
+                        receiver.OnBeat();
 
             nextWindow += timeStep;
         }
