@@ -1,0 +1,154 @@
+/******************************************************************
+Example script for using the FMOD EX low level sound system.
+Initializes the FMOD sound system and loads and plays some sounds.
+Visit www.squaretangle.com for updates and more information.
+Enjoy.
+johnny tangle
+********************************************************************/
+
+using UnityEngine;
+using System;
+using System.Collections;
+
+public class SongPlayer : MonoBehaviour
+{
+    float timeStep = 0.0f;
+    float nextWindow = 0.0f;
+
+    public NaiveSpectrumAnalyzer analyzer = null;
+    public float AverageBPM 
+    {
+        get
+        {
+            if (this.analyzer != null)
+            {
+                return this.analyzer.GetAverageBPM();
+            }
+            return -1.0f;
+        }
+    }
+
+    private FMOD.System system = null;
+    private FMOD.Sound sound1 = null;
+    private FMOD.Channel channel = null;
+
+    public BeatReceiver beatReceiver;
+
+    void Start()
+    {
+        uint version = 0;
+        FMOD.RESULT result;
+
+        //Create an FMOD System object            
+        result = FMOD.Factory.System_Create(ref system);
+        if (!ERRCHECK(result)) return;
+
+        //Check FMOD Version
+        result = system.getVersion(ref version);
+        if (!ERRCHECK(result)) return;
+
+        if (version < FMOD.VERSION.number)
+        {
+            Debug.Log(
+                "Error!  You are using an old version of FMOD " 
+                + version.ToString("X") 
+                + ".  This program requires " 
+                + FMOD.VERSION.number.ToString("X") + ".");
+        }
+
+        //Initialize the FMOD system object
+        result = system.init(32, FMOD.INITFLAGS.NORMAL, (IntPtr)null);
+        if (!ERRCHECK(result)) return;
+
+        if (result == FMOD.RESULT.OK)
+        {
+            Debug.Log("FMOD init! " + result);
+        }
+    }
+
+    void Update()
+    {
+        if (analyzer != null)
+        {
+            analyzer.Update(Time.deltaTime);
+            Debug.Log(analyzer.GetAverageBPM());
+        }
+    }
+
+    public void StartSong(string songPath)
+    {
+        //Create some sound references to play
+        FMOD.RESULT result = 
+            system.createSound(songPath, FMOD.MODE.HARDWARE, ref sound1);
+        if (!ERRCHECK(result)) return;
+
+        result = system.playSound(
+            FMOD.CHANNELINDEX.FREE, sound1, false, ref channel);
+        if (!ERRCHECK(result)) return;
+
+        float f = 0.0f;
+        this.channel.getFrequency(ref f);
+        this.analyzer = new NaiveSpectrumAnalyzer((int)f);
+    }
+
+    void OnDisable()
+    {
+        //Shut down
+        FMOD.RESULT result;
+
+        if (sound1 != null)
+        {
+            result = sound1.release();
+            if (!ERRCHECK(result)) return;
+        }
+
+        if (system != null)
+        {
+            result = system.close();
+            if (!ERRCHECK(result)) return;
+            result = system.release();
+            if (!ERRCHECK(result)) return;
+
+            Debug.Log("FMOD release! " + result);
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (channel != null && Time.time > nextWindow)
+        {
+            float[] spectrum = new float[1024];
+            //channel.getWaveData(spectrum, sampleWindow, 0);
+            channel.getSpectrum(
+                spectrum, 1024, 0, FMOD.DSP_FFT_WINDOW.BLACKMANHARRIS);
+
+            float[] subspectrum = new float[1024];
+            for (int i = 0; i < 1024; i++)
+                subspectrum[i] = spectrum[i];
+
+            if (analyzer.AddSamples(subspectrum) == true 
+                && this.beatReceiver != null)
+            {
+                this.beatReceiver.OnBeat();
+            }
+
+            nextWindow += timeStep;
+        }
+    }
+
+    //FMOD error checking codes
+    bool ERRCHECK(FMOD.RESULT result)
+    {
+        if (result != FMOD.RESULT.OK)
+        {
+            Debug.Log(
+                "FMOD error! " 
+                + result 
+                + " - " 
+                + FMOD.Error.String(result));
+            return false;
+        }
+        return true;
+    }
+}
+
