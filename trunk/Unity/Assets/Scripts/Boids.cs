@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Boid : MonoBehaviour
+public class Boids : MonoBehaviour
 {
     public bool SeparationRule
     {
@@ -154,7 +154,7 @@ public class Boid : MonoBehaviour
                 float alignmentFilterSqd = AlignmentFilterDistance * AlignmentFilterDistance;
                 if (Vector3.SqrMagnitude(boid.transform.position - transform.position) < alignmentFilterSqd && AlignmentFilterDistance != 0)
                 {
-                    newVelocity += boid.GetComponent<Boid>().CurrentVelocity;
+                    newVelocity += boid.GetComponent<Boids>().CurrentVelocity;
                 }
             }
         }
