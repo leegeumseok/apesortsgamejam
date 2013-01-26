@@ -9,9 +9,26 @@ johnny tangle
 using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SongPlayer : MonoBehaviour
 {
+    private static SongPlayer _instance = null;
+    public static SongPlayer Instance
+    {
+        get
+        {
+            return _instance;
+        }
+
+        private set
+        {
+            if (_instance != null)
+                Debug.LogError("Multiple SongPlayer singletons");
+            _instance = value;
+        }
+    }
+
     float timeStep = 0.0f;
     float nextWindow = 0.0f;
 
@@ -32,7 +49,15 @@ public class SongPlayer : MonoBehaviour
     private FMOD.Sound sound1 = null;
     private FMOD.Channel channel = null;
 
-    public BeatReceiver[] beatReceivers;
+    private List<BeatReceiver> beatReceivers;
+    private List<Action> delayedActions;
+
+    void OnEnable()
+    {
+        SongPlayer.Instance = this;
+        this.beatReceivers = new List<BeatReceiver>();
+        this.delayedActions = new List<Action>();
+    }
 
     void Start()
     {
@@ -75,7 +100,25 @@ public class SongPlayer : MonoBehaviour
         }
     }
 
-    public void StartSong(string songPath)
+    public void RegisterReceiver(BeatReceiver receiver)
+    {
+        this.beatReceivers.Add(receiver);
+    }
+
+    /// <summary>
+    /// This is slow
+    /// </summary>
+    public void RemoveReceiver(BeatReceiver receiver)
+    {
+        this.beatReceivers.Remove(receiver);
+    }
+
+    public void DelayUntilNextBeat(Action action)
+    {
+        this.delayedActions.Add(action);
+    }
+
+    public void PlaySong(string songPath)
     {
         //Create some sound references to play
         FMOD.RESULT result = 
@@ -127,12 +170,20 @@ public class SongPlayer : MonoBehaviour
                 subspectrum[i] = spectrum[i];
 
             if (analyzer.AddSamples(subspectrum) == true)
-                foreach (BeatReceiver receiver in this.beatReceivers)
-                    if (receiver != null)
-                        receiver.OnBeat();
+                this.DoBeat();
 
             nextWindow += timeStep;
         }
+    }
+
+    private void DoBeat()
+    {
+        foreach (BeatReceiver receiver in this.beatReceivers)
+            if (receiver != null)
+                receiver.OnBeat();
+        foreach (Action action in this.delayedActions)
+            action.Invoke();
+        this.delayedActions.Clear();
     }
 
     //FMOD error checking codes
