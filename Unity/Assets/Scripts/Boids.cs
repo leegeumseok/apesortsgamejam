@@ -3,59 +3,21 @@ using System.Collections.Generic;
 
 public class Boids : MonoBehaviour
 {
-    public bool SeparationRule
-    {
-        get;
-        set;
-    }
+    public bool SeparationRule;
 
-    public bool AlignmentRule
-    {
-        get;
-        set;
-    }
+    public bool AlignmentRule;
 
-    public bool CohesionRule
-    {
-        get;
-        set;
-    }
+    public bool CohesionRule;
 
-    public bool AvoidanceRule
-    {
-        get;
-        set;
-    }
+    public bool AvoidanceRule;
 
-    public bool GoalSeekingRule
-    {
-        get;
-        set;
-    }
+    public bool GoalSeekingRule;
 
-    public float SeparationDistance
-    {
-        get;
-        set;
-    }
+    public float SeparationDistance;
 
-    public float GoalStrength
-    {
-        get;
-        set;
-    }
+    public float GoalStrength;
 
-    public float GoalFilterDistance
-    {
-        get;
-        set;
-    }
-
-    public float AvoidanceStrength
-    {
-        get;
-        set;
-    }
+    public float AvoidanceStrength;
 
     public List<GameObject> GoalList = new List<GameObject>();
 
@@ -67,6 +29,14 @@ public class Boids : MonoBehaviour
 
     public List<GameObject> SeparationList = new List<GameObject>();
 
+    public float boundingBufferRangeSqd;
+
+    public float boundingMaxRangeSqd;
+
+    public float boundingBufferStrength;
+
+    public Vector3 BoundingCenter;
+
     public Vector3 CurrentVelocity
     {
         get;
@@ -76,50 +46,71 @@ public class Boids : MonoBehaviour
     public void UpdateVelocity()
     {
         Vector3 newVelocity = new Vector3();
-        if (SeparationRule)
+        if (boundingMaxRangeSqd < Vector3.SqrMagnitude(BoundingCenter - transform.position))
         {
-            foreach (GameObject boid in SeparationList)
+            newVelocity = BoundingCenter - transform.position;
+        }
+        else
+        {
+            if (boundingBufferRangeSqd < Vector3.SqrMagnitude(BoundingCenter - transform.position))
             {
-                float separationFilterSqd = SeparationDistance * SeparationDistance;
-                if (Vector3.SqrMagnitude(transform.position - boid.transform.position) < separationFilterSqd || SeparationDistance != 0)
+                float currentDistSqdFromCenter = Vector3.SqrMagnitude(BoundingCenter - transform.position);
+                Vector3 addVelocity = Vector3.Normalize(BoundingCenter - transform.position) * (boundingMaxRangeSqd - currentDistSqdFromCenter) * boundingBufferStrength;
+            }
+            if (SeparationRule)
+            {
+                foreach (GameObject boid in SeparationList)
                 {
-                    newVelocity -= (boid.transform.position - transform.position);
+                    float separationFilterSqd = SeparationDistance * SeparationDistance;
+                    if (Vector3.SqrMagnitude(transform.position - boid.transform.position) < separationFilterSqd || SeparationDistance != 0)
+                    {
+                        newVelocity -= (boid.transform.position - transform.position);
+                    }
                 }
             }
-        }
-        if (GoalSeekingRule)
-        {
-            foreach (GameObject boid in GoalList)
+            if (GoalSeekingRule && GoalList.Count > 0)
             {
-                newVelocity += Vector3.Normalize(boid.transform.position - transform.position) * (GoalStrength + 1f) / Vector3.SqrMagnitude(boid.transform.position - transform.position);
+                Vector3 goalVelocity = new Vector3();
+                float maxMagnitude = 0;
+                foreach (GameObject boid in GoalList)
+                {
+                    float magnitude = Vector3.SqrMagnitude(boid.transform.position - transform.position);
+                    if (magnitude > maxMagnitude)
+                    {
+                        maxMagnitude = magnitude;
+                        goalVelocity = boid.transform.position - transform.position;
+                    }
+                }
+                newVelocity += goalVelocity;
             }
-        }
-        if (AvoidanceRule)
-        {
-            foreach (GameObject boid in AvoidanceList)
+            if (AvoidanceRule)
             {
-                newVelocity -= Vector3.Normalize(boid.transform.position - transform.position) * (GoalStrength + 1f) / Vector3.SqrMagnitude(boid.transform.position - transform.position);
+                Vector3 avoidanceVelocity = new Vector3();
+                foreach (GameObject boid in AvoidanceList)
+                {
+                    avoidanceVelocity += Vector3.Normalize(boid.transform.position - transform.position) * (GoalStrength + 1f) / Vector3.SqrMagnitude(boid.transform.position - transform.position);
+                }
+                newVelocity += avoidanceVelocity;
             }
-        }
-        if (AlignmentRule)
-        {
-            foreach (GameObject boid in AlignmentList)
+            if (AlignmentRule)
             {
-                newVelocity += boid.GetComponent<Boids>().CurrentVelocity;
+                foreach (GameObject boid in AlignmentList)
+                {
+                    newVelocity += boid.GetComponent<Boids>().CurrentVelocity;
+                }
             }
-        }
-        if (CohesionRule)
-        {
-            Vector3 cohesion = new Vector3();
+            if (CohesionRule)
+            {
+                Vector3 cohesion = new Vector3();
 
-            foreach (GameObject boid in AlignmentList)
-            {
-                cohesion += boid.transform.position;
+                foreach (GameObject boid in AlignmentList)
+                {
+                    cohesion += boid.transform.position;
+                }
+                cohesion /= CohesionList.Count;
+                newVelocity += cohesion;
             }
-            cohesion /= CohesionList.Count;
-            newVelocity += cohesion;
         }
-
-        CurrentVelocity += newVelocity;
+        CurrentVelocity = newVelocity;
     }
 }
