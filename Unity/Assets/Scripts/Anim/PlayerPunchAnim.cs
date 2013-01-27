@@ -6,12 +6,12 @@ public class PlayerPunchAnim : MonoBehaviour
     public float RightPunchSpeed = 1.0f;
     public float LeftPunchSpeed = 1.0f;
 
-    void RightPunch()
+    public void RightPunch()
     {
         animation.Play("right punch");
     }
 
-    void LeftPunch()
+    public void LeftPunch()
     {
         animation.Play("left punch");
     }
