@@ -16,7 +16,7 @@ GameObject:
   - 54: {fileID: 5400000}
   m_Layer: 0
   m_Name: Boid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.63801433e-10, y: 2.20437846e-09, z: 1.60866875e-10}
+  m_LocalPosition: {x: .973708093, y: 1, z: 7.70739365}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,7 +44,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: f626695e50e3a584bad4f12cd01d8a8a, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -65,7 +65,7 @@ Rigidbody:
   m_GameObject: {fileID: 100000}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: .5
+  m_Drag: 1
   m_AngularDrag: .0500000007
   m_UseGravity: 0
   m_IsKinematic: 0
@@ -95,9 +95,9 @@ MonoBehaviour:
   CohesionList: []
   AlignmentList: []
   SeparationList: []
-  boundingBufferRangeSqd: 0
-  boundingMaxRangeSqd: 0
-  boundingBufferStrength: 0
+  boundingBufferRangeSqd: 300
+  boundingMaxRangeSqd: 350
+  boundingBufferStrength: 50
   BoundingCenter: {x: 0, y: 0, z: 0}
 --- !u!114 &11400002
 MonoBehaviour:
@@ -115,10 +115,7 @@ MonoBehaviour:
     m_Bits: 0
   goalMask:
     serializedVersion: 2
-    m_Bits: 0
-  mouselookMask:
-    serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   primaryGoal: {fileID: 0}
   acceleration: 10
 --- !u!135 &13500000
