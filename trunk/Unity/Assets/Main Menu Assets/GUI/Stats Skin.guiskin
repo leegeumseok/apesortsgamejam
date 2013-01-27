@@ -191,7 +191,7 @@ MonoBehaviour:
   m_label:
     m_Name: label
     m_Normal:
-      m_Background: {fileID: 2800000, guid: 3b56ffe0b0a0c4b5093044f200be2ef0, type: 3}
+      m_Background: {fileID: 0}
       m_TextColor: {r: .899999976, g: .899999976, b: .899999976, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
@@ -1194,7 +1194,7 @@ MonoBehaviour:
   m_CustomStyles:
   - m_Name: PointsLabel
     m_Normal:
-      m_Background: {fileID: 2800000, guid: 3b56ffe0b0a0c4b5093044f200be2ef0, type: 3}
+      m_Background: {fileID: 0}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
@@ -1252,7 +1252,7 @@ MonoBehaviour:
     m_StretchHeight: 0
   - m_Name: HeartLabel
     m_Normal:
-      m_Background: {fileID: 2800000, guid: 3b56ffe0b0a0c4b5093044f200be2ef0, type: 3}
+      m_Background: {fileID: 0}
       m_TextColor: {r: .917910457, g: .143851623, b: .143851623, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
@@ -1310,7 +1310,7 @@ MonoBehaviour:
     m_StretchHeight: 0
   - m_Name: PulseLabel
     m_Normal:
-      m_Background: {fileID: 2800000, guid: 3b56ffe0b0a0c4b5093044f200be2ef0, type: 3}
+      m_Background: {fileID: 0}
       m_TextColor: {r: .974532843, g: 1, b: .0895522237, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
