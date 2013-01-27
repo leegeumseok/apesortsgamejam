@@ -5,8 +5,8 @@ public class BasicEnemy : GenericEnemy
 {
     public static readonly float DEATH_DELAY = 1.0f;
 
-    bool isDying = false;
-    float deathTime = 0.0f;
+    public bool isDying = false;
+    public float deathTime = 0.0f;
 
     void Update()
     {
@@ -26,13 +26,12 @@ public class BasicEnemy : GenericEnemy
 
     public override void OnDamaged(int damage)
     {
-        healthPoints -= damage;
-        if (healthPoints <= 0)
+        base.OnDamaged(damage);
+
+        if (healthPoints < 100)
         {
             this.isDying = true;
             this.deathTime = DEATH_DELAY;
-            Boids boid = this.GetComponent<Boids>();
-            boid.AvoidanceRule = boid.GoalSeekingRule = false;
         }
     }
 

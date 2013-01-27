@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class GenericTower : MonoBehaviour {
 
@@ -15,9 +16,18 @@ public class GenericTower : MonoBehaviour {
     public Transform bulletTemplate;
     public LayerMask targetLayer;
 
+    public event Action notifyOnDestroyed;
+
     private float AttackDelay
     {
         get { return 1 / attacksPerSecond; }
+    }
+
+    public virtual void OnDestroyed()
+    {
+        var onDestroyed = notifyOnDestroyed;
+        if (onDestroyed != null)
+            onDestroyed();
     }
 
 	public void Start()
@@ -50,6 +60,10 @@ public class GenericTower : MonoBehaviour {
                     timeBeforeNextAttack = AttackDelay;
                 }
             }
+        }
+        else
+        {
+            Delete();
         }
 	}
 
@@ -89,5 +103,11 @@ public class GenericTower : MonoBehaviour {
     private float SquaredDistance(Collider collider)
     {
         return (collider.ClosestPointOnBounds(transform.position) - transform.position).sqrMagnitude;
+    }
+
+    private void Delete()
+    {
+        OnDestroyed();
+        GameObject.Destroy(gameObject);
     }
 }
