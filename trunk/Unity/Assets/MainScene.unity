@@ -112,8 +112,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10e7eb3e22078054884dd07e62a9281b, type: 3}
   m_Name: 
-  PulseBoost: 3
-  PulseDecay: 30
+  PulseBoost: 6
+  PulseDecay: 60
 --- !u!1 &74706003
 GameObject:
   m_ObjectHideFlags: 0
@@ -2737,6 +2737,14 @@ Prefab:
     - target: {fileID: 400000, guid: e884059fa2f808b4b941df2411544c09, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: e884059fa2f808b4b941df2411544c09, type: 2}
+      propertyPath: PulseBoost
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: e884059fa2f808b4b941df2411544c09, type: 2}
+      propertyPath: PulseDecay
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e884059fa2f808b4b941df2411544c09, type: 2}
