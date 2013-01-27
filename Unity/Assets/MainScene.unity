@@ -153,9 +153,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4fa77303b98f92b429bce74e2cc8cebf, type: 3}
   m_Name: 
-  BigEnemy: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
-  MediumEnemy: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
-  SmallEnemy: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
+  BigEnemy: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
+  MediumEnemy: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
+  SmallEnemy: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
   primaryGoal: {fileID: 512468602}
 --- !u!1 &109346726
 GameObject:
@@ -263,15 +263,15 @@ Prefab:
     - target: {fileID: 11400000, guid: 8c403140917893340870936d96520cf7, type: 2}
       propertyPath: BigEnemy
       value: 
-      objectReference: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
+      objectReference: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
     - target: {fileID: 11400000, guid: 8c403140917893340870936d96520cf7, type: 2}
       propertyPath: MediumEnemy
       value: 
-      objectReference: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
+      objectReference: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
     - target: {fileID: 11400000, guid: 8c403140917893340870936d96520cf7, type: 2}
       propertyPath: SmallEnemy
       value: 
-      objectReference: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
+      objectReference: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c403140917893340870936d96520cf7, type: 2}
   m_RootGameObject: {fileID: 1021115301}
@@ -371,15 +371,15 @@ Prefab:
     - target: {fileID: 11400000, guid: 8c403140917893340870936d96520cf7, type: 2}
       propertyPath: BigEnemy
       value: 
-      objectReference: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
+      objectReference: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
     - target: {fileID: 11400000, guid: 8c403140917893340870936d96520cf7, type: 2}
       propertyPath: MediumEnemy
       value: 
-      objectReference: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
+      objectReference: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
     - target: {fileID: 11400000, guid: 8c403140917893340870936d96520cf7, type: 2}
       propertyPath: SmallEnemy
       value: 
-      objectReference: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
+      objectReference: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c403140917893340870936d96520cf7, type: 2}
   m_RootGameObject: {fileID: 928713843}
@@ -528,17 +528,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f7040d7846589488e67fa93ff73fae, type: 3}
   m_Name: 
   DEBUG: 0
+  mWallResistance: 20
   mAreaRadius: 40
   mAcceleration: 1000
   mMaxSpeed: 13
   mRotSpeed: 6
+  PlayerPunch: {fileID: 0}
   mPunchRadius: 1
   mMaxPunchPower: 50
   mMinPunchPower: 30
   mPunchRecharge: 0
   mGrabRadius: 3
   mGrabRecharge: 0
-  mGrabDamage: 0
+  mGrabDamage: 1
   mPunchDamage: 100
 --- !u!54 &403944016
 Rigidbody:
@@ -609,6 +611,7 @@ MonoBehaviour:
   mSpawnLocations: []
   mHeartPulse: {fileID: 0}
   mCurrentHealth: 5
+  mPulsePower: 0
   Alive: 1
 --- !u!114 &403944022
 MonoBehaviour:
@@ -622,10 +625,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a66f6d2bbd7cd44ae6afc8ab27d980, type: 3}
   m_Name: 
   spawnLocation: {fileID: 1706646678}
-  towerTemplate: {fileID: 400000, guid: f7f8e69d55f04d44685cd32518cff1aa, type: 2}
+  towerTemplate: {fileID: 400022, guid: 1b841f6d2d0d9a442b87c5859e2af1ab, type: 2}
   resources: 20
   towerResourceCost: 10
   maxResources: 15
+  bulletSpeed: 10
+  bulletDamage: 100
+  bulletForce: 60
+  attackRange: 10
+  attacksPerSecond: 1.75
+  ammunition: 50
 --- !u!114 &403944023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,6 +649,7 @@ MonoBehaviour:
   mSpawnLocations: []
   mHeartPulse: {fileID: 0}
   mCurrentHealth: 5
+  mPulsePower: 0
   Alive: 1
 --- !u!1 &451312953
 GameObject:
@@ -715,9 +725,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4fa77303b98f92b429bce74e2cc8cebf, type: 3}
   m_Name: 
-  BigEnemy: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
-  MediumEnemy: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
-  SmallEnemy: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
+  BigEnemy: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
+  MediumEnemy: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
+  SmallEnemy: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
   primaryGoal: {fileID: 512468602}
 --- !u!4 &457234572
 Transform:
@@ -868,6 +878,18 @@ Prefab:
     - target: {fileID: 11400000, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
       propertyPath: mPunchDamage
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
+      propertyPath: towerTemplate
+      value: 
+      objectReference: {fileID: 400022, guid: 1b841f6d2d0d9a442b87c5859e2af1ab, type: 2}
+    - target: {fileID: 11400004, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
+      propertyPath: attackRange
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
+      propertyPath: bulletSpeed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
@@ -1076,15 +1098,15 @@ Prefab:
     - target: {fileID: 11400000, guid: 8c403140917893340870936d96520cf7, type: 2}
       propertyPath: BigEnemy
       value: 
-      objectReference: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
+      objectReference: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
     - target: {fileID: 11400000, guid: 8c403140917893340870936d96520cf7, type: 2}
       propertyPath: MediumEnemy
       value: 
-      objectReference: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
+      objectReference: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
     - target: {fileID: 11400000, guid: 8c403140917893340870936d96520cf7, type: 2}
       propertyPath: SmallEnemy
       value: 
-      objectReference: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
+      objectReference: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c403140917893340870936d96520cf7, type: 2}
   m_RootGameObject: {fileID: 74706003}
@@ -1238,9 +1260,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4fa77303b98f92b429bce74e2cc8cebf, type: 3}
   m_Name: 
-  BigEnemy: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
-  MediumEnemy: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
-  SmallEnemy: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
+  BigEnemy: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
+  MediumEnemy: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
+  SmallEnemy: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
   primaryGoal: {fileID: 512468602}
 --- !u!4 &928713845
 Transform:
@@ -1364,9 +1386,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4fa77303b98f92b429bce74e2cc8cebf, type: 3}
   m_Name: 
-  BigEnemy: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
-  MediumEnemy: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
-  SmallEnemy: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
+  BigEnemy: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
+  MediumEnemy: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
+  SmallEnemy: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
   primaryGoal: {fileID: 512468602}
 --- !u!4 &1021115303
 Transform:
@@ -2539,15 +2561,15 @@ Prefab:
     - target: {fileID: 11400000, guid: 8c403140917893340870936d96520cf7, type: 2}
       propertyPath: BigEnemy
       value: 
-      objectReference: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
+      objectReference: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
     - target: {fileID: 11400000, guid: 8c403140917893340870936d96520cf7, type: 2}
       propertyPath: MediumEnemy
       value: 
-      objectReference: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
+      objectReference: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
     - target: {fileID: 11400000, guid: 8c403140917893340870936d96520cf7, type: 2}
       propertyPath: SmallEnemy
       value: 
-      objectReference: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
+      objectReference: {fileID: 100022, guid: 241e717116db1ce4b9c1fac03a17714a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c403140917893340870936d96520cf7, type: 2}
   m_RootGameObject: {fileID: 457234570}
