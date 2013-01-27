@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
 	//Health Variables
 	public Transform[] mSpawnLocations;
 	public GameObject mHeartPulse;
+    public GameObject mHeartPulseBoom;
 	public int mCurrentHealth;
 	private int mMaxHealth;
 	private int mSpawnSeconds = 3;
@@ -71,7 +72,7 @@ public class Player : MonoBehaviour
 		if(mPulsePower >= mPulseMax && Input.GetButtonDown("Jump"))
 		{
 			GameObject clone;
-			clone = Instantiate(mHeartPulse, Vector3.zero, Quaternion.identity) as GameObject;
+            clone = Instantiate(mHeartPulseBoom, Vector3.zero, Quaternion.identity) as GameObject;
 			clone.GetComponent<Pulse>().mMaxRadius = mPulsePower;
 			mPulsePower = 0;
 			mCamera.GetComponent<GameStatsUI>().pulsePoints =0;

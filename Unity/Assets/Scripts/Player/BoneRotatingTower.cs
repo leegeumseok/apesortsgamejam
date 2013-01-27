@@ -8,6 +8,9 @@ namespace Assets.Scripts.Player
 {
     public class BoneRotatingTower : GenericTower
     {
+
+        public AudioClip shootSound;
+
         void Start()
         {
             foreach (AnimationState state in animation)
@@ -18,6 +21,13 @@ namespace Assets.Scripts.Player
 
         public override void OnAttack(UnityEngine.Collider target)
         {
+
+            if (shootSound != null && this.audio != null)
+            {
+                this.audio.clip = shootSound;
+                this.audio.Play();
+            }
+
             Vector3 lookAt = target.transform.position;
             lookAt.y = transform.position.y;
             Transform joint = transform.FindChild("joint1");

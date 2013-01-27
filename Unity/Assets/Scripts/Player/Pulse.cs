@@ -9,6 +9,8 @@ public class Pulse : MonoBehaviour {
 	private float mCurrAngle = 0f;
 	private LineRenderer mLine;
 
+    public AudioClip pulseSound;
+
 	// Use this for initialization
 	void Awake () {
 		mLine = gameObject.GetComponent<LineRenderer>();
@@ -17,7 +19,15 @@ public class Pulse : MonoBehaviour {
 		CreatePoints();
 	
 	}
-	
+
+    void Start()
+    {
+        if (audio != null && pulseSound != null)
+        {
+            this.audio.clip = pulseSound;
+            this.audio.Play();
+        }
+    }
 	
 	void CreatePoints ()
 	{

@@ -15,7 +15,9 @@ public class Healthbar : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//keep the health bar following its owner
-		healthbar.transform.position = this.transform.position;
+        Vector3 offset = new Vector3(0.0f, 1.0f, 1.0f);
+		healthbar.transform.position = this.transform.position + offset;
+        
 	}
 	
 	public void setPercentHealth(float percent){
