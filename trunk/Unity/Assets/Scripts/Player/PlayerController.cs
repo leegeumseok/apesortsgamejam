@@ -33,6 +33,10 @@ public class PlayerController : MonoBehaviour {
 	
 	private Transform mLeftHand;
 	private Transform mRightHand;
+
+    public PlayerPunchAnim PlayerPunch = null;
+    protected bool LeftHand = false;
+    
 	
 	//Determines physics placed in punch
 	public float mPunchRadius;
@@ -58,7 +62,7 @@ public class PlayerController : MonoBehaviour {
 	private Player mPlayer;
 	
 	#endregion
-	
+
 	/*
 	 * Different Player States
 	 */
@@ -203,8 +207,14 @@ public class PlayerController : MonoBehaviour {
 	
 	#region State Functions
 	void AttackEnter() {
-		mLeftHand.renderer.enabled = true;
+		//mLeftHand.renderer.enabled = true;
 		mLeftState = MState.Attacking;
+
+        if (LeftHand == true)
+            PlayerPunch.LeftPunch();
+        else
+            PlayerPunch.RightPunch();
+        LeftHand = !LeftHand;
 		//mLeftHand.collider.enabled = true;
 		
 		Vector3 punchPos = mLeftHand.position;
