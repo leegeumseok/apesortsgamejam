@@ -65,9 +65,11 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75b7e0c87213e684b89bd97979ca5236, type: 3}
   m_Name: 
+  explosion: {fileID: 100002, guid: 09067c79245b6f74699f537e4174f596, type: 2}
   target: {fileID: 0}
   damage: 5
   speed: 5
+  force: 0
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

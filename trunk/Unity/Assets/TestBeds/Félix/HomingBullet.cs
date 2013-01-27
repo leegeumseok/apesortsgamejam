@@ -3,13 +3,20 @@ using System.Collections;
 
 public class HomingBullet : MonoBehaviour
 {
+    public GameObject explosion;
     public Collider target;
     public int damage;
     public float speed;
     public float force;
 
 	public void Start()
-    { }
+    {
+        Rigidbody body = target.rigidbody;
+        if (body != null)
+        {
+            body.WakeUp();
+        }
+    }
 
     public void OnTriggerEnter(Collider collider)
     {
@@ -17,8 +24,10 @@ public class HomingBullet : MonoBehaviour
         if (body != null)
         {
             Vector3 direction = (collider.transform.position - transform.position).normalized;
-            body.AddForce(direction * force);
+            body.AddForce(direction * force, ForceMode.Impulse);
         }
+
+        Instantiate(explosion, collider.transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
