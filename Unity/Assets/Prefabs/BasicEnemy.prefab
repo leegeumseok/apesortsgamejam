@@ -91,7 +91,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   primaryGoal: {fileID: 0}
-  acceleration: 40
+  acceleration: 30
   deathOnContact: 0
 --- !u!114 &11400002
 MonoBehaviour:

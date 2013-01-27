@@ -20,8 +20,8 @@ public class BoidSpawnManager : BeatReceiver
     }
 
 
-    public float PulseBoost = 3.0f;
-    public float PulseDecay = 30.0f;
+    public float PulseBoost = 20.0f;
+    public float PulseDecay = 300.0f;
 
     protected float curPulseBoost = 0.0f;
 
@@ -54,7 +54,7 @@ public class BoidSpawnManager : BeatReceiver
 
     public float BoidSpeedMultiplier
     {
-        get { return 1 + BeatManager.Instance.Intensity + this.curPulseBoost; }
+        get { return 1 + this.curPulseBoost + (this.curPulseBoost * BeatManager.Instance.Intensity); }
     }
 
     public bool HasSpawns
