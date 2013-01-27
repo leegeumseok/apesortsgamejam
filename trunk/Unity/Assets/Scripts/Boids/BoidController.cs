@@ -51,10 +51,19 @@ public class BoidController : MonoBehaviour
             {
                 GameObject collidedObject = collider.gameObject;
                 if (collidedObject != this.gameObject
-                    && IsPlayerCollision(collidedObject)
                     && collidedObject != defaultGoal)
                 {
-                    goalList.Add(collider.gameObject);
+                    if (Player.Instance.gameObject == collidedObject)
+                    {
+                        if (Player.Instance.Alive)
+                        {
+                            goalList.Add(collider.gameObject);
+                        }
+                    }
+                    else
+                    {
+                        goalList.Add(collider.gameObject);
+                    }
                 }
             }
         }
@@ -75,14 +84,6 @@ public class BoidController : MonoBehaviour
                 / rigidbody.mass;
             transform.rigidbody.AddForce(newForce, ForceMode.Force);
         }
-    }
-
-    protected bool IsPlayerCollision(GameObject other)
-    {
-        return
-            Player.Instance == null
-            || Player.Instance.Alive == true
-            || other != Player.Instance.gameObject;
     }
 
     /*
