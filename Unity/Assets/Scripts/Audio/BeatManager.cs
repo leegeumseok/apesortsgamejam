@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class BeatManager : MonoBehaviour 
 {
     public static readonly float MIN_BPM = 60.0f;
-    public static readonly float MAX_BPM = 220.0f;
+    public static readonly float MAX_BPM = 120.0f;
 
     public static readonly float MIN_INTENSITY = 0.01f;
     public static readonly float MAX_INTENSITY = 0.99f;
