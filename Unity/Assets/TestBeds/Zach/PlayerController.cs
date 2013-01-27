@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour {
 	/*
 	 * Player Variables
 	 */
+	//Spawning
+	public Transform mSpawnLocation;
 	
 	//Speed
 	public float mAcceleration;
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour {
 	//Player Components
 	private Rigidbody mRigidbody;
 	private Transform mTransform;
+	private GameObject mGameObject;
 	
 	//Direction to move the player
 	private float mHorizInput;
@@ -33,14 +36,25 @@ public class PlayerController : MonoBehaviour {
 	private Transform mRightHand;
 	
 	//Determines physics placed in punch
-	public float punchRadius;
-	public float punchPower;
+	public float mPunchRadius;
+	public float mPunchPower;
 	
 	//Grab Variables
 	private Transform mGrabItem;
 	private float mGrabSpeed = 8f;
 	private float mHoldingDist = .5f;
-	public float grabRadius;
+	public float mGrabRadius;
+	
+	//Damage Variables
+	public float mGrabDamage;
+	public float mPunchDamage;
+	
+	//Health Variables
+	public int mCurrentHealth;
+	private int mMaxHealth;
+	private int mSpawnSeconds = 5;
+	private bool isDead = false;
+	private float mDeathTimer;
 	
 	
 	#endregion
@@ -56,6 +70,9 @@ public class PlayerController : MonoBehaviour {
 	//Each hand has a different state
 	private MState mLeftState = MState.Idle;
 	private MState mRightState = MState.Idle;
+	
+	//Getters and Setters
+	public bool IsDead { get { return isDead; } }
 
 	// Use this for initialization
 	void Awake () {
@@ -64,6 +81,14 @@ public class PlayerController : MonoBehaviour {
 		mTransform = transform;
 		mLeftHand = mTransform.FindChild("LeftHand");
 		mRightHand = mTransform.FindChild("RightHand");
+		mMaxHealth = mCurrentHealth;
+		mGameObject = gameObject;
+		
+		if(mSpawnLocation == null)
+		{
+			Debug.Log("You probably need to assign a spawn location");
+		}
+		
 
 	
 	}
@@ -71,57 +96,66 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		//Left Hand States
-		switch(mLeftState)
-		{
-		case MState.Idle:
-			if (Input.GetButtonDown("Fire1") || Input.GetKeyDown("j"))
-			{
-				AttackEnter();	
-			}
-			
-			break;
-		case MState.Attacking:
-			if (Input.GetButtonUp("Fire1")|| Input.GetKeyUp("j"))
-			{
-				AttackExit();	
-			}
-
-			break;
-		default:
-			break;
-		}
+		Debug.Log(mCurrentHealth);
 		
-		//Right Hand States
-		switch(mRightState)
+		if(!isDead)
 		{
-		case MState.Idle:
-			if (Input.GetButtonDown("Fire2")|| Input.GetKeyDown("k"))
+			//Left Hand States
+			switch(mLeftState)
 			{
-				GrabEnter();	
-			}
-			
-			break;
-		case MState.Attacking:
-			if (Input.GetButtonUp("Fire2") || Input.GetKeyUp("k"))
-			{
-				GrabExit();	
-			}
-			
-			if (mGrabItem != null)
-			{
-				float distance = CalculateDistance(mGrabItem.position, mRightHand);
-				if (distance > 1f)
-					mGrabItem.position = Vector3.Lerp(mGrabItem.position,
-						mRightHand.position + mRightHand.forward*mHoldingDist, Time.deltaTime * mGrabSpeed);
+			case MState.Idle:
+				if (Input.GetButtonDown("Fire1") || Input.GetKeyDown("j"))
+				{
+					AttackEnter();	
+				}
 				
-				mGrabItem.LookAt(mTransform);
+				break;
+			case MState.Attacking:
+				if (Input.GetButtonUp("Fire1")|| Input.GetKeyUp("j"))
+				{
+					AttackExit();	
+				}
+	
+				break;
+			default:
+				break;
 			}
 			
-
-			break;
-		default:
-			break;
+			//Right Hand States
+			switch(mRightState)
+			{
+			case MState.Idle:
+				if (Input.GetButtonDown("Fire2")|| Input.GetKeyDown("k"))
+				{
+					GrabEnter();	
+				}
+				
+				break;
+			case MState.Attacking:
+				if (Input.GetButtonUp("Fire2") || Input.GetKeyUp("k"))
+				{
+					GrabExit();	
+				}
+				
+				if (mGrabItem != null)
+				{
+					//Assign damage to gripped enemy
+					//mGrabItem.gameObject.SendMessage("ApplyDamage", mGrabDamage/Time.deltaTime);
+					
+					//Keep item in front of you
+					float distance = CalculateDistance(mGrabItem.position, mRightHand);
+					if (distance > 1f)
+						mGrabItem.position = Vector3.Lerp(mGrabItem.position,
+							mRightHand.position + mRightHand.forward*mHoldingDist, Time.deltaTime * mGrabSpeed);
+					
+					mGrabItem.LookAt(mTransform);
+				}
+				
+	
+				break;
+			default:
+				break;
+			}
 		}
 	
 	}
@@ -135,7 +169,19 @@ public class PlayerController : MonoBehaviour {
 		mHorizInput = Input.GetAxis("Horizontal");
 		mForwardInput = Input.GetAxis("Vertical");
 		
-		MovePlayer();
+		if(!isDead)
+			MovePlayer();
+		else
+		{
+			mDeathTimer += Time.deltaTime;
+			if (mDeathTimer > mSpawnSeconds)
+				Spawn();
+		}
+		
+		
+		
+		Debug.Log(mDeathTimer);
+		
 			
 	}
 	
@@ -159,7 +205,6 @@ public class PlayerController : MonoBehaviour {
 		//Rotate player using X input
 		mTransform.Rotate(0, mHorizInput * mRotSpeed, 0);
 		
-		
 	}
 	
 	
@@ -170,7 +215,7 @@ public class PlayerController : MonoBehaviour {
 		//mLeftHand.collider.enabled = true;
 		
 		Vector3 punchPos = mLeftHand.position;
-		Collider[] colliders = Physics.OverlapSphere(punchPos, punchRadius);
+		Collider[] colliders = Physics.OverlapSphere(punchPos, mPunchRadius);
 		
 		foreach (Collider hit in colliders)
 		{
@@ -178,15 +223,22 @@ public class PlayerController : MonoBehaviour {
 			Vector3 toOther = hit.transform.position - mTransform.position;
 			if(hit.rigidbody && hit.tag != "Player" && Vector3.Dot(forward, toOther) > 0f)
 			{
+				
+				//Knock Enemy back
+				float distance = Vector3.Magnitude(hit.transform.position-mLeftHand.position);
+				hit.rigidbody.AddForce((Vector3.Normalize(hit.transform.position-mLeftHand.position))*(mPunchPower/distance), ForceMode.Impulse);
+				
+				//Apply damage to enemy
+				//hit.gameObject.SendMessage("ApplyDamage", mPunchDamage/distance);
+				
 				//hit.rigidbody.AddExplosionForce(punchPower,punchPos,punchRadius, 3.0f);
-				
-				
+				/*
 				Vector3 closestPoint = hit.ClosestPointOnBounds(mRightHand.position);
 				Vector3 direction = closestPoint - mRightHand.position;
 				direction.Normalize();
 				direction *= punchPower;
-				hit.rigidbody.AddForce(direction, ForceMode.Acceleration);
-				
+				hit.rigidbody.AddForce(direction, ForceMode.Impulse);
+				*/
 			}
 		}
 	}
@@ -206,7 +258,7 @@ public class PlayerController : MonoBehaviour {
 			float closestEnemyDist = Mathf.Infinity;
 			Vector3 grabPos = mRightHand.position;
 			Collider closestEnemy = null;
-			Collider[] colliders = Physics.OverlapSphere(grabPos, grabRadius);
+			Collider[] colliders = Physics.OverlapSphere(grabPos, mGrabRadius);
 			
 			foreach (Collider hit in colliders)
 			{
@@ -248,4 +300,36 @@ public class PlayerController : MonoBehaviour {
 		return distance;
 	}
 	#endregion
+	
+	public void Death()
+	{
+		Debug.Log("Death");
+		mCurrentHealth = mMaxHealth;
+		mDeathTimer = 0;
+		mGameObject.renderer.enabled = false;
+		foreach (Transform child in mTransform)
+			child.renderer.enabled = false;
+		//GetComponentInChildren<Renderer>().enabled = false;
+		isDead = true;
+	}
+	
+	public void Spawn()
+	{
+		mTransform.position = mSpawnLocation.position;
+		mGameObject.renderer.enabled = true;
+		GetComponentInChildren<Renderer>().enabled = true;
+
+		isDead = false;
+	}
+	
+	
+	void OnCollisionEnter(Collision collision)
+	{
+		if(collision.gameObject.tag == "Enemy")
+		{
+			mCurrentHealth--;
+			if (mCurrentHealth <= 0)
+				Death();
+		}
+	}
 }
