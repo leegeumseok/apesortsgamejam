@@ -31,6 +31,8 @@ public class SongPlayer : MonoBehaviour
 
     float timeStep = 0.0f;
     float nextWindow = 0.0f;
+    int windowSize = 1024;
+    float frequency;
 
     public NaiveSpectrumAnalyzer analyzer = null;
     public float AverageBPM 
@@ -106,9 +108,13 @@ public class SongPlayer : MonoBehaviour
             FMOD.CHANNELINDEX.FREE, sound1, false, ref channel);
         if (!ERRCHECK(result)) return;
 
-        float f = 0.0f;
-        this.channel.getFrequency(ref f);
-        this.analyzer = new NaiveSpectrumAnalyzer((int)f);
+        frequency = 0.0f;
+        this.channel.getFrequency(ref frequency);
+        this.analyzer = new NaiveSpectrumAnalyzer((int)frequency);
+
+        timeStep = 1.0f / (frequency / (float)windowSize);
+        Debug.Log(frequency);
+        Debug.Log(timeStep);
     }
 
     void OnDisable()
@@ -137,10 +143,10 @@ public class SongPlayer : MonoBehaviour
     {
         if (channel != null && Time.time > nextWindow)
         {
-            float[] spectrum = new float[1024];
+            float[] spectrum = new float[windowSize];
             //channel.getWaveData(spectrum, sampleWindow, 0);
             channel.getSpectrum(
-                spectrum, 1024, 0, FMOD.DSP_FFT_WINDOW.BLACKMANHARRIS);
+                spectrum, windowSize, 0, FMOD.DSP_FFT_WINDOW.BLACKMANHARRIS);
 
             float[] subspectrum = new float[1024];
             for (int i = 0; i < 1024; i++)

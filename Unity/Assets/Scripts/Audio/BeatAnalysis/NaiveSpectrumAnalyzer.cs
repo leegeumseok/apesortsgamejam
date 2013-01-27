@@ -7,8 +7,8 @@ using System.Collections;
 /// </summary>
 public class NaiveSpectrumAnalyzer
 {
-    float beatLockout = 0.1f;
-    float beatDecay = 0.2f;
+    float beatLockout = 0.2f;
+    float beatDecay = 0.0f;
 
     // Time windows for calculating average BPM
     float[] timeWindows;
