@@ -42,6 +42,7 @@ public class BoidSpawner : MonoBehaviour {
         }
         spawningEnemy = false;
         GameObject spawnedMinion = (GameObject)Instantiate(spawn, transform.position, Quaternion.identity);
+        spawnedMinion.SendMessage("OnSpawn");
 
         BoidController controller = spawnedMinion.GetComponent<BoidController>();
         BoidSpawnManager.Instance.OnBoidCreated(controller);

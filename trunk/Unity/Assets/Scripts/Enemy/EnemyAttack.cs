@@ -6,6 +6,8 @@ public class EnemyAttack : MonoBehaviour {
 
     public enum AttackType { Smash, Shoot };
 
+    public ShrinkEnemyAnim shrink = null;
+
     Boids boidScript;
     public ParticleSystem particleAttack;
     public ParticleSystem particleWindUp;
@@ -57,6 +59,7 @@ public class EnemyAttack : MonoBehaviour {
         lookScript.enabled = false;
         WindingUp = true;
         particleWindUp.Play();
+        if (shrink != null) shrink.Shrink();
         windUpTimer = windupTime;
         transform.LookAt(target.transform);
     }
@@ -67,6 +70,7 @@ public class EnemyAttack : MonoBehaviour {
         resetDelay = attackCooldown;
         resetTrue = true;
         particleWindUp.Stop();
+        if (shrink != null) shrink.Expand();
         
         switch (attackType)
         {
@@ -104,8 +108,8 @@ public class EnemyAttack : MonoBehaviour {
     {
         if (resetDelay <= 0 && resetTrue)
         {
+            if (shrink != null) shrink.Expand();
             lookScript.enabled = true;
-            particleAttack.Stop();
             particleWindUp.Stop();
             boidScript.enabled = true;
             WindingUp = false;

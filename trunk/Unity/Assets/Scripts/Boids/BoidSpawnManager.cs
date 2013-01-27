@@ -46,7 +46,6 @@ public class BoidSpawnManager : BeatReceiver
 
     public void OnBoidCreated(BoidController controller)
     {
-        Debug.Log("Boid created");
         var notify = notifyBoidCreated;
         if (notify != null)
             notify(controller);
