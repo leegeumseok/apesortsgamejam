@@ -29,6 +29,7 @@ GameObject:
   - 33: {fileID: 3300002}
   - 135: {fileID: 13500002}
   - 23: {fileID: 2300002}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: Eye
   m_TagString: Untagged
@@ -43,7 +44,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .0906190872, z: 0}
+  m_LocalPosition: {x: -.00308685005, y: .104365349, z: .0873852968}
   m_LocalScale: {x: .870000005, y: .870000005, z: .870000005}
   m_Children: []
   m_Father: {fileID: 400002}
@@ -53,9 +54,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.60936785, y: 7.8683567, z: 1.92146659}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -2.06599736e-07, w: 1}
+  m_LocalPosition: {x: -0, y: .36650601, z: .282087326}
+  m_LocalScale: {x: .714634001, y: .714634001, z: .714634001}
   m_Children:
   - {fileID: 400000}
   m_Father: {fileID: 0}
@@ -109,6 +110,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2685a56c695c43741a4273eb4223f510, type: 3}
+  m_Name: 
+  target: {fileID: 0}
+  boid: {fileID: 0}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
