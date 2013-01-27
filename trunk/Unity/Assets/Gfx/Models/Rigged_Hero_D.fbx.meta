@@ -1,0 +1,207 @@
+fileFormatVersion: 2
+guid: 36ac6c37e3d003a45aa646ad5ae302fa
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: herod:Icosphere_003
+    100002: herod:ikHandle1
+    100004: herod:joint1
+    100006: herod:joint10
+    100008: herod:joint11
+    100010: herod:joint12
+    100012: herod:joint13
+    100014: herod:joint14
+    100016: herod:joint15
+    100018: herod:joint16
+    100020: herod:joint17
+    100022: herod:joint2
+    100024: herod:joint3
+    100026: herod:joint4
+    100028: herod:joint5
+    100030: herod:joint6
+    100032: herod:joint7
+    100034: herod:joint8
+    100036: herod:joint9
+    100038: Icosphere_003
+    100040: ikHandle1
+    100042: joint1
+    100044: joint10
+    100046: joint11
+    100048: joint12
+    100050: joint13
+    100052: joint14
+    100054: joint15
+    100056: joint16
+    100058: joint17
+    100060: joint2
+    100062: joint3
+    100064: joint4
+    100066: joint5
+    100068: joint6
+    100070: joint7
+    100072: joint8
+    100074: joint9
+    100076: //RootNode
+    400000: herod:Icosphere_003
+    400002: herod:ikHandle1
+    400004: herod:joint1
+    400006: herod:joint10
+    400008: herod:joint11
+    400010: herod:joint12
+    400012: herod:joint13
+    400014: herod:joint14
+    400016: herod:joint15
+    400018: herod:joint16
+    400020: herod:joint17
+    400022: herod:joint2
+    400024: herod:joint3
+    400026: herod:joint4
+    400028: herod:joint5
+    400030: herod:joint6
+    400032: herod:joint7
+    400034: herod:joint8
+    400036: herod:joint9
+    400038: Icosphere_003
+    400040: ikHandle1
+    400042: joint1
+    400044: joint10
+    400046: joint11
+    400048: joint12
+    400050: joint13
+    400052: joint14
+    400054: joint15
+    400056: joint16
+    400058: joint17
+    400060: joint2
+    400062: joint3
+    400064: joint4
+    400066: joint5
+    400068: joint6
+    400070: joint7
+    400072: joint8
+    400074: joint9
+    400076: //RootNode
+    4300000: Icosphere_003
+    4300002: herod:Icosphere_003
+    7400000: left punch
+    7400002: Whip
+    7400004: right punch
+    9500000: //RootNode
+    13700000: herod:Icosphere_003
+    13700002: Icosphere_003
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations:
+    - name: left punch
+      takeName: Take 001
+      firstFrame: 260
+      lastFrame: 285
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
+    - name: Whip
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 90
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
+    - name: right punch
+      takeName: Take 001
+      firstFrame: 262
+      lastFrame: 356
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 
