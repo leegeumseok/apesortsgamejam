@@ -41,32 +41,35 @@ public class BoidController : MonoBehaviour
         // Handle Goal Stuff
         Collider[] goalColliderArray = Physics.OverlapSphere(transform.position, avoidanceFilterRange, goalMask);
         List<GameObject> goalList = new List<GameObject>();
-        if (defaultGoal != null)
+        if (defaultGoal != null && goalColliderArray.Length == 0)
         {
             goalList.Add(defaultGoal);
         }
-        foreach (Collider collider in goalColliderArray)
+        else
         {
-            GameObject collidedObject = collider.gameObject;
-            if (collidedObject != this.gameObject 
-                && IsPlayerCollision(collidedObject))
+            foreach (Collider collider in goalColliderArray)
             {
-                goalList.Add(collider.gameObject);
+                GameObject collidedObject = collider.gameObject;
+                if (collidedObject != this.gameObject
+                    && IsPlayerCollision(collidedObject)
+                    && collidedObject != defaultGoal)
+                {
+                    goalList.Add(collider.gameObject);
+                }
             }
         }
 
         // Set Up BoidScript
         boidScript.GoalList = goalList;
         boidScript.AvoidanceList = avoidanceList;
-        boidScript.UpdateVelocity();
+        Vector3 boidVelocity = boidScript.UpdateVelocity();
 
         // Add Force to Rigidbody
-        if (boidScript.CurrentVelocity.sqrMagnitude > 0 && rigidbody != null)
+        if (boidVelocity.sqrMagnitude > 0 && rigidbody != null)
         {
-            Vector3 newVelocity = boidScript.CurrentVelocity;
-            newVelocity.y = 0;
-            Vector3 newForce = 
-                Vector3.Normalize(newVelocity) 
+            boidVelocity.y = 0;
+            Vector3 newForce =
+                Vector3.Normalize(boidVelocity) 
                 * acceleration 
                 * BoidSpawnManager.Instance.BoidSpeedMultiplier 
                 / rigidbody.mass;
