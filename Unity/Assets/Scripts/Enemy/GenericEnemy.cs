@@ -4,6 +4,7 @@ using System.Collections;
 public class GenericEnemy : BeatReceiver
 {
     public delegate void OnDestroyedNotify(GenericEnemy enemy);
+    public int maxHealthPoints = 100;
     public int healthPoints = 100;
     public int resourceValue = 1;
     public int killPoints = 100;
@@ -57,6 +58,14 @@ public class GenericEnemy : BeatReceiver
     {
         // see subclasses for actual death behavior
         healthPoints -= damage;
+
+        Healthbar healthBar = GetComponent<Healthbar>();
+        if (healthBar != null)
+        {
+            float lifePercent = (float)healthPoints / maxHealthPoints;
+            healthBar.setPercentHealth(lifePercent);
+        }
+
         if (healthPoints <= 0)
         {
             Boids boid = this.GetComponent<Boids>();
