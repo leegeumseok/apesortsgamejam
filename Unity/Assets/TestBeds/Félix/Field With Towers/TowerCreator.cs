@@ -19,6 +19,8 @@ public class TowerCreator : MonoBehaviour {
             Transform tower = (Transform)Instantiate(towerTemplate, spawnLocation.position, Quaternion.identity);
             TowerController controller = tower.GetComponent<TowerController>();
             controller.bulletSpeed = 4;
+            controller.bulletDamage = 0;
+            controller.bulletForce = 100;
 
             resources -= towerResourceCost;
         }
