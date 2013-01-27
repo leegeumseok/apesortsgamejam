@@ -237,6 +237,9 @@ public class PlayerController : MonoBehaviour {
 
                 hit.gameObject.SendMessage("OnHit");
                 hit.gameObject.SendMessage("OnDamaged", mPunchDamage);
+				
+				//Increment pulse power
+				mPlayer.GetComponent<Player>().PulsePower++;
 			}
 		}
 	}
