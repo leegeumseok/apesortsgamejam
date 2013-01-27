@@ -88,6 +88,10 @@ public class SongPlayer : MonoBehaviour
         {
             Debug.Log("FMOD init! " + result);
         }
+
+        // find the song path
+        SongFileLocation location = GameObject.FindGameObjectWithTag("SongFileLocation").GetComponent<SongFileLocation>();
+        PlaySong(location.FilePath);
     }
 
     void Update()

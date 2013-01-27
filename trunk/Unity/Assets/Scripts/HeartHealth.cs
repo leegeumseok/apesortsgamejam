@@ -13,7 +13,7 @@ public class HeartHealth : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        currentHealth = maxHealth;
+        currentHealth = 1;
         nextRegeneratedHitPoint = 1 / regenerationPerSecond; // returns +infinity when regenerationPerSecond = 0
         var overlays = GameObject.FindGameObjectsWithTag("MainCamera");
         if (overlays.Length > 0)

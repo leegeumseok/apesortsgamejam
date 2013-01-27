@@ -24,7 +24,10 @@ public class GameStatsUI : MonoBehaviour {
 	void Update () {
         if (outcome != GameOutcome.NotOver)
         {
-            // game ended
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                // return to main menu
+            }
         }
 	}
 	
@@ -32,8 +35,12 @@ public class GameStatsUI : MonoBehaviour {
 		GUI.skin = customSkin;
 		
 		//TOP
-		GUI.Label(new Rect(0,0,100,50), "Time: " + time);
-		GUI.Label(new Rect(Screen.width/2 - 100,0,200,50), points + " points", "PointsLabel");
+        if (time != 0)
+        {
+            GUI.Label(new Rect(0, 0, 100, 50), "Time: " + time);
+        }
+		
+        GUI.Label(new Rect(Screen.width/2 - 100,0,200,50), points + " points", "PointsLabel");
 		
 		//SIDE
 		GUI.Label(new Rect(Screen.width - 100f, Screen.height*0.25f,100f,50f), "Heart: " + heartHealth + "/" + heartHealthMax, "HeartLabel");
@@ -48,10 +55,12 @@ public class GameStatsUI : MonoBehaviour {
         if (outcome == GameOutcome.Won)
         {
             // tell the user he won
+            GUI.Label(new Rect(Screen.width - 100, Screen.height - 300, Screen.width - 200, Screen.height - 600), "YOU WIN!\nPress ESC to exit");
         }
         else if (outcome == GameOutcome.Lost)
         {
             // tell the user he lost
+            GUI.Label(new Rect(Screen.width - 100, Screen.height - 300, Screen.width - 200, Screen.height - 600), "YOU DIED! </3\nPress ESC to exit");
         }
         else
         {
