@@ -49,14 +49,9 @@ public class SongPlayer : MonoBehaviour
     private FMOD.Sound sound1 = null;
     private FMOD.Channel channel = null;
 
-    private List<BeatReceiver> beatReceivers;
-    private List<Action> delayedActions;
-
     void OnEnable()
     {
         SongPlayer.Instance = this;
-        this.beatReceivers = new List<BeatReceiver>();
-        this.delayedActions = new List<Action>();
     }
 
     void Start()
@@ -98,24 +93,6 @@ public class SongPlayer : MonoBehaviour
             analyzer.Update(Time.deltaTime);
             Debug.Log(analyzer.GetAverageBPM());
         }
-    }
-
-    public void RegisterReceiver(BeatReceiver receiver)
-    {
-        this.beatReceivers.Add(receiver);
-    }
-
-    /// <summary>
-    /// This is slow
-    /// </summary>
-    public void RemoveReceiver(BeatReceiver receiver)
-    {
-        this.beatReceivers.Remove(receiver);
-    }
-
-    public void DelayUntilNextBeat(Action action)
-    {
-        this.delayedActions.Add(action);
     }
 
     public void PlaySong(string songPath)
@@ -170,20 +147,10 @@ public class SongPlayer : MonoBehaviour
                 subspectrum[i] = spectrum[i];
 
             if (analyzer.AddSamples(subspectrum) == true)
-                this.DoBeat();
+                BeatManager.Instance.DoBeat();
 
             nextWindow += timeStep;
         }
-    }
-
-    private void DoBeat()
-    {
-        foreach (BeatReceiver receiver in this.beatReceivers)
-            if (receiver != null)
-                receiver.OnBeat();
-        foreach (Action action in this.delayedActions)
-            action.Invoke();
-        this.delayedActions.Clear();
     }
 
     //FMOD error checking codes
