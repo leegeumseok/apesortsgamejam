@@ -1010,7 +1010,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f7040d7846589488e67fa93ff73fae, type: 3}
   m_Name: 
   DEBUG: 0
-  mSpawnLocation: {fileID: 897644772}
   mAcceleration: 1000
   mMaxSpeed: 9
   mRotSpeed: 5
@@ -1019,7 +1018,6 @@ MonoBehaviour:
   mGrabRadius: 3
   mGrabDamage: 1
   mPunchDamage: 5
-  mCurrentHealth: 5
 --- !u!114 &1369803172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1030,6 +1028,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 355d49026eb3eb147aed86eb89401e64, type: 3}
   m_Name: 
+  mSpawnLocation: {fileID: 897644772}
+  mCurrentHealth: 5
   Alive: 1
 --- !u!1 &1466922272
 GameObject:
