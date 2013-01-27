@@ -102,11 +102,19 @@ public class SongPlayer : MonoBehaviour
         //Create some sound references to play
         FMOD.RESULT result = 
             system.createSound(songPath, FMOD.MODE.HARDWARE, ref sound1);
-        if (!ERRCHECK(result)) return;
+        if (!ERRCHECK(result))
+        {
+            Debug.LogError("Could not load file " + songPath);
+            return;
+        }
 
         result = system.playSound(
             FMOD.CHANNELINDEX.FREE, sound1, false, ref channel);
-        if (!ERRCHECK(result)) return;
+        if (!ERRCHECK(result))
+        {
+            Debug.LogError("Could not play sound on free channel");
+            return;
+        }
 
         frequency = 0.0f;
         this.channel.getFrequency(ref frequency);

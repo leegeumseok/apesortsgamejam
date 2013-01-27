@@ -491,6 +491,7 @@ GameObject:
   - 54: {fileID: 403944016}
   - 114: {fileID: 403944015}
   - 114: {fileID: 403944020}
+  - 114: {fileID: 403944021}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -603,6 +604,21 @@ MonoBehaviour:
   mSpawnLocation: {fileID: 1973831406}
   mCurrentHealth: 5
   Alive: 1
+--- !u!114 &403944021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 403944013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a66f6d2bbd7cd44ae6afc8ab27d980, type: 3}
+  m_Name: 
+  spawnLocation: {fileID: 1706646678}
+  towerTemplate: {fileID: 400000, guid: f7f8e69d55f04d44685cd32518cff1aa, type: 2}
+  resources: 20
+  towerResourceCost: 10
+  maxResources: 15
 --- !u!1 &451312953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,7 +1578,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ffdc5362ebe4f84b84ec6be301911c1, type: 3}
   m_Name: 
-  pathToSong: C:\Users\Alex\Downloads\Edward Sharpe & The Magnetic Zeros - Home [2009].mp3
+  pathToSong: C:\Temp\blackdragon.mp3
 --- !u!1 &1262214153
 GameObject:
   m_ObjectHideFlags: 0

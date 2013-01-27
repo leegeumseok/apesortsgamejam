@@ -27,7 +27,8 @@ public class HomingBullet : MonoBehaviour
             body.AddForce(direction * force, ForceMode.Impulse);
         }
 
-        Instantiate(explosion, collider.transform.position, Quaternion.identity);
+        if (explosion != null)
+            Instantiate(explosion, collider.transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

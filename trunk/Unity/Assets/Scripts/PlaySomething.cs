@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlaySomething : MonoBehaviour 
 {
-    public string pathToSong = "C:\\Users\\Alex\\Downloads\\Hotline Miami Soundtrack -  Perturbator.mp3";
+    public string pathToSong = "C:\\Temp\\blackdragon.mp3";
 
 	void Update () 
     {
