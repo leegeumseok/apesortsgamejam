@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour {
 	public float mPunchRadius;
 	public float mMaxPunchPower;
 	public float mMinPunchPower;
+	public float mPunchRecharge;
+	private float mPunchTimer;
 	
 	
 	//Grab Variables
@@ -92,7 +94,8 @@ public class PlayerController : MonoBehaviour {
 			switch(mLeftState)
 			{
 			case MState.Idle:
-				if (Input.GetButtonDown("Fire1") || Input.GetKeyDown("j"))
+				mPunchTimer += Time.deltaTime;
+				if ((Input.GetButtonDown("Fire1") || Input.GetKeyDown("j")) && mPunchTimer > mPunchRecharge)
 				{
 					AttackEnter();	
 				}
@@ -224,7 +227,7 @@ public class PlayerController : MonoBehaviour {
 	void AttackExit() {
 		mLeftHand.renderer.enabled = false;	
 		mLeftState = MState.Idle;
-		//mLeftHand.collider.enabled = false;
+		mPunchTimer = 0;
 	}
 	
 	void GrabEnter() {
@@ -257,15 +260,12 @@ public class PlayerController : MonoBehaviour {
 			if(closestEnemy != null)
 				mGrabItem = closestEnemy.transform;
 		}
-		
-		//mRightHand.collider.enabled = true;
 	}
 	
 	void GrabExit() {
 		mRightHand.renderer.enabled = false;
 		mRightState = MState.Idle;
 		mGrabItem = null;
-		//mRightHand.collider.enabled = false;
 	}
 	
 	#endregion
