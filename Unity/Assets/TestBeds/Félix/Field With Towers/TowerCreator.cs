@@ -17,7 +17,7 @@ public class TowerCreator : MonoBehaviour {
         if (Input.GetKeyDown("q") && resources > towerResourceCost)
         {
             Transform tower = (Transform)Instantiate(towerTemplate, spawnLocation.position, Quaternion.identity);
-            TowerController controller = tower.GetComponent<TowerController>();
+            GenericTower controller = tower.GetComponent<GenericTower>();
             controller.bulletSpeed = 10;
             controller.bulletDamage = 100;
             controller.bulletForce = 60;

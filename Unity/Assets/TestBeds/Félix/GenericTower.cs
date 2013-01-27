@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class TowerController : MonoBehaviour {
+public class GenericTower : MonoBehaviour {
 
     private float timeBeforeNextAttack;
 
