@@ -195,7 +195,7 @@ GameObject:
   - 114: {fileID: 11400012}
   - 114: {fileID: 11400014}
   m_Layer: 9
-  m_Name: YellowEnemy
+  m_Name: YellowEnemyIan
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -578,7 +578,7 @@ MonoBehaviour:
   goalMask:
     serializedVersion: 2
     m_Bits: 1024
-  primaryGoal: {fileID: 0}
+  defaultGoal: {fileID: 0}
   acceleration: 10
   deathOnContact: 0
 --- !u!114 &11400012
@@ -593,6 +593,8 @@ MonoBehaviour:
   m_Name: 
   healthPoints: 100
   resourceValue: 1
+  GrabbedParticle: {fileID: 0}
+  DyingParticle: {fileID: 0}
   isDying: 0
   deathTime: 0
   heartDamage: 1
