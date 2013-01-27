@@ -21,8 +21,7 @@ public class BoidSpawner : MonoBehaviour {
             currentCooldown = BoidSpawnManager.SpawnCooldownTime;
             spawningEnemy = true;
             enemyToSpawn = BoidSpawnManager.GetNextSpawn();
-            //BeatManager.Instance.DelayUntilNextBeat(this.SpawnNext);
-            SpawnNext();
+            BeatManager.Instance.DelayUntilNextBeat(this.SpawnNext);
         }
 	}
 
