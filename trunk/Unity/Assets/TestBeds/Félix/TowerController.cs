@@ -10,6 +10,7 @@ public class TowerController : MonoBehaviour {
     public float attacksPerSecond;
     public int bulletDamage;
     public float bulletSpeed;
+    public float bulletForce;
     public int ammunition = int.MaxValue;
     public Transform bulletTemplate;
     public LayerMask targetLayer;
@@ -62,6 +63,7 @@ public class TowerController : MonoBehaviour {
         component.target = target;
         component.damage = bulletDamage;
         component.speed = bulletSpeed;
+        component.force = bulletForce;
     }
 
     private Collider FindClosestTarget(Collider[] targets)

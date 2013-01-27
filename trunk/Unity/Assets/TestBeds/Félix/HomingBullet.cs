@@ -6,12 +6,19 @@ public class HomingBullet : MonoBehaviour
     public Collider target;
     public int damage;
     public float speed;
+    public float force;
 
 	public void Start()
     { }
 
-    public void OnTriggerEnter()
+    public void OnTriggerEnter(Collider collider)
     {
+        Rigidbody body = collider.rigidbody;
+        if (body != null)
+        {
+            Vector3 direction = (collider.transform.position - transform.position).normalized;
+            body.AddForce(direction * force);
+        }
         Destroy(gameObject);
     }
 
