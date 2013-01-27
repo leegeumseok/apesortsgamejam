@@ -11,6 +11,7 @@ public class EnemyAttack : MonoBehaviour {
     Boids boidScript;
     public ParticleSystem particleAttack;
     public ParticleSystem particleWindUp;
+    public GameObject bullet;
     public float attackDamage;
     public float attackRange;
     public float attackForce;
@@ -82,6 +83,7 @@ public class EnemyAttack : MonoBehaviour {
                 break;
             case AttackType.Shoot:
                 Shoot();
+                particleAttack.Play();
                 break;
         }
 
@@ -105,7 +107,8 @@ public class EnemyAttack : MonoBehaviour {
 
     private void Shoot()
     {
-
+        GameObject bulletSpawn = (GameObject)Instantiate(bullet, transform.position + transform.forward * attackRange, Quaternion.LookRotation(transform.forward));
+        bulletSpawn.GetComponent<EnemyBullet>().firingEnemy = gameObject;
     }
 
     void Reset()
