@@ -20,14 +20,15 @@ public class TowerCreator : MonoBehaviour {
             TowerController controller = tower.GetComponent<TowerController>();
             controller.bulletSpeed = 10;
             controller.bulletDamage = 100;
-            controller.bulletForce = 80;
-            controller.attacksPerSecond = 10;
+            controller.bulletForce = 60;
+            controller.attacksPerSecond = 1.75f;
+            controller.ammunition = 50;
 
             resources -= towerResourceCost;
         }
 	}
 
-    void GatherResources(int resources)
+    public void GatherResources(int resources)
     {
         this.resources += resources;
         if (this.resources > maxResources)

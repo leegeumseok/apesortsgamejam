@@ -45,7 +45,6 @@ public class HomingBullet : MonoBehaviour
 
     private void Delete()
     {
-        Debug.Log("Deleting bullet");
         target.GetComponent<GenericEnemy>().notifyOnDestroyed -= Delete;
         GameObject.Destroy(gameObject);
     }

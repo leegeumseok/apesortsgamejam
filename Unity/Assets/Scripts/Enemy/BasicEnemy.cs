@@ -36,7 +36,6 @@ public class BasicEnemy : GenericEnemy
         }
     }
 
-
     public override void OnDestroyed() 
     {
         base.OnDestroyed();
