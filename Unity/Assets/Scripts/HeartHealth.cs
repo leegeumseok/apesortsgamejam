@@ -3,12 +3,6 @@ using System.Collections;
 
 public class HeartHealth : MonoBehaviour
 {
-    public enum GameOutcome
-    {
-        Won,
-        Lost
-    }
-
     private GameStatsUI overlay;
     private float nextRegeneratedHitPoint;
     public int maxHealth = 500;
@@ -57,18 +51,15 @@ public class HeartHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            EndGame(GameOutcome.Lost);
+            if (overlay != null)
+            {
+                overlay.outcome = GameStatsUI.GameOutcome.Lost;
+            }
         }
 
         if (overlay != null)
         {
             overlay.heartHealth = currentHealth;
         }
-    }
-
-    private void EndGame(GameOutcome outcome)
-    {
-        // TODO stuff here!
-        Debug.LogError("YOUR HEART WAS BLOWN TO PIECES </3");
     }
 }
