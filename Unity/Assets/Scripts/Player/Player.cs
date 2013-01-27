@@ -39,6 +39,8 @@ public class Player : MonoBehaviour
 
     public bool Alive = true;
 	
+	public float PulsePower { get { return mPulsePower; } set { mPulsePower = value; } }
+	
 	void Awake()
 	{
 		mRigidbody = rigidbody;
