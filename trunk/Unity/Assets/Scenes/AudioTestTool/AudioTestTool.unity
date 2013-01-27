@@ -1028,9 +1028,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9f419823b3817948ae6460ea7ab8907, type: 3}
   m_Name: 
-  currentScale: 16
-  minScale: 16
-  maxScale: 22
 --- !u!23 &1963479110
 Renderer:
   m_ObjectHideFlags: 0
