@@ -7,8 +7,8 @@ public class EnemyAttack : MonoBehaviour {
     public enum AttackType { Smash, Shoot };
 
     Boids boidScript;
-    public GameObject particleAttack;
-    public GameObject particleWindUp;
+    public ParticleSystem particleAttack;
+    public ParticleSystem particleWindUp;
     public float attackDamage;
     public float attackRange;
     public float attackForce;
@@ -78,7 +78,7 @@ public class EnemyAttack : MonoBehaviour {
         {
             if (unit.gameObject != gameObject)
             {
-                unit.SendMessage("AssignDamage", attackDamage, SendMessageOptions.DontRequireReceiver);
+                unit.SendMessage("AssignDamage", attackDamage);
                 if (unit.rigidbody)
                     unit.rigidbody.AddForce(attackForce * transform.forward, ForceMode.Impulse);
                 if (particleAttack)
