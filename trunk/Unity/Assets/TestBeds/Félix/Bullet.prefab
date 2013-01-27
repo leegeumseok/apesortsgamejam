@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Name: 
   target: {fileID: 0}
   damage: 5
-  speed: .100000001
+  speed: 5
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
