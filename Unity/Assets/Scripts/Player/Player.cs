@@ -71,10 +71,12 @@ public class Player : MonoBehaviour
 				child.renderer.enabled = false;
 		}
         this.Alive = false;
+		mRigidbody.isKinematic = true;
 	}
 	
 	public void Spawn()
 	{
+		mRigidbody.isKinematic = false;
 		mTransform.position = mSpawnLocation.position;
 		mCurrentHealth = mMaxHealth;
 		mGameObject.collider.enabled = true;
