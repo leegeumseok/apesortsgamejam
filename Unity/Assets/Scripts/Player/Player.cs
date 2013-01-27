@@ -48,12 +48,12 @@ public class Player : MonoBehaviour
 	
 	public void Death()
 	{
-		Debug.Log("Death");
 		mCurrentHealth = mMaxHealth;
 		mDeathTimer = 0;
 		mGameObject.renderer.enabled = false;
 		foreach (Transform child in mTransform)
 			child.renderer.enabled = false;
+        this.Alive = false;
 	}
 	
 	public void Spawn()
