@@ -13,6 +13,7 @@ public class HeartHealth : MonoBehaviour
     public int maxHealth = 500;
     public int currentHealth = -1;
     public float regenerationPerSecond = 0;
+    public GameObject bloodEffect;
 
     // Use this for initialization
     void Start()
@@ -35,6 +36,13 @@ public class HeartHealth : MonoBehaviour
     public void OnDamage(int damage)
     {
         currentHealth -= damage;
+
+        if (bloodEffect != null)
+        {
+            for (int i = 0; i < damage; i++)
+                Instantiate(bloodEffect, transform.position, Quaternion.identity);
+        }
+
         if (currentHealth <= 0)
         {
             currentHealth = 0;
