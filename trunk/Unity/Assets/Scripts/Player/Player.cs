@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
 	private int mMaxHealth;
 	private int mSpawnSeconds = 5;
 	private float mDeathTimer;
+	private float mBounceBack = 5f;
 
     public bool Alive = true;
 	
@@ -82,9 +83,14 @@ public class Player : MonoBehaviour
 	
 	void OnCollisionEnter(Collision collision)
 	{
+		Transform heldEnemy = mGameObject.GetComponent<PlayerController>().GrabItem;
 		if(collision.gameObject.tag == "Enemy")
 		{
+			if(heldEnemy)
+				if(heldEnemy.gameObject == collision.gameObject)
+					return;
 			mCurrentHealth--;
+			collision.rigidbody.AddForce((Vector3.Normalize(collision.transform.position-mTransform.position))*mBounceBack, ForceMode.Impulse);
 			if (mCurrentHealth <= 0)
 				Death();
 		}

@@ -64,6 +64,9 @@ public class PlayerController : MonoBehaviour {
 	private MState mLeftState = MState.Idle;
 	private MState mRightState = MState.Idle;
 	
+	//Getters and Setters
+	public Transform GrabItem { get { return mGrabItem;} }
+	
 
 	// Use this for initialization
 	void Awake () {
@@ -199,17 +202,6 @@ public class PlayerController : MonoBehaviour {
 				float distance = Vector3.Magnitude(hit.transform.position-mLeftHand.position);
 				hit.rigidbody.AddForce((Vector3.Normalize(hit.transform.position-mLeftHand.position))*(mPunchPower/distance), ForceMode.Impulse);
 				
-				//Apply damage to enemy
-				//hit.gameObject.SendMessage("ApplyDamage", mPunchDamage/distance);
-				
-				//hit.rigidbody.AddExplosionForce(punchPower,punchPos,punchRadius, 3.0f);
-				/*
-				Vector3 closestPoint = hit.ClosestPointOnBounds(mRightHand.position);
-				Vector3 direction = closestPoint - mRightHand.position;
-				direction.Normalize();
-				direction *= punchPower;
-				hit.rigidbody.AddForce(direction, ForceMode.Impulse);
-				*/
 			}
 		}
 	}
