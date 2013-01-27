@@ -6,13 +6,25 @@ public class GenericEnemy : BeatReceiver
     public delegate void OnDestroyedNotify();
     public int healthPoints = 100;
     public int resourceValue = 1;
+    public ParticleSystem GrabbedParticle = null;
+    public ParticleSystem DyingParticle = null;
 
     public event OnDestroyedNotify notifyOnDestroyed;
 
     public virtual void OnSpawn() { }
     public virtual void OnHit() { }
-    public virtual void OnGrabbed() { }
-    public virtual void OnReleased() { }
+
+    public virtual void OnGrabbed() 
+    {
+        if (this.GrabbedParticle != null)
+            this.GrabbedParticle.Play();
+    }
+
+    public virtual void OnReleased() 
+    {
+        if (this.GrabbedParticle != null)
+            this.GrabbedParticle.Stop();
+    }
 
     public virtual void OnDamaged(int damage)
     {
@@ -23,6 +35,12 @@ public class GenericEnemy : BeatReceiver
             Boids boid = this.GetComponent<Boids>();
             boid.AvoidanceRule = boid.GoalSeekingRule = false;
         }
+    }
+
+    public virtual void OnDying()
+    {
+        if (this.DyingParticle != null)
+            this.DyingParticle.Play();
     }
 
     public virtual void OnDestroyed() 
