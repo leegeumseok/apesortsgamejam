@@ -16,11 +16,12 @@ public class Sphinctercontrol : MonoBehaviour {
 
 
 
-void Open () {
+public void Open () {
 	animation.Play("open");
 	}
 
-void Close () {
+public void Close()
+{
 	animation.Play("close");
 	}
 	
