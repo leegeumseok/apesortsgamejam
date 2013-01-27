@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour {
 	public float mPunchDamage;
 	
 
-	
+	private Player mPlayer;
 	
 	#endregion
 	
@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour {
 		mLeftHand = mTransform.FindChild("LeftHand");
 		mRightHand = mTransform.FindChild("RightHand");
 		mGameObject = gameObject;
+		mPlayer = GetComponent<Player>();
 
 	}
 	
@@ -80,60 +81,63 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		
 		//Left Hand States
-		switch(mLeftState)
-		{
-		case MState.Idle:
-			if (Input.GetButtonDown("Fire1") || Input.GetKeyDown("j"))
+		if(mPlayer.Alive)
 			{
-				AttackEnter();	
-			}
-			
-			break;
-		case MState.Attacking:
-			if (Input.GetButtonUp("Fire1")|| Input.GetKeyUp("j"))
+			switch(mLeftState)
 			{
-				AttackExit();	
-			}
-
-			break;
-		default:
-			break;
-		}
-		
-		//Right Hand States
-		switch(mRightState)
-		{
-		case MState.Idle:
-			if (Input.GetButtonDown("Fire2")|| Input.GetKeyDown("k"))
-			{
-				GrabEnter();	
-			}
-			
-			break;
-		case MState.Attacking:
-			if (Input.GetButtonUp("Fire2") || Input.GetKeyUp("k"))
-			{
-				GrabExit();	
-			}
-			
-			if (mGrabItem != null)
-			{
-				//Assign damage to gripped enemy
-				//mGrabItem.gameObject.SendMessage("ApplyDamage", mGrabDamage/Time.deltaTime);
+			case MState.Idle:
+				if (Input.GetButtonDown("Fire1") || Input.GetKeyDown("j"))
+				{
+					AttackEnter();	
+				}
 				
-				//Keep item in front of you
-				float distance = CalculateDistance(mGrabItem.position, mRightHand);
-				if (distance > 1f)
-					mGrabItem.position = Vector3.Lerp(mGrabItem.position,
-						mRightHand.position + mRightHand.forward*mHoldingDist, Time.deltaTime * mGrabSpeed);
-				
-				mGrabItem.LookAt(mTransform);
+				break;
+			case MState.Attacking:
+				if (Input.GetButtonUp("Fire1")|| Input.GetKeyUp("j"))
+				{
+					AttackExit();	
+				}
+	
+				break;
+			default:
+				break;
 			}
 			
-
-			break;
-		default:
-			break;
+			//Right Hand States
+			switch(mRightState)
+			{
+			case MState.Idle:
+				if (Input.GetButtonDown("Fire2")|| Input.GetKeyDown("k"))
+				{
+					GrabEnter();	
+				}
+				
+				break;
+			case MState.Attacking:
+				if (Input.GetButtonUp("Fire2") || Input.GetKeyUp("k"))
+				{
+					GrabExit();	
+				}
+				
+				if (mGrabItem != null)
+				{
+					//Assign damage to gripped enemy
+					//mGrabItem.gameObject.SendMessage("ApplyDamage", mGrabDamage/Time.deltaTime);
+					
+					//Keep item in front of you
+					float distance = CalculateDistance(mGrabItem.position, mRightHand);
+					if (distance > 1f)
+						mGrabItem.position = Vector3.Lerp(mGrabItem.position,
+							mRightHand.position + mRightHand.forward*mHoldingDist, Time.deltaTime * mGrabSpeed);
+					
+					mGrabItem.LookAt(mTransform);
+				}
+				
+	
+				break;
+			default:
+				break;
+			}
 		}
 	
 	}
@@ -147,8 +151,8 @@ public class PlayerController : MonoBehaviour {
 		//Get Direction Player is Moving
 		mHorizInput = Input.GetAxis("Horizontal");
 		mForwardInput = Input.GetAxis("Vertical");
-
-        MovePlayer();
+		if(mPlayer.Alive)
+        	MovePlayer();
 	}
 	
 	/*

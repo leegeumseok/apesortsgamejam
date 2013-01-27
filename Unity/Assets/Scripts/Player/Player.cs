@@ -46,11 +46,24 @@ public class Player : MonoBehaviour
 		}
 	}
 	
+	void Update()
+	{
+		if(!Alive)
+		{
+			mDeathTimer+=Time.deltaTime;
+			if(mDeathTimer > mSpawnSeconds)
+			{
+				Spawn();	
+			}
+		}
+	}
+	
 	public void Death()
 	{
-		mCurrentHealth = mMaxHealth;
 		mDeathTimer = 0;
+		Alive = false;
 		mGameObject.renderer.enabled = false;
+		mGameObject.collider.enabled = false;
 		foreach (Transform child in mTransform)
 			child.renderer.enabled = false;
         this.Alive = false;
@@ -59,8 +72,12 @@ public class Player : MonoBehaviour
 	public void Spawn()
 	{
 		mTransform.position = mSpawnLocation.position;
+		mCurrentHealth = mMaxHealth;
+		mGameObject.collider.enabled = true;
 		mGameObject.renderer.enabled = true;
-		GetComponentInChildren<Renderer>().enabled = true;
+		mTransform.FindChild("Front").renderer.enabled = true;
+		Alive = true;
+		
 	}
 	
 	void OnCollisionEnter(Collision collision)
