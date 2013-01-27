@@ -33,6 +33,9 @@ public class Player : MonoBehaviour
 	private float mDeathTimer;
 	private float mBounceBack = 5f;
 	private GameObject mHUD;
+	
+	//Pulse Attack
+	public float mPulsePower;
 
     public bool Alive = true;
 	
@@ -55,6 +58,14 @@ public class Player : MonoBehaviour
 			{
 				Spawn();	
 			}
+		}
+		
+		if(mPulsePower >= 50f && Input.GetButtonDown("Jump"))
+		{
+			GameObject clone;
+			clone = Instantiate(mHeartPulse, Vector3.zero, Quaternion.identity) as GameObject;
+			clone.GetComponent<Pulse>().mMaxRadius = mPulsePower;
+			mPulsePower = 0f;
 		}
 	}
 	

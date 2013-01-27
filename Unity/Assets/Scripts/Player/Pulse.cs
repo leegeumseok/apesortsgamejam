@@ -5,6 +5,7 @@ public class Pulse : MonoBehaviour {
 	
 	public int mSegments;
 	public float mRadius;
+	public float mMaxRadius;
 	private float mCurrAngle = 0f;
 	private LineRenderer mLine;
 
@@ -37,8 +38,13 @@ public class Pulse : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		mRadius++;
-		CreatePoints();
+	void Update (){
+		if(mRadius < mMaxRadius)
+		{
+			mRadius++;
+			CreatePoints();
+		}
+		else
+			Destroy(this.gameObject);
 	}
 }
