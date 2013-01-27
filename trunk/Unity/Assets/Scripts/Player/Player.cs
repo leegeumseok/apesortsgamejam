@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
 	private GameObject mGameObject;
 	
 	//Health Variables
-	public Transform mSpawnLocation;
+	public Transform[] mSpawnLocations;
 	public GameObject mHeartPulse;
 	public int mCurrentHealth;
 	private int mMaxHealth;
@@ -42,10 +42,6 @@ public class Player : MonoBehaviour
 		mGameObject = gameObject;
 		Player.Instance = this;
 		mMaxHealth = mCurrentHealth;
-		if(mSpawnLocation == null)
-		{
-			Debug.Log("You probably need to assign a spawn location");
-		}
 	}
 	
 	void Update()
@@ -79,7 +75,23 @@ public class Player : MonoBehaviour
 	{
 		GameObject clone;
 		mRigidbody.isKinematic = false;
-		mTransform.position = mSpawnLocation.position;
+		
+		//Find closest spawn location
+		float closestDistance = Mathf.Infinity;
+		Transform closestSpawn=null;
+		foreach(Transform spawn in mSpawnLocations)
+		{
+			float distance = Vector3.Magnitude(mTransform.position-spawn.position);
+			if(distance < closestDistance)
+			{
+				closestDistance = distance;
+				closestSpawn = spawn;
+			}
+		}
+		
+		
+		if(closestSpawn != null)
+			mTransform.position = closestSpawn.position;
 		mCurrentHealth = mMaxHealth;
 		mGameObject.collider.enabled = true;
 		mGameObject.renderer.enabled = true;

@@ -329,6 +329,32 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1600495397}
+--- !u!1 &239331947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 239331948}
+  m_Layer: 0
+  m_Name: PlayerSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &239331948
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 239331947}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -22.216114, y: 0, z: 28.9316101}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1001 &259287153
 Prefab:
   m_ObjectHideFlags: 0
@@ -605,7 +631,11 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 355d49026eb3eb147aed86eb89401e64, type: 3}
   m_Name: 
-  mSpawnLocation: {fileID: 1973831406}
+  mSpawnLocations:
+  - {fileID: 2101544408}
+  - {fileID: 239331948}
+  - {fileID: 1242161090}
+  - {fileID: 1973831406}
   mHeartPulse: {fileID: 100000, guid: 4ac2ddd93b39def408aaedbaf9a555cd, type: 2}
   mCurrentHealth: 5
   Alive: 1
@@ -1229,6 +1259,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400002, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
+      propertyPath: mSpawnLocations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1285,6 +1319,22 @@ Prefab:
       propertyPath: mHeartPulse
       value: 
       objectReference: {fileID: 100000, guid: 4ac2ddd93b39def408aaedbaf9a555cd, type: 2}
+    - target: {fileID: 11400002, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
+      propertyPath: mSpawnLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 2101544408}
+    - target: {fileID: 11400002, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
+      propertyPath: mSpawnLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 239331948}
+    - target: {fileID: 11400002, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
+      propertyPath: mSpawnLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 1242161090}
+    - target: {fileID: 11400002, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
+      propertyPath: mSpawnLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 1973831406}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
   m_RootGameObject: {fileID: 403944013}
@@ -1585,6 +1635,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffdc5362ebe4f84b84ec6be301911c1, type: 3}
   m_Name: 
   pathToSong: C:\Users\GMGGPHHHM6\Desktop\11 D12 & Eminem - Fight Music.mp3
+--- !u!1 &1242161089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1242161090}
+  m_Layer: 0
+  m_Name: PlayerSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1242161090
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1242161089}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -27.5377846, y: 0, z: -19.343544}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &1262214153
 GameObject:
   m_ObjectHideFlags: 0
@@ -2570,7 +2646,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1973831405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.5143242, y: 0, z: 25.3204727}
+  m_LocalPosition: {x: 19.2168922, y: 0, z: -16.1125488}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2709,6 +2785,32 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1314832291}
   m_GameObject: {fileID: 2080389856}
   m_Mesh: {fileID: 4300000, guid: 197670382cedaa14caed30862e512488, type: 3}
+--- !u!1 &2101544407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2101544408}
+  m_Layer: 0
+  m_Name: PlayerSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2101544408
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2101544407}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.126236, y: 0, z: 20.9490967}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1001 &2138912822
 Prefab:
   m_ObjectHideFlags: 0
