@@ -1522,6 +1522,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ffdc5362ebe4f84b84ec6be301911c1, type: 3}
   m_Name: 
+  pathToSong: C:\Users\Alex\Downloads\Hotline Miami Soundtrack -  Perturbator.mp3
 --- !u!1 &1262214153
 GameObject:
   m_ObjectHideFlags: 0
