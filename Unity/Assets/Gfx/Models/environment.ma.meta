@@ -1,18 +1,8 @@
 fileFormatVersion: 2
-guid: c43e106133e61fe479d4059b877376e8
+guid: 9e91902a54be023459b284469faea228
 ModelImporter:
   serializedVersion: 15
-  fileIDToRecycleName:
-    100000: ambientLight1
-    100002: //RootNode
-    100004: environment:Mesh
-    400000: ambientLight1
-    400002: //RootNode
-    400004: environment:Mesh
-    2300000: environment:Mesh
-    3300000: environment:Mesh
-    4300000: environment:Mesh
-    9500000: //RootNode
+  fileIDToRecycleName: {}
   materials:
     importMaterials: 1
     materialName: 0
