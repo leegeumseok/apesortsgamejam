@@ -43,6 +43,12 @@ public class Boids : MonoBehaviour
         protected set;
     }
 
+    public GameObject CurrentTarget
+    {
+        get;
+        protected set;
+    }
+
     public void UpdateVelocity()
     {
         Vector3 newVelocity = new Vector3();
@@ -80,6 +86,7 @@ public class Boids : MonoBehaviour
                     {
                         maxMagnitude = magnitude;
                         goalVelocity = boid.transform.position - transform.position;
+                        CurrentTarget = boid.gameObject;
                     }
                 }
                 newVelocity += goalVelocity;
