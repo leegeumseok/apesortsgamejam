@@ -30,10 +30,11 @@ public class Player : MonoBehaviour
 	public GameObject mHeartPulse;
 	public int mCurrentHealth;
 	private int mMaxHealth;
-	private int mSpawnSeconds = 5;
+	private int mSpawnSeconds = 3;
 	private float mDeathTimer;
 	private float mBounceBack = 5f;
 	private GameObject mHUD;
+	private GameObject mCamera;
 	
 	//Pulse Attack
 	public float mPulsePower;
@@ -49,7 +50,7 @@ public class Player : MonoBehaviour
 		mGameObject = gameObject;
 		Player.Instance = this;
 		mMaxHealth = mCurrentHealth;
-		mHUD = GameObject.FindGameObjectWithTag("HealthUI");
+		mCamera = GameObject.FindGameObjectWithTag("MainCamera");
 	}
 	
 	void Update()
@@ -84,6 +85,7 @@ public class Player : MonoBehaviour
 		}
         this.Alive = false;
 		mRigidbody.isKinematic = true;
+		mCamera.GetComponent<GameStatsUI>().respawnTimerCount = 5;
 	}
 	
 	public void Spawn()
