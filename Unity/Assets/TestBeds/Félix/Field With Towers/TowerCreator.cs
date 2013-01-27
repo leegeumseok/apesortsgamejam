@@ -20,7 +20,7 @@ public class TowerCreator : MonoBehaviour {
             TowerController controller = tower.GetComponent<TowerController>();
             controller.bulletSpeed = 4;
             controller.bulletDamage = 0;
-            controller.bulletForce = 100;
+            controller.bulletForce = 10;
 
             resources -= towerResourceCost;
         }
