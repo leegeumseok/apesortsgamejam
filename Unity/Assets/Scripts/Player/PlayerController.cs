@@ -60,6 +60,8 @@ public class PlayerController : MonoBehaviour {
 	public int mGrabDamage;
 	public int mPunchDamage;
 	
+	public float mPulseBonus;
+	
 
 	private Player mPlayer;
 	
@@ -239,7 +241,7 @@ public class PlayerController : MonoBehaviour {
                 hit.gameObject.SendMessage("OnDamaged", mPunchDamage);
 				
 				//Increment pulse power
-				mPlayer.GetComponent<Player>().PulsePower++;
+				mPlayer.GetComponent<Player>().PulsePower+= mPulseBonus;
 			}
 		}
 	}
