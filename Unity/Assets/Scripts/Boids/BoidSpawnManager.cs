@@ -1,19 +1,63 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class BoidSpawnManager
+public class BoidSpawnManager : BeatReceiver
 {
-    public static float SpawnCooldownTime
+    private static BoidSpawnManager _instance = null;
+    public static BoidSpawnManager Instance
     {
-        get { return 2 + Random.value; }//- BeatManager.Instance.Intensity; }
+        get
+        {
+            return _instance;
+        }
+
+        private set
+        {
+            if (_instance != null)
+                Debug.LogError("Multiple Player singletons");
+            _instance = value;
+        }
     }
 
-    public static float BoidSpeedMultiplier
+
+    public float PulseBoost = 3.0f;
+    public float PulseDecay = 30.0f;
+
+    protected float curPulseBoost = 0.0f;
+
+    void Awake()
     {
-        get { return 1; }//+ BeatManager.Instance.Intensity; }
+        BoidSpawnManager.Instance = this;
     }
 
-    public static bool HasSpawns
+    void Start()
+    {
+        BeatManager.Instance.RegisterReceiver(this);
+    }
+
+    void Update()
+    {
+        this.curPulseBoost -= Time.deltaTime * PulseDecay;
+        if (this.curPulseBoost < 0.0f)
+            this.curPulseBoost = 0.0f;
+    }
+
+    public override void OnBeat()
+    {
+        this.curPulseBoost = PulseBoost;
+    }
+
+    public float SpawnCooldownTime
+    {
+        get { return 2 + Random.value - BeatManager.Instance.Intensity; }
+    }
+
+    public float BoidSpeedMultiplier
+    {
+        get { return 1 + BeatManager.Instance.Intensity + this.curPulseBoost; }
+    }
+
+    public bool HasSpawns
     {
         get 
         {
@@ -21,14 +65,14 @@ public static class BoidSpawnManager
         }
     }
 
-    private static Queue<EnemyEnum> spawnQueue = new Queue<EnemyEnum>();
+    private Queue<EnemyEnum> spawnQueue = new Queue<EnemyEnum>();
 
-    public static void AddToSpawnQueue(EnemyEnum enemyType)
+    public void AddToSpawnQueue(EnemyEnum enemyType)
     {
         spawnQueue.Enqueue(enemyType);
     }
 
-    public static EnemyEnum GetNextSpawn()
+    public EnemyEnum GetNextSpawn()
     {
         return spawnQueue.Dequeue();
     }
