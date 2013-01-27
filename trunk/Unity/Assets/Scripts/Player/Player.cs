@@ -66,7 +66,10 @@ public class Player : MonoBehaviour
 		mGameObject.renderer.enabled = false;
 		mGameObject.collider.enabled = false;
 		foreach (Transform child in mTransform)
-			child.renderer.enabled = false;
+		{
+			if(child.renderer!=null)
+				child.renderer.enabled = false;
+		}
         this.Alive = false;
 	}
 	
