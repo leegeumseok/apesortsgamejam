@@ -9,7 +9,7 @@ public class SpawnOnCommand : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            BoidSpawnManager.AddToSpawnQueue(EnemyEnum.Small);
+            BoidSpawnManager.Instance.AddToSpawnQueue(EnemyEnum.Small);
             Debug.Log("Spawning small");
         }
 	}

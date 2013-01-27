@@ -74,6 +74,46 @@ NavMeshSettings:
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
   m_NavMesh: {fileID: 0}
+--- !u!1 &31777191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: e884059fa2f808b4b941df2411544c09, type: 2}
+  m_PrefabInternal: {fileID: 2138912822}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 31777192}
+  - 114: {fileID: 31777193}
+  m_Layer: 0
+  m_Name: BoidSpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &31777192
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: e884059fa2f808b4b941df2411544c09, type: 2}
+  m_PrefabInternal: {fileID: 2138912822}
+  m_GameObject: {fileID: 31777191}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.1829252, y: 8.42054749, z: 3.1674099}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &31777193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: e884059fa2f808b4b941df2411544c09,
+    type: 2}
+  m_PrefabInternal: {fileID: 2138912822}
+  m_GameObject: {fileID: 31777191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e7eb3e22078054884dd07e62a9281b, type: 3}
+  m_Name: 
+  PulseBoost: 3
+  PulseDecay: 30
 --- !u!1 &74706003
 GameObject:
   m_ObjectHideFlags: 0
@@ -1495,7 +1535,7 @@ GameObject:
   - 4: {fileID: 1231110906}
   - 114: {fileID: 1231110907}
   m_Layer: 0
-  m_Name: MiscCrap
+  m_Name: SongStarter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1522,7 +1562,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ffdc5362ebe4f84b84ec6be301911c1, type: 3}
   m_Name: 
-  pathToSong: C:\Users\Alex\Downloads\Hotline Miami Soundtrack -  Perturbator.mp3
+  pathToSong: C:\Users\Alex\Downloads\Edward Sharpe & The Magnetic Zeros - Home [2009].mp3
 --- !u!1 &1262214153
 GameObject:
   m_ObjectHideFlags: 0
@@ -2647,3 +2687,43 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1314832291}
   m_GameObject: {fileID: 2080389856}
   m_Mesh: {fileID: 4300000, guid: 197670382cedaa14caed30862e512488, type: 3}
+--- !u!1001 &2138912822
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: e884059fa2f808b4b941df2411544c09, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 12.1829252
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e884059fa2f808b4b941df2411544c09, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 8.42054749
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e884059fa2f808b4b941df2411544c09, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 3.1674099
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e884059fa2f808b4b941df2411544c09, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e884059fa2f808b4b941df2411544c09, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e884059fa2f808b4b941df2411544c09, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e884059fa2f808b4b941df2411544c09, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e884059fa2f808b4b941df2411544c09, type: 2}
+  m_RootGameObject: {fileID: 31777191}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
