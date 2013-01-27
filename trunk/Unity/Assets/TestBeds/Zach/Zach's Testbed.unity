@@ -468,6 +468,14 @@ Prefab:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
+      propertyPath: mMinPunchPower
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
+      propertyPath: mMaxPunchPower
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
   m_RootGameObject: {fileID: 1369803165}
@@ -514,7 +522,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
@@ -582,7 +590,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5400000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
       propertyPath: m_Drag
@@ -1038,7 +1046,8 @@ MonoBehaviour:
   mMaxSpeed: 9
   mRotSpeed: 5
   mPunchRadius: 1
-  mPunchPower: 15
+  mMaxPunchPower: 20
+  mMinPunchPower: 5
   mGrabRadius: 3
   mGrabDamage: 1
   mPunchDamage: 5
@@ -1455,7 +1464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &1684887271
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1822,7 +1831,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5400000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
       propertyPath: m_Drag
@@ -1857,7 +1866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &1958710172
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2070,7 +2079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &2017957598
 Rigidbody:
   m_ObjectHideFlags: 0
