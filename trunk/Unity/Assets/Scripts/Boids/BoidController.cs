@@ -73,7 +73,8 @@ public class BoidController : MonoBehaviour
     protected bool IsPlayerCollision(GameObject other)
     {
         return
-            Player.Instance.Alive == true
+            Player.Instance == null
+            || Player.Instance.Alive == true
             || other != Player.Instance.gameObject;
     }
 
