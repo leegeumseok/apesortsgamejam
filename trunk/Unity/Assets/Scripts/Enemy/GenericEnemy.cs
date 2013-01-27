@@ -100,6 +100,26 @@ public class GenericEnemy : BeatReceiver
         GameObject.Destroy(this.gameObject);
     }
 
+    public virtual void OnWindup()
+    {
+        if (audio != null && AudioOnWindUp != null && AudioOnWindUp.Length > 0)
+        {
+            int index = Random.Range(0, this.AudioOnWindUp.Length);
+            audio.clip = this.AudioOnWindUp[index];
+            audio.Play();
+        }
+    }
+
+    public virtual void OnAttack()
+    {
+        if (audio != null && AudioOnAttack != null && AudioOnAttack.Length > 0)
+        {
+            int index = Random.Range(0, this.AudioOnAttack.Length);
+            audio.clip = this.AudioOnAttack[index];
+            audio.Play();
+        }
+    }
+
     // Probably won't use this directly, but I'll add it anyway
     public override void OnBeat() { }
 }
