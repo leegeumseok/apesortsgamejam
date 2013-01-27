@@ -1,10 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\Pulse.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\Player.cs">
     <Files>
-      <File FileName="Assets\Scripts\Player\Player.cs" Line="75" Column="3" />
-      <File FileName="Assets\Scripts\Player\PlayerController.cs" Line="122" Column="93" />
-      <File FileName="Assets\Scripts\Player\Pulse.cs" Line="45" Column="1" />
+      <File FileName="Assets\Scripts\Player\Player.cs" Line="28" Column="36" />
+      <File FileName="Assets\Scripts\Player\PlayerController.cs" Line="271" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
