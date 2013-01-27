@@ -13,8 +13,8 @@ GameObject:
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
-  - 114: {fileID: 11400008}
   - 54: {fileID: 5400000}
+  - 114: {fileID: 11400008}
   m_Layer: 9
   m_Name: BasicEnemyEyes
   m_TagString: Enemy
@@ -103,7 +103,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: -.0302407835, w: .999542713}
-  m_LocalPosition: {x: 8.24517822, y: .664473295, z: -10.3734827}
+  m_LocalPosition: {x: -1.8401525, y: -4.91769743, z: -10.0969782}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -116,7 +116,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: -2.06599736e-07, w: 1}
-  m_LocalPosition: {x: -0, y: .36650601, z: .282087326}
+  m_LocalPosition: {x: .282087326, y: .366506159, z: .161720276}
   m_LocalScale: {x: .714634001, y: .714634001, z: .714634001}
   m_Children:
   - {fileID: 400004}
@@ -150,7 +150,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .366506368, z: -.282087296}
+  m_LocalPosition: {x: -.282087356, y: .366506338, z: .161720276}
   m_LocalScale: {x: .714633703, y: .714633703, z: .714633703}
   m_Children:
   - {fileID: 400006}
@@ -288,12 +288,12 @@ Rigidbody:
   m_GameObject: {fileID: 100000}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 1
+  m_Drag: 5
   m_AngularDrag: .0500000007
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 84
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &11400000
 MonoBehaviour:
@@ -313,7 +313,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   primaryGoal: {fileID: 0}
-  acceleration: 9
+  acceleration: 10
   deathOnContact: 0
 --- !u!114 &11400002
 MonoBehaviour:
@@ -374,9 +374,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4242e0109131db740a1fbecf015a9555, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c8d16d2cb9f58f44bd6a1f972317a8c, type: 3}
   m_Name: 
-  healthPoints: 100
+  driveSpeed: 500
+  dragRadius: .5
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

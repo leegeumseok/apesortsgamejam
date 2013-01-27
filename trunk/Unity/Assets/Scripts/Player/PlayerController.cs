@@ -260,13 +260,21 @@ public class PlayerController : MonoBehaviour {
 					}
 				}
 			}
-			
-			if(closestEnemy != null)
-				mGrabItem = closestEnemy.transform;
+
+            if (closestEnemy != null)
+            {
+                mGrabItem = closestEnemy.transform;
+                GenericEnemy enemy = mGrabItem.GetComponent<GenericEnemy>();
+                if (enemy != null)
+                    enemy.OnGrabbed();
+            }
 		}
 	}
 	
 	void GrabExit() {
+        GenericEnemy enemy = mGrabItem.GetComponent<GenericEnemy>();
+        if (enemy != null)
+            enemy.OnReleased();
 		mRightHand.renderer.enabled = false;
 		mRightState = MState.Idle;
 		mGrabItem = null;
