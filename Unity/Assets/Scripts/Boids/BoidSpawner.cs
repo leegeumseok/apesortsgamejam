@@ -1,22 +1,51 @@
 using UnityEngine;
-using System.Collections;
 
 public class BoidSpawner : MonoBehaviour {
 
-    
-    public float spawnCooldown = 2;
-    private float currentCooldown = 0;
+    public GameObject BigEnemy;
+    public GameObject MediumEnemy;
+    public GameObject SmallEnemy;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
+    public GameObject primaryGoal;
+
+    private float currentCooldown = 0;
+    private EnemyEnum enemyToSpawn;
+    private bool spawningEnemy = false;
 	
 	// Update is called once per frame
 	void Update () 
     {
         currentCooldown -= Time.deltaTime;
+        if (currentCooldown <= 0 && BoidManager.HasSpawns && !spawningEnemy)
+        {
+            currentCooldown = BoidManager.SpawnCooldownTime;
+            spawningEnemy = true;
+            enemyToSpawn = BoidManager.GetNextSpawn();
+            //BeatManager.Instance.DelayUntilNextBeat(this.SpawnNext);
+            SpawnNext();
+        }
 	}
 
-
+    public void SpawnNext()
+    {
+        GameObject spawn = null;
+        switch(enemyToSpawn)
+        {
+            case EnemyEnum.Big:
+                spawn = BigEnemy;
+                break;
+            case EnemyEnum.Medium:
+                spawn = MediumEnemy;
+                break;
+            case EnemyEnum.Small:
+                spawn = SmallEnemy;
+                break;
+        }
+        spawningEnemy = false;
+        GameObject spawnedMinion = (GameObject)Instantiate(spawn, transform.position, Quaternion.identity);
+        if (primaryGoal)
+        {
+            spawnedMinion.GetComponent<BoidController>().primaryGoal = primaryGoal;
+        }
+    }
 }

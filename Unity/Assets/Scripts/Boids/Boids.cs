@@ -56,6 +56,7 @@ public class Boids : MonoBehaviour
             {
                 float currentDistSqdFromCenter = Vector3.SqrMagnitude(BoundingCenter - transform.position);
                 Vector3 addVelocity = Vector3.Normalize(BoundingCenter - transform.position) * (boundingMaxRangeSqd - currentDistSqdFromCenter) * boundingBufferStrength;
+                newVelocity += addVelocity;
             }
             if (SeparationRule)
             {

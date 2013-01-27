@@ -10,7 +10,7 @@ public class BoidController : MonoBehaviour
     public LayerMask goalMask = new LayerMask();
     public GameObject primaryGoal;
     public float acceleration = 10;
-    public bool deathOnContact;
+    public bool deathOnContact = false;
 
     void Start()
     {
@@ -19,14 +19,11 @@ public class BoidController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (deathOnContact && gameObject.layer != collision.gameObject.layer)
-
+        if (deathOnContact && gameObject.layer != collision.gameObject.layer && deathOnContact)
+        {
+            BoidManager.AddToSpawnQueue(EnemyEnum.Big);
             Destroy(gameObject);
-    }
-
-    void Update()
-    {
-
+        }
     }
 
     void FixedUpdate()
@@ -68,7 +65,7 @@ public class BoidController : MonoBehaviour
         {
             Vector3 newVelocity = boidScript.CurrentVelocity;
             newVelocity.y = 0;
-            Vector3 newForce = Vector3.Normalize(newVelocity) * acceleration * GlobalVariables.speedMultiplier / rigidbody.mass;
+            Vector3 newForce = Vector3.Normalize(newVelocity) * acceleration * BoidManager.BoidSpeedMultiplier / rigidbody.mass;
             transform.rigidbody.AddForce(newForce, ForceMode.Force);
         }
     }
