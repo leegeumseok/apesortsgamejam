@@ -97,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.0370121, y: 7.27388334, z: 13.944911}
+  m_LocalPosition: {x: -4.26146507, y: 8.72985458, z: 15.3752117}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -111,7 +111,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: .0677518845, y: 0, z: -.00638484955}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400004}
@@ -131,7 +131,7 @@ MonoBehaviour:
   attackForce: 5
   attackDamage: 1
   bulletDeathCooldown: .300000012
-  bulletSpeed: 1
+  bulletSpeed: 10
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -2223,7 +2223,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
-  lengthInSec: 5
+  lengthInSec: .100000001
   startDelay: 0
   speed: 1
   randomSeed: 0
@@ -2234,7 +2234,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 5
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2394,7 +2394,7 @@ ParticleSystem:
         rgba: 4278255615
       minMaxState: 0
     startSize:
-      scalar: .800000012
+      scalar: .5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2479,7 +2479,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 1
+      scalar: 10000
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2511,7 +2511,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
       minMaxState: 0
-    cnt0: 30
+    cnt0: 1
     cnt1: 30
     cnt2: 30
     cnt3: 30
@@ -2519,76 +2519,26 @@ ParticleSystem:
     time1: 0
     time2: 0
     time3: 0
-    m_BurstCount: 0
+    m_BurstCount: 1
   SizeModule:
     enabled: 1
     curve:
-      scalar: 2
+      scalar: 1.28571391
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: .642856956
+          value: .428571641
           inSlope: 0
           outSlope: 0
           tangentMode: 0
-        - time: .0777027085
+        - time: .503378332
           value: 1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
-        - time: .162162155
-          value: .571428299
-          inSlope: 5.51552963
-          outSlope: 5.51552963
-          tangentMode: 0
-        - time: .253378391
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        - time: .334459484
-          value: .571428299
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        - time: .415540546
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        - time: .503378391
+        - time: 1
           value: .499999702
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        - time: .581081092
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        - time: .665540576
-          value: .571428359
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        - time: .756756783
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        - time: .834459424
-          value: .499999702
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        - time: .915540576
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        - time: .996621609
-          value: .642856956
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -2598,7 +2548,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: .5
+          value: .777778029
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -3396,9 +3346,9 @@ ParticleSystemRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_RenderMode: 1
-  m_MaxParticleSize: 1
-  m_CameraVelocityScale: 1
+  m_RenderMode: 0
+  m_MaxParticleSize: .5
+  m_CameraVelocityScale: 0
   m_VelocityScale: 1
   m_LengthScale: 2
   m_SortingFudge: 0

@@ -724,26 +724,8 @@ MonoBehaviour:
   m_Name: 
   healthPoints: 100
   resourceValue: 1
-  killPoints: 100
   GrabbedParticle: {fileID: 19800000}
   DyingParticle: {fileID: 19800002}
-  IsGrabbed: 0
-  AudioOnHit:
-  - {fileID: 8300000, guid: f1778a9ddda477144a4cf5cbbc384b1e, type: 3}
-  - {fileID: 8300000, guid: 09edd2b1c902ae544b529a69b290e2a7, type: 3}
-  AudioOnDeath:
-  - {fileID: 8300000, guid: 4fd61424e46b25f4ca47e5c6d21b8640, type: 3}
-  - {fileID: 8300000, guid: 58d7f20f225966a47b072c6c3d06b73f, type: 3}
-  - {fileID: 8300000, guid: 0121504da13ed0842b639ddd2ab50ef9, type: 3}
-  - {fileID: 8300000, guid: 377c506d146335443904d6863b4e617a, type: 3}
-  AudioOnWindUp:
-  - {fileID: 8300000, guid: 3abc02e2ee678f245b63d60af2a24ecc, type: 3}
-  - {fileID: 8300000, guid: 3cf4c748b56db674e8d13e9f68a7afcc, type: 3}
-  AudioOnAttack:
-  - {fileID: 8300000, guid: 623627f6bc289d54385cc079180d92da, type: 3}
-  AudioOnSpawn:
-  - {fileID: 8300000, guid: a2b0941ce48647749a5abe93265c05dd, type: 3}
-  - {fileID: 8300000, guid: 99a2326a5dab1e54b95b58b08d28e614, type: 3}
   isDying: 0
   deathTime: 0
   heartDamage: 1
@@ -854,9 +836,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07c955b608a682c4f97a02f65f8a7ce3, type: 3}
   m_Name: 
-  shrink: {fileID: 11400012}
   particleAttack: {fileID: 19800006}
   particleWindUp: {fileID: 19800004}
+  bullet: {fileID: 100004, guid: a43198b1242b7384f8b77b4db23a6516, type: 2}
   attackDamage: 1
   attackRange: 3
   attackForce: 10
