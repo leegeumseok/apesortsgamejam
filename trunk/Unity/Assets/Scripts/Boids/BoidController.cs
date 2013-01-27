@@ -21,7 +21,7 @@ public class BoidController : MonoBehaviour
     {
         if (deathOnContact && gameObject.layer != collision.gameObject.layer && deathOnContact)
         {
-            BoidManager.AddToSpawnQueue(EnemyEnum.Big);
+            BoidSpawnManager.AddToSpawnQueue(EnemyEnum.Big);
             Destroy(gameObject);
         }
     }
@@ -65,7 +65,7 @@ public class BoidController : MonoBehaviour
         {
             Vector3 newVelocity = boidScript.CurrentVelocity;
             newVelocity.y = 0;
-            Vector3 newForce = Vector3.Normalize(newVelocity) * acceleration * BoidManager.BoidSpeedMultiplier / rigidbody.mass;
+            Vector3 newForce = Vector3.Normalize(newVelocity) * acceleration * BoidSpawnManager.BoidSpeedMultiplier / rigidbody.mass;
             transform.rigidbody.AddForce(newForce, ForceMode.Force);
         }
     }

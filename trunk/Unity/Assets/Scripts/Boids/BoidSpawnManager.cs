@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class BoidManager
+public static class BoidSpawnManager
 {
     public static float SpawnCooldownTime
     {

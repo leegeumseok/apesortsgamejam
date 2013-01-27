@@ -16,11 +16,11 @@ public class BoidSpawner : MonoBehaviour {
 	void Update () 
     {
         currentCooldown -= Time.deltaTime;
-        if (currentCooldown <= 0 && BoidManager.HasSpawns && !spawningEnemy)
+        if (currentCooldown <= 0 && BoidSpawnManager.HasSpawns && !spawningEnemy)
         {
-            currentCooldown = BoidManager.SpawnCooldownTime;
+            currentCooldown = BoidSpawnManager.SpawnCooldownTime;
             spawningEnemy = true;
-            enemyToSpawn = BoidManager.GetNextSpawn();
+            enemyToSpawn = BoidSpawnManager.GetNextSpawn();
             //BeatManager.Instance.DelayUntilNextBeat(this.SpawnNext);
             SpawnNext();
         }
