@@ -16,7 +16,8 @@ public class Eye : MonoBehaviour
         GameObject targetObject = this.boid.CurrentTarget;
         if (targetObject == null)
             targetObject = Player.Instance.gameObject;
-        this.target = targetObject.transform;
-        this.transform.LookAt(target);
+        Vector3 targetPos = targetObject.transform.position;
+        targetPos.y = transform.position.y;
+        this.transform.LookAt(targetPos);
 	}
 }
