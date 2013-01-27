@@ -6,6 +6,9 @@ public class BoidSpawner : MonoBehaviour {
     public GameObject MediumEnemy;
     public GameObject SmallEnemy;
 
+    public Sphinctercontrol sphincter = null;
+    public float closeSphincter = 0.0f;
+
     public GameObject defaultGoal;
 
     private float currentCooldown = 0;
@@ -22,6 +25,12 @@ public class BoidSpawner : MonoBehaviour {
             spawningEnemy = true;
             enemyToSpawn = BoidSpawnManager.Instance.GetNextSpawn();
             BeatManager.Instance.DelayUntilNextBeat(this.SpawnNext);
+        }
+
+        if (closeSphincter > 0.0f && Time.time > closeSphincter && sphincter != null)
+        {
+            sphincter.Close();
+            closeSphincter = -1.0f;
         }
 	}
 
@@ -48,5 +57,11 @@ public class BoidSpawner : MonoBehaviour {
         BoidSpawnManager.Instance.OnBoidCreated(controller);
         if (defaultGoal)
             controller.defaultGoal = defaultGoal;
+
+        if (sphincter != null)
+        {
+            sphincter.Open();
+            this.closeSphincter = Time.time + 2.0f;
+        }
     }
 }
