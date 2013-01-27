@@ -51,8 +51,8 @@ public class PlayerController : MonoBehaviour {
 	private float mGrabTimer;
 	
 	//Damage Variables
-	public float mGrabDamage;
-	public float mPunchDamage;
+	public int mGrabDamage;
+	public int mPunchDamage;
 	
 
 	private Player mPlayer;
@@ -222,6 +222,7 @@ public class PlayerController : MonoBehaviour {
 				float punchPower = Mathf.Min(mMaxPunchPower/distance, mMinPunchPower);
 				hit.rigidbody.AddForce((Vector3.Normalize(hit.transform.position-mLeftHand.position))*punchPower, ForceMode.Impulse);
 
+                hit.gameObject.SendMessage("OnDamaged", mPunchDamage);
                 hit.gameObject.SendMessage("OnHit", SendMessageOptions.DontRequireReceiver);
 			}
 		}

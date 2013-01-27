@@ -6,6 +6,7 @@ public class GenericEnemy : BeatReceiver
     public delegate void OnDestroyedNotify();
 
 	public int healthPoints = 100;
+    public int resourceValue = 1;
     public event OnDestroyedNotify notifyOnDestroyed;
 
     public virtual void OnSpawn() { }
@@ -20,6 +21,8 @@ public class GenericEnemy : BeatReceiver
         {
             notifyOnDestroyed();
         }
+
+        Player.Instance.GetComponent<TowerCreator>().GatherResources(resourceValue);
 
         GameObject.Destroy(this.gameObject);
     }
