@@ -5,8 +5,16 @@ public class Eye : MonoBehaviour
 {
     public Transform target;
 
+    public Boids boid;
+
+    void Start()
+    {
+        this.boid = GetComponent<Boids>();
+    }
+
 	void Update () 
     {
-        transform.LookAt(target.transform.position);
+        this.target = this.boid.CurrentTarget.transform;
+        this.transform.LookAt(target);
 	}
 }
