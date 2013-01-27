@@ -6,7 +6,7 @@ public class BoidSpawner : MonoBehaviour {
     public GameObject MediumEnemy;
     public GameObject SmallEnemy;
 
-    public GameObject primaryGoal;
+    public GameObject defaultGoal;
 
     private float currentCooldown = 0;
     private EnemyEnum enemyToSpawn;
@@ -42,9 +42,9 @@ public class BoidSpawner : MonoBehaviour {
         }
         spawningEnemy = false;
         GameObject spawnedMinion = (GameObject)Instantiate(spawn, transform.position, Quaternion.identity);
-        if (primaryGoal)
+        if (defaultGoal)
         {
-            spawnedMinion.GetComponent<BoidController>().primaryGoal = primaryGoal;
+            spawnedMinion.GetComponent<BoidController>().defaultGoal = defaultGoal;
         }
     }
 }
