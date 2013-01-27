@@ -204,7 +204,8 @@ public class PlayerController : MonoBehaviour {
 				float distance = Vector3.Magnitude(hit.transform.position-mLeftHand.position);
 				float punchPower = Mathf.Min(mMaxPunchPower/distance, mMinPunchPower);
 				hit.rigidbody.AddForce((Vector3.Normalize(hit.transform.position-mLeftHand.position))*punchPower, ForceMode.Impulse);
-				
+
+                hit.gameObject.SendMessage("OnHit", SendMessageOptions.DontRequireReceiver);
 			}
 		}
 	}

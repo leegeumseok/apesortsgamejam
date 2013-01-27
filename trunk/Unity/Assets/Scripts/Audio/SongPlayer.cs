@@ -93,7 +93,7 @@ public class SongPlayer : MonoBehaviour
         if (analyzer != null)
         {
             analyzer.Update(Time.deltaTime);
-            Debug.Log(analyzer.GetAverageBPM());
+            //Debug.Log(analyzer.GetAverageBPM());
         }
     }
 
