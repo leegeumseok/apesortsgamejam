@@ -12,6 +12,7 @@ public class GenericEnemy : BeatReceiver
     public virtual void OnSpawn() { }
     public virtual void OnHit() { }
     public virtual void OnGrabbed() { }
+    public virtual void OnReleased() { }
     public virtual void OnDamaged(int damage) { }
 
     public virtual void OnDestroyed() 
