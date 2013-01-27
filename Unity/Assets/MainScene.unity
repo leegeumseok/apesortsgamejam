@@ -971,6 +971,7 @@ MonoBehaviour:
   maxHealth: 500
   currentHealth: -1
   regenerationPerSecond: 0
+  bloodEffect: {fileID: 400000, guid: 996bb69eaa1dbff4c98f5d0b9f790ee6, type: 2}
 --- !u!1 &576089391
 GameObject:
   m_ObjectHideFlags: 0
