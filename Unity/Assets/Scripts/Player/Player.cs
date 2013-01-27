@@ -84,11 +84,12 @@ public class Player : MonoBehaviour
 		mDeathTimer = 0;
 		Alive = false;
         playerRenderer.SetActive(false);
+		/*
 		foreach (Transform child in mTransform)
 		{
 			if(child.renderer!=null)
 				child.renderer.enabled = false;
-		}
+		}*/
         this.Alive = false;
 		mRigidbody.isKinematic = true;
 		mCamera.GetComponent<GameStatsUI>().respawnTimerCount = 5;
