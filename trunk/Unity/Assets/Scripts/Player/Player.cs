@@ -114,6 +114,7 @@ public class Player : MonoBehaviour
 		
 	}
 
+    /*
 	void OnCollisionEnter(Collision collision)
 	{
 		Transform heldEnemy = mGameObject.GetComponent<PlayerController>().GrabItem;
@@ -132,4 +133,13 @@ public class Player : MonoBehaviour
 				Death();
 		}
 	}
+     * */
+
+    void AssignDamage(float damage)
+    {
+        Debug.Log("Player just recieved " + damage + " damage!");
+        mCurrentHealth -= (int)damage;
+        if (mCurrentHealth <= 0)
+            Death();
+    }
 }
