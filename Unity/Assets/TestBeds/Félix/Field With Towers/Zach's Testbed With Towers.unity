@@ -641,9 +641,6 @@ MonoBehaviour:
   goalMask:
     serializedVersion: 2
     m_Bits: 1024
-  mouselookMask:
-    serializedVersion: 2
-    m_Bits: 0
   primaryGoal: {fileID: 0}
   acceleration: 10
 --- !u!23 &1028147619
@@ -942,6 +939,7 @@ GameObject:
   - 23: {fileID: 1369803166}
   - 54: {fileID: 1369803170}
   - 114: {fileID: 1369803171}
+  - 114: {fileID: 1369803172}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -1023,7 +1021,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1369803165}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9598a8e1c04ee6f428336b7add57ec7b, type: 3}
+  m_Script: {fileID: 11500000, guid: f5f7040d7846589488e67fa93ff73fae, type: 3}
   m_Name: 
   DEBUG: 0
   mAcceleration: 1000
@@ -1032,7 +1030,21 @@ MonoBehaviour:
   punchRadius: 3
   punchPower: 5
   grabRadius: 3
+--- !u!114 &1369803172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1369803165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a66f6d2bbd7cd44ae6afc8ab27d980, type: 3}
+  m_Name: 
+  spawnLocation: {fileID: 434051115}
   towerTemplate: {fileID: 400000, guid: f7f8e69d55f04d44685cd32518cff1aa, type: 2}
+  resources: 30
+  towerResourceCost: 10
+  maxResources: 15
 --- !u!1 &1466922272
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Bullet : MonoBehaviour
+public class HomingBullet : MonoBehaviour
 {
     public Collider target;
     public int damage;

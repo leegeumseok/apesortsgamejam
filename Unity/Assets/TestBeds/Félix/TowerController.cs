@@ -10,6 +10,7 @@ public class TowerController : MonoBehaviour {
     public float attacksPerSecond;
     public int bulletDamage;
     public float bulletSpeed;
+    public int ammunition = int.MaxValue;
     public Transform bulletTemplate;
     public LayerMask targetLayer;
 
@@ -30,30 +31,34 @@ public class TowerController : MonoBehaviour {
 	// Update is called once per frame
 	public void Update()
     {
-        timeBeforeNextAttack -= Time.deltaTime;
-        var collidedWith = Physics.OverlapSphere(transform.position, attackRange, targetLayer);
-        
-        Collider target = FindClosestTarget(collidedWith);
-        if (target != null)
+        if (ammunition > 0)
         {
-            Vector3 lookAt = target.transform.position;
-            lookAt.y = transform.position.y;
-            transform.LookAt(lookAt);
+            timeBeforeNextAttack -= Time.deltaTime;
+            var collidedWith = Physics.OverlapSphere(transform.position, attackRange, targetLayer);
 
-            if (timeBeforeNextAttack <= 0)
+            Collider target = FindClosestTarget(collidedWith);
+            if (target != null)
             {
-                Attack(target);
-                timeBeforeNextAttack = AttackDelay;
+                Vector3 lookAt = target.transform.position;
+                lookAt.y = transform.position.y;
+                transform.LookAt(lookAt);
+
+                if (timeBeforeNextAttack <= 0)
+                {
+                    Attack(target);
+                    timeBeforeNextAttack = AttackDelay;
+                }
             }
         }
 	}
 
     private void Attack(Collider target)
     {
+        ammunition--;
         Transform bullet = (Transform)Instantiate(bulletTemplate);
         bullet.position = transform.position;
 
-        Bullet component = bullet.GetComponent<Bullet>();
+        HomingBullet component = bullet.GetComponent<HomingBullet>();
         component.target = target;
         component.damage = bulletDamage;
         component.speed = bulletSpeed;
