@@ -29,7 +29,7 @@ public class BasicEnemy : GenericEnemy
     }
 
     public override void OnGrabbed() { }
-    public override void OnDamaged() { }
+    public override void OnDamaged(int damage) { }
     public override void OnDestroyed() { }
 
     // Probably won't use this directly, but I'll add it anyway
