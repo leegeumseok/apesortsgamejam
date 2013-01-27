@@ -490,8 +490,9 @@ GameObject:
   - 23: {fileID: 403944017}
   - 54: {fileID: 403944016}
   - 114: {fileID: 403944015}
+  - 114: {fileID: 403944023}
+  - 114: {fileID: 403944022}
   - 114: {fileID: 403944020}
-  - 114: {fileID: 403944021}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -512,6 +513,7 @@ Transform:
   - {fileID: 1317207709}
   - {fileID: 1187724865}
   - {fileID: 1706646678}
+  - {fileID: 1247997534}
   - {fileID: 1629020489}
   m_Father: {fileID: 0}
 --- !u!114 &403944015
@@ -605,11 +607,12 @@ MonoBehaviour:
   mSpawnLocation: {fileID: 1973831406}
   mCurrentHealth: 5
   Alive: 1
---- !u!114 &403944021
+--- !u!114 &403944022
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 11400004, guid: d17730d1307a0c1439453e9d2f8cab7e,
+    type: 2}
+  m_PrefabInternal: {fileID: 489019647}
   m_GameObject: {fileID: 403944013}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -620,6 +623,20 @@ MonoBehaviour:
   resources: 20
   towerResourceCost: 10
   maxResources: 15
+--- !u!114 &403944023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: d17730d1307a0c1439453e9d2f8cab7e,
+    type: 2}
+  m_PrefabInternal: {fileID: 489019647}
+  m_GameObject: {fileID: 403944013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 355d49026eb3eb147aed86eb89401e64, type: 3}
+  m_Name: 
+  mSpawnLocation: {fileID: 0}
+  mCurrentHealth: 5
+  Alive: 1
 --- !u!1 &451312953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,6 +1609,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffdc5362ebe4f84b84ec6be301911c1, type: 3}
   m_Name: 
   pathToSong: C:\Temp\blackdragon.mp3
+--- !u!1 &1247997533
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100008, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
+  m_PrefabInternal: {fileID: 489019647}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1247997534}
+  m_Layer: 0
+  m_Name: WayForward
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1247997534
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400008, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
+  m_PrefabInternal: {fileID: 489019647}
+  m_GameObject: {fileID: 1247997533}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.43593884}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 403944014}
 --- !u!1 &1262214153
 GameObject:
   m_ObjectHideFlags: 0

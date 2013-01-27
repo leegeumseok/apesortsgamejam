@@ -1,9 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
-public class GenericEnemy : BeatReceiver 
+public class GenericEnemy : BeatReceiver
 {
     public delegate void OnDestroyedNotify();
+
+	public int healthPoints = 100;
     public event OnDestroyedNotify notifyOnDestroyed;
 
     public virtual void OnSpawn() { }
@@ -13,8 +15,13 @@ public class GenericEnemy : BeatReceiver
 
     public virtual void OnDestroyed() 
     {
-        if (notifyOnDestroyed != null)
-            notifyOnDestroyed.Invoke();
+        var onDestroyed = notifyOnDestroyed;
+        if (onDestroyed != null)
+        {
+            notifyOnDestroyed();
+        }
+
+        GameObject.Destroy(this.gameObject);
     }
 
     // Probably won't use this directly, but I'll add it anyway

@@ -13,6 +13,7 @@ GameObject:
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11400008}
   - 54: {fileID: 5400000}
   m_Layer: 9
   m_Name: BasicEnemy
@@ -365,6 +366,17 @@ MonoBehaviour:
   m_Name: 
   target: {fileID: 0}
   boid: {fileID: 0}
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4242e0109131db740a1fbecf015a9555, type: 3}
+  m_Name: 
+  healthPoints: 100
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -14,22 +14,28 @@ public class BasicEnemy : GenericEnemy
         {
             this.deathTime -= Time.deltaTime;
             if (this.deathTime < 0.001f)
-                GameObject.Destroy(this.gameObject);
+            {
+                OnDestroyed();
+            }
         }
     }
 
     public override void OnSpawn() { }
+    public override void OnHit()  { }
+    public override void OnGrabbed() { }
 
-    public override void OnHit() 
+    public override void OnDamaged(int damage)
     {
-        this.isDying = true;
-        this.deathTime = DEATH_DELAY;
-        Boids boid = this.GetComponent<Boids>();
-        boid.AvoidanceRule = boid.GoalSeekingRule = false;
+        healthPoints -= damage;
+        if (healthPoints <= 0)
+        {
+            this.isDying = true;
+            this.deathTime = DEATH_DELAY;
+            Boids boid = this.GetComponent<Boids>();
+            boid.AvoidanceRule = boid.GoalSeekingRule = false;
+        }
     }
 
-    public override void OnGrabbed() { }
-    public override void OnDamaged(int damage) { }
 
     public override void OnDestroyed() 
     {
