@@ -34,6 +34,7 @@ public class GenericEnemy : BeatReceiver
         }
 
         Player.Instance.GetComponent<TowerCreator>().GatherResources(resourceValue);
+        Player.Instance.GetComponent<PlayerController>().OnGrabbedDeath();
 
         GameObject.Destroy(this.gameObject);
     }

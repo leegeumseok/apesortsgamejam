@@ -245,7 +245,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void GrabEnter() {
-		mRightHand.renderer.enabled = true;
+		//mRightHand.renderer.enabled = true;
 		mRightState = MState.Attacking;
 		
 		if (mGrabItem == null)
@@ -278,10 +278,22 @@ public class PlayerController : MonoBehaviour {
             }
 		}
 	}
-	
+
+    public void OnGrabbedDeath()
+    {
+        if (mRightState == MState.Attacking)
+        {
+            this.mGrabItem = null;
+            this.GrabExit();
+        }
+    }
+
 	void GrabExit() {
-        mGrabItem.SendMessage("OnReleased");
-		mRightHand.renderer.enabled = false;
+        if (this.mGrabItem != null)
+        {
+            mGrabItem.SendMessage("OnReleased");
+        }
+		//mRightHand.renderer.enabled = false;
 		mRightState = MState.Idle;
 		mGrabItem = null;
 		mGrabTimer = 0;
