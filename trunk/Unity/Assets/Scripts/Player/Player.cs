@@ -35,13 +35,14 @@ public class Player : MonoBehaviour
 	private float mBounceBack = 5f;
 	private GameObject mHUD;
 	private GameObject mCamera;
+	public int mPulseMax = 50;
 	
 	//Pulse Attack
-	public float mPulsePower;
+	public int mPulsePower;
 
     public bool Alive = true;
 	
-	public float PulsePower { get { return mPulsePower; } set { mPulsePower = value; } }
+	public int PulsePower { get { return mPulsePower; } set { mPulsePower = value; } }
 	
 	void Awake()
 	{
@@ -51,6 +52,9 @@ public class Player : MonoBehaviour
 		Player.Instance = this;
 		mMaxHealth = mCurrentHealth;
 		mCamera = GameObject.FindGameObjectWithTag("MainCamera");
+		mCamera.GetComponent<GameStatsUI>().heartHealthMax = mMaxHealth;
+		mCamera.GetComponent<GameStatsUI>().heartHealth = mCurrentHealth;
+		mCamera.GetComponent<GameStatsUI>().pulsePointsMax = mPulseMax;
 	}
 	
 	void Update()
@@ -64,12 +68,14 @@ public class Player : MonoBehaviour
 			}
 		}
 		
-		if(mPulsePower >= 50f && Input.GetButtonDown("Jump"))
+		if(mPulsePower >= mPulseMax && Input.GetButtonDown("Jump"))
 		{
 			GameObject clone;
 			clone = Instantiate(mHeartPulse, Vector3.zero, Quaternion.identity) as GameObject;
 			clone.GetComponent<Pulse>().mMaxRadius = mPulsePower;
-			mPulsePower = 0f;
+			mPulsePower = 0;
+			mCamera.GetComponent<GameStatsUI>().pulsePoints =0;
+			mCurrentHealth = mMaxHealth;
 		}
 	}
 	
@@ -93,7 +99,7 @@ public class Player : MonoBehaviour
 		GameObject clone;
 		mRigidbody.isKinematic = false;
 		
-		//Find closest spawn location
+		/*Find closest spawn location
 		float closestDistance = Mathf.Infinity;
 		Transform closestSpawn=null;
 		foreach(Transform spawn in mSpawnLocations)
@@ -105,11 +111,15 @@ public class Player : MonoBehaviour
 				closestSpawn = spawn;
 			}
 		}
+		*/
+		
+		Transform closestSpawn = mSpawnLocations[Random.Range(0,mSpawnLocations.Length-1)];
 		
 		
 		if(closestSpawn != null)
 			mTransform.position = closestSpawn.position;
 		mCurrentHealth = mMaxHealth;
+		mCamera.GetComponent<GameStatsUI>().heartHealth = mCurrentHealth;
 		mGameObject.collider.enabled = true;
         playerRenderer.SetActive(true);
 		Alive = true;
@@ -144,6 +154,7 @@ public class Player : MonoBehaviour
 		{
 	        Debug.Log("Player just recieved " + damage + " damage!");
 	        mCurrentHealth -= (int)damage;
+			mCamera.GetComponent<GameStatsUI>().heartHealth = mCurrentHealth;
 	        if (mCurrentHealth <= 0)
 	            Death();
 		}
