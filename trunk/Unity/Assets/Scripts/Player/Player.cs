@@ -23,17 +23,6 @@ public class Player : MonoBehaviour
 	private Rigidbody mRigidbody;
 	private Transform mTransform;
 	private GameObject mGameObject;
-<<<<<<< .mine
-    public GameObject playerRenderer;
-	
-	//Health Variables
-	public Transform[] mSpawnLocations;
-	public GameObject mHeartPulse;
-	public int mCurrentHealth;
-	private int mMaxHealth;
-	private int mSpawnSeconds = 5;
-	private float mDeathTimer;
-=======
     public GameObject playerRenderer;
 	
 	//Health Variables
@@ -43,59 +32,13 @@ public class Player : MonoBehaviour
 	private int mMaxHealth;
 	private int mSpawnSeconds = 3;
 	private float mDeathTimer;
->>>>>>> .r146
 	private float mBounceBack = 5f;
-<<<<<<< .mine
-	private GameObject mHUD;
-	
-	//Pulse Attack
-=======
 	private GameObject mHUD;
 	private GameObject mCamera;
 	
 	//Pulse Attack
->>>>>>> .r146
 	public float mPulsePower;
 
-<<<<<<< .mine
-    public bool Alive = true;
-	
-	public float PulsePower { get { return mPulsePower; } set { mPulsePower = value; } }
-	
-	void Awake()
-	{
-		mRigidbody = rigidbody;
-		mTransform = transform;
-		mGameObject = gameObject;
-		Player.Instance = this;
-		mMaxHealth = mCurrentHealth;
-		mHUD = GameObject.FindGameObjectWithTag("HealthUI");
-	}
-	
-	void Update()
-	{
-		if(!Alive)
-		{
-			mDeathTimer+=Time.deltaTime;
-			if(mDeathTimer > mSpawnSeconds)
-			{
-				Spawn();	
-			}
-		}
-		
-		if(mPulsePower >= 50f && Input.GetButtonDown("Jump"))
-		{
-			GameObject clone;
-			clone = Instantiate(mHeartPulse, Vector3.zero, Quaternion.identity) as GameObject;
-			clone.GetComponent<Pulse>().mMaxRadius = mPulsePower;
-			mPulsePower = 0f;
-		}
-	}
-	
-	public void Death()
-	{
-		mDeathTimer = 0;
-=======
     public bool Alive = true;
 	
 	public float PulsePower { get { return mPulsePower; } set { mPulsePower = value; } }
@@ -133,7 +76,6 @@ public class Player : MonoBehaviour
 	public void Death()
 	{
 		mDeathTimer = 0;
->>>>>>> .r146
 		Alive = false;
         playerRenderer.SetActive(false);
 		foreach (Transform child in mTransform)
@@ -141,34 +83,6 @@ public class Player : MonoBehaviour
 			if(child.renderer!=null)
 				child.renderer.enabled = false;
 		}
-<<<<<<< .mine
-        this.Alive = false;
-		mRigidbody.isKinematic = true;
-	}
-	
-	public void Spawn()
-	{
-		GameObject clone;
-		mRigidbody.isKinematic = false;
-		
-		//Find closest spawn location
-		float closestDistance = Mathf.Infinity;
-		Transform closestSpawn=null;
-		foreach(Transform spawn in mSpawnLocations)
-		{
-			float distance = Vector3.Magnitude(mTransform.position-spawn.position);
-			if(distance < closestDistance)
-			{
-				closestDistance = distance;
-				closestSpawn = spawn;
-			}
-		}
-		
-		
-		if(closestSpawn != null)
-			mTransform.position = closestSpawn.position;
-		mCurrentHealth = mMaxHealth;
-=======
         this.Alive = false;
 		mRigidbody.isKinematic = true;
 		mCamera.GetComponent<GameStatsUI>().respawnTimerCount = 5;
@@ -196,7 +110,6 @@ public class Player : MonoBehaviour
 		if(closestSpawn != null)
 			mTransform.position = closestSpawn.position;
 		mCurrentHealth = mMaxHealth;
->>>>>>> .r146
 		mGameObject.collider.enabled = true;
         playerRenderer.SetActive(true);
 		Alive = true;
