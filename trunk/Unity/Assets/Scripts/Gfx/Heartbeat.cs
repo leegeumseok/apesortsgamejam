@@ -27,5 +27,6 @@ public class Heartbeat : BeatReceiver
     public override void OnBeat()
     {
         this.currentScale = maxScale;
+
     }
 }
