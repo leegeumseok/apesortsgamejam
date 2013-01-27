@@ -5,10 +5,11 @@ using System.Collections.Generic;
 
 public class BeatManager : MonoBehaviour 
 {
-    public static float MAX_BPM = 200.0f;
+    public static readonly float MIN_BPM = 60.0f;
+    public static readonly float MAX_BPM = 220.0f;
 
-    public static float MIN_INTENSITY = 0.01f;
-    public static float MAX_INTENSITY = 0.99f;
+    public static readonly float MIN_INTENSITY = 0.01f;
+    public static readonly float MAX_INTENSITY = 0.99f;
 
     private static BeatManager _instance = null;
     public static BeatManager Instance
@@ -47,7 +48,8 @@ public class BeatManager : MonoBehaviour
     {
         get
         {
-            float intensity = SongPlayer.Instance.AverageBPM / MAX_BPM;
+            float intensity = 
+                (SongPlayer.Instance.AverageBPM - MIN_BPM) / MAX_BPM;
             return Mathf.Clamp(intensity, MIN_INTENSITY, MAX_INTENSITY);
         }
     }

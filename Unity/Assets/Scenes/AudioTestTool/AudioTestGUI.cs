@@ -16,6 +16,15 @@ public class AudioTestGUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
             SongPlayer.Instance.PlaySong(stringToEdit);
         float averageBPM = SongPlayer.Instance.AverageBPM;
-        text.text = averageBPM.ToString();
+        float intensity = BeatManager.Instance.Intensity;
+
+        if (intensity < 0.33f)
+            text.material.color = Color.green;
+        else if (intensity < 0.66f)
+            text.material.color = Color.yellow;
+        else
+            text.material.color = Color.red;
+        text.text = intensity.ToString();
+
     }
 }
