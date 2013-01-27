@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
 	private Rigidbody mRigidbody;
 	private Transform mTransform;
 	private GameObject mGameObject;
+    public GameObject playerRenderer;
 	
 	//Health Variables
 	public Transform[] mSpawnLocations;
@@ -75,8 +76,7 @@ public class Player : MonoBehaviour
 	{
 		mDeathTimer = 0;
 		Alive = false;
-		mGameObject.renderer.enabled = false;
-		mGameObject.collider.enabled = false;
+        playerRenderer.SetActive(false);
 		foreach (Transform child in mTransform)
 		{
 			if(child.renderer!=null)
@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
 			mTransform.position = closestSpawn.position;
 		mCurrentHealth = mMaxHealth;
 		mGameObject.collider.enabled = true;
-		mGameObject.renderer.enabled = true;
+        playerRenderer.SetActive(true);
 		mTransform.FindChild("Front").renderer.enabled = true;
 		Alive = true;
 		clone = Instantiate(mHeartPulse, mTransform.position, Quaternion.identity) as GameObject;		

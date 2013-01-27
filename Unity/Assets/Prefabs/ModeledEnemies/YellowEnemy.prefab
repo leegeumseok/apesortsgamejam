@@ -193,6 +193,7 @@ GameObject:
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400012}
+  - 82: {fileID: 8200000}
   m_Layer: 9
   m_Name: YellowEnemy
   m_TagString: Enemy
@@ -523,6 +524,62 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100022}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: .92178607
+      value: 1
+      inSlope: 0
+      outSlope: -1.00200403
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: -1.00200403
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!111 &11100000
 Animation:
   m_ObjectHideFlags: 1
@@ -635,7 +692,7 @@ MonoBehaviour:
   goalMask:
     serializedVersion: 2
     m_Bits: 1024
-  primaryGoal: {fileID: 0}
+  defaultGoal: {fileID: 0}
   acceleration: 10
   deathOnContact: 0
 --- !u!114 &11400012
@@ -650,8 +707,19 @@ MonoBehaviour:
   m_Name: 
   healthPoints: 100
   resourceValue: 1
+  killPoints: 100
   GrabbedParticle: {fileID: 19800002}
   DyingParticle: {fileID: 19800000}
+  AudioOnHit:
+  - {fileID: 8300000, guid: ed6f0288fce0cd943a60fb398e74ae9b, type: 3}
+  AudioOnDeath:
+  - {fileID: 8300000, guid: 7a0771c257c9e1e4a95ab09d02e8893b, type: 3}
+  - {fileID: 8300000, guid: 0562afbe33e05124882fd365e0137fcb, type: 3}
+  - {fileID: 8300000, guid: 66c1cf1930447574788937e96ac17757, type: 3}
+  - {fileID: 8300000, guid: 5f470a72d3886c949ad0f15e8aa61e58, type: 3}
+  AudioOnWindUp: []
+  AudioOnAttack: []
+  AudioOnSpawn: []
   isDying: 0
   deathTime: 0
   heartDamage: 1

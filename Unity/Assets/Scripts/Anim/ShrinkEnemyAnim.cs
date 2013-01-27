@@ -13,12 +13,12 @@ public class ShrinkEnemyAnim : MonoBehaviour
         this.animation.Play("Expand");
     }
 
-    void Shrink()
+    public void Shrink()
     {
         this.animation.Play("Shrink");
     }
 
-    void Expand()
+    public void Expand()
     {
         this.animation.Play("Expand");
     }

@@ -50,6 +50,7 @@ GameObject:
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400014}
+  - 82: {fileID: 8200000}
   m_Layer: 9
   m_Name: MediumEnemy
   m_TagString: Enemy
@@ -328,7 +329,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: -.0302407835, w: .999542713}
-  m_LocalPosition: {x: -4.08342123, y: 56.7052841, z: -34.5199966}
+  m_LocalPosition: {x: 5.07915878, y: 0, z: 13.2870607}
   m_LocalScale: {x: .600000024, y: .600000024, z: .600000024}
   m_Children:
   - {fileID: 400002}
@@ -636,6 +637,62 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: .00200000009
+      value: 1
+      inSlope: -.152368948
+      outSlope: -.152368948
+      tangentMode: 0
+    - time: 1
+      value: .887700558
+      inSlope: -.39215675
+      outSlope: -.39215675
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: .00401069503
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!111 &11100000
 Animation:
   m_ObjectHideFlags: 1
@@ -667,8 +724,15 @@ MonoBehaviour:
   m_Name: 
   healthPoints: 100
   resourceValue: 1
-  GrabbedParticle: {fileID: 0}
-  DyingParticle: {fileID: 0}
+  killPoints: 100
+  GrabbedParticle: {fileID: 19800000}
+  DyingParticle: {fileID: 19800002}
+  IsGrabbed: 0
+  AudioOnHit: []
+  AudioOnDeath: []
+  AudioOnWindUp: []
+  AudioOnAttack: []
+  AudioOnSpawn: []
   isDying: 0
   deathTime: 0
   heartDamage: 1
@@ -779,6 +843,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07c955b608a682c4f97a02f65f8a7ce3, type: 3}
   m_Name: 
+  shrink: {fileID: 11400012}
   particleAttack: {fileID: 19800006}
   particleWindUp: {fileID: 19800004}
   attackDamage: 1
@@ -798,8 +863,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .600000024
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: .699999988
+  m_Center: {x: 0, y: 0, z: -.150000006}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -2949,7 +3014,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1
@@ -4000,7 +4065,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1

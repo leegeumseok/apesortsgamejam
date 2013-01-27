@@ -51,6 +51,8 @@ public class SongPlayer : MonoBehaviour
     private FMOD.Sound sound1 = null;
     private FMOD.Channel channel = null;
 
+    public bool IsPlaying = false;
+
     void OnEnable()
     {
         SongPlayer.Instance = this;
@@ -123,6 +125,8 @@ public class SongPlayer : MonoBehaviour
         timeStep = 1.0f / (frequency / (float)windowSize);
         Debug.Log(frequency);
         Debug.Log(timeStep);
+
+        this.IsPlaying = true;
     }
 
     void OnDisable()
