@@ -16,6 +16,8 @@ public class HomingBullet : MonoBehaviour
         {
             body.WakeUp();
         }
+
+        target.GetComponent<GenericEnemy>().notifyOnDestroyed += Delete;
     }
 
     public void OnTriggerEnter(Collider collider)
@@ -29,13 +31,22 @@ public class HomingBullet : MonoBehaviour
 
         if (explosion != null)
             Instantiate(explosion, collider.transform.position, Quaternion.identity);
-        Destroy(gameObject);
+
+        collider.gameObject.SendMessage("OnDamaged", damage);
+        Delete();
     }
 
-	public void Update()
+    public void Update()
     {
         Vector3 direction = (target.transform.position - transform.position).normalized;
         Vector3 delta = direction * speed * Time.deltaTime;
         transform.position += delta;
-	}
+    }
+
+    private void Delete()
+    {
+        Debug.Log("Deleting bullet");
+        target.GetComponent<GenericEnemy>().notifyOnDestroyed -= Delete;
+        GameObject.Destroy(gameObject);
+    }
 }
