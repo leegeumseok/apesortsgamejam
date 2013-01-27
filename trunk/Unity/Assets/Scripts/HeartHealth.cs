@@ -9,6 +9,7 @@ public class HeartHealth : MonoBehaviour
         Lost
     }
 
+    private GameStatsUI overlay;
     private float nextRegeneratedHitPoint;
     public int maxHealth = 500;
     public int currentHealth = -1;
@@ -20,6 +21,16 @@ public class HeartHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         nextRegeneratedHitPoint = 1 / regenerationPerSecond; // returns +infinity when regenerationPerSecond = 0
+        var overlays = GameObject.FindGameObjectsWithTag("MainCamera");
+        if (overlays.Length > 0)
+        {
+            overlay = overlays[0].GetComponent<GameStatsUI>();
+            if (overlay != null)
+            {
+                overlay.heartHealth = currentHealth;
+                overlay.heartHealthMax = maxHealth;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -47,6 +58,11 @@ public class HeartHealth : MonoBehaviour
         {
             currentHealth = 0;
             EndGame(GameOutcome.Lost);
+        }
+
+        if (overlay != null)
+        {
+            overlay.heartHealth = currentHealth;
         }
     }
 

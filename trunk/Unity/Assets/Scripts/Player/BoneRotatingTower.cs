@@ -27,7 +27,7 @@ namespace Assets.Scripts.Player
             Vector3 eulerAngles = lookRotation.eulerAngles;
             eulerAngles.y += 90.0f;
 
-            joint.rotation = Quaternion.Euler(eulerAngles) ;
+            joint.rotation = Quaternion.Euler(eulerAngles);
         }
     }
 }
