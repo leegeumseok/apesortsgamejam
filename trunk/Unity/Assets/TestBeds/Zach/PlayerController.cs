@@ -138,7 +138,8 @@ public class PlayerController : MonoBehaviour {
 	
 	}
 			
-	void FixedUpdate() {
+	void FixedUpdate() 
+    {
 		
 		//Remove physics simulation from player controller
 		mRigidbody.angularVelocity = Vector3.zero;
@@ -146,14 +147,15 @@ public class PlayerController : MonoBehaviour {
 		//Get Direction Player is Moving
 		mHorizInput = Input.GetAxis("Horizontal");
 		mForwardInput = Input.GetAxis("Vertical");
-		
-			
+
+        MovePlayer();
 	}
 	
 	/*
 	 * Moves Player
 	 */
-	void MovePlayer() {
+	void MovePlayer() 
+    {
 		
 		//Movement Vector in Z direction
 		mMovementZ = mTransform.forward * mForwardInput;

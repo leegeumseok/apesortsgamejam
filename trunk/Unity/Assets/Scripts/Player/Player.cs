@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
 	private int mMaxHealth;
 	private int mSpawnSeconds = 5;
 	private float mDeathTimer;
+
+    public bool Alive = true;
 	
 	void Awake()
 	{
@@ -43,10 +45,6 @@ public class Player : MonoBehaviour
 			Debug.Log("You probably need to assign a spawn location");
 		}
 	}
-
-    public bool Alive = true;
-	
-
 	
 	public void Death()
 	{
@@ -64,7 +62,6 @@ public class Player : MonoBehaviour
 		mGameObject.renderer.enabled = true;
 		GetComponentInChildren<Renderer>().enabled = true;
 	}
-	
 	
 	void OnCollisionEnter(Collision collision)
 	{

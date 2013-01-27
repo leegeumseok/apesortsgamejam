@@ -273,7 +273,7 @@ GameObject:
   - 33: {fileID: 434051118}
   - 65: {fileID: 434051117}
   - 23: {fileID: 434051116}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: RightHand
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -456,6 +456,18 @@ Prefab:
       propertyPath: mSpawnLocation
       value: 
       objectReference: {fileID: 897644772}
+    - target: {fileID: 100000, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
   m_RootGameObject: {fileID: 1369803165}
@@ -495,6 +507,14 @@ Prefab:
     - target: {fileID: 400000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
@@ -562,11 +582,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5400000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
       propertyPath: m_Drag
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
@@ -1129,7 +1153,7 @@ GameObject:
   - 54: {fileID: 1566680350}
   m_Layer: 9
   m_Name: BoidEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1427,11 +1451,11 @@ GameObject:
   - 54: {fileID: 1684887271}
   m_Layer: 9
   m_Name: BoidEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1684887271
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1645,7 +1669,7 @@ GameObject:
   - 33: {fileID: 1806476660}
   - 135: {fileID: 1806476659}
   - 23: {fileID: 1806476658}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Front
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1798,11 +1822,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5400000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
       propertyPath: m_Drag
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
@@ -1825,11 +1853,11 @@ GameObject:
   - 54: {fileID: 1958710172}
   m_Layer: 9
   m_Name: BoidEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1958710172
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2013,6 +2041,10 @@ Prefab:
       propertyPath: m_Drag
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e9f99a134d457b4dbbbcf664a0fc311, type: 2}
   m_RootGameObject: {fileID: 1566680349}
@@ -2034,11 +2066,11 @@ GameObject:
   - 54: {fileID: 2017957598}
   m_Layer: 9
   m_Name: BoidEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &2017957598
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2166,7 +2198,7 @@ GameObject:
   - 33: {fileID: 2029485792}
   - 65: {fileID: 2029485791}
   - 23: {fileID: 2029485790}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: LeftHand
   m_TagString: Player
   m_Icon: {fileID: 0}
