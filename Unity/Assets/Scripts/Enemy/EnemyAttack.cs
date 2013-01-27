@@ -62,6 +62,8 @@ public class EnemyAttack : MonoBehaviour {
         if (shrink != null) shrink.Shrink();
         windUpTimer = windupTime;
         transform.LookAt(target.transform);
+
+        this.SendMessage("OnWindup");
     }
 
     private void Attack()
@@ -82,6 +84,8 @@ public class EnemyAttack : MonoBehaviour {
                 Shoot();
                 break;
         }
+
+        this.SendMessage("OnAttack");
     }
 
     private void Smash()
