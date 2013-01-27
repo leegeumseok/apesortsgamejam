@@ -83,7 +83,8 @@ public class EnemyAttack : MonoBehaviour {
                 break;
             case AttackType.Shoot:
                 Shoot();
-                particleAttack.Play();
+                if (particleAttack != null)
+                    particleAttack.Play();
                 break;
         }
 
@@ -107,7 +108,7 @@ public class EnemyAttack : MonoBehaviour {
 
     private void Shoot()
     {
-        GameObject bulletSpawn = (GameObject)Instantiate(bullet, transform.position + transform.forward * attackRange, Quaternion.LookRotation(transform.forward));
+        GameObject bulletSpawn = (GameObject)Instantiate(bullet, transform.position, Quaternion.LookRotation(transform.forward));
         bulletSpawn.GetComponent<EnemyBullet>().firingEnemy = gameObject;
     }
 
