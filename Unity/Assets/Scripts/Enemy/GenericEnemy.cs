@@ -3,9 +3,10 @@ using System.Collections;
 
 public class GenericEnemy : BeatReceiver
 {
-    public delegate void OnDestroyedNotify();
+    public delegate void OnDestroyedNotify(GenericEnemy enemy);
     public int healthPoints = 100;
     public int resourceValue = 1;
+    public int killPoints = 100;
     public ParticleSystem GrabbedParticle = null;
     public ParticleSystem DyingParticle = null;
 
@@ -48,7 +49,7 @@ public class GenericEnemy : BeatReceiver
         var onDestroyed = notifyOnDestroyed;
         if (onDestroyed != null)
         {
-            notifyOnDestroyed();
+            notifyOnDestroyed(this);
         }
 
         Player.Instance.GetComponent<TowerCreator>().GatherResources(resourceValue);

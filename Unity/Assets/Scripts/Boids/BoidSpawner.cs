@@ -42,9 +42,10 @@ public class BoidSpawner : MonoBehaviour {
         }
         spawningEnemy = false;
         GameObject spawnedMinion = (GameObject)Instantiate(spawn, transform.position, Quaternion.identity);
+
+        BoidController controller = spawnedMinion.GetComponent<BoidController>();
+        BoidSpawnManager.Instance.OnBoidCreated(controller);
         if (defaultGoal)
-        {
-            spawnedMinion.GetComponent<BoidController>().defaultGoal = defaultGoal;
-        }
+            controller.defaultGoal = defaultGoal;
     }
 }

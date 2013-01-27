@@ -17,7 +17,7 @@ public class HomingBullet : MonoBehaviour
             body.WakeUp();
         }
 
-        target.GetComponent<GenericEnemy>().notifyOnDestroyed += Delete;
+        target.GetComponent<GenericEnemy>().notifyOnDestroyed += OnTargetKilled;
     }
 
     public void OnTriggerEnter(Collider collider)
@@ -43,9 +43,14 @@ public class HomingBullet : MonoBehaviour
         transform.position += delta;
     }
 
+    private void OnTargetKilled(GenericEnemy enemy)
+    {
+        Delete();
+    }
+
     private void Delete()
     {
-        target.GetComponent<GenericEnemy>().notifyOnDestroyed -= Delete;
+        target.GetComponent<GenericEnemy>().notifyOnDestroyed -= OnTargetKilled;
         GameObject.Destroy(gameObject);
     }
 }

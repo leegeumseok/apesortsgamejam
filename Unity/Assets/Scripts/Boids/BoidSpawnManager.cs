@@ -25,6 +25,8 @@ public class BoidSpawnManager : BeatReceiver
 
     protected float curPulseBoost = 0.0f;
 
+    public event System.Action<BoidController> notifyBoidCreated;
+
     void Awake()
     {
         BoidSpawnManager.Instance = this;
@@ -40,6 +42,14 @@ public class BoidSpawnManager : BeatReceiver
         this.curPulseBoost -= Time.deltaTime * PulseDecay;
         if (this.curPulseBoost < 0.0f)
             this.curPulseBoost = 0.0f;
+    }
+
+    public void OnBoidCreated(BoidController controller)
+    {
+        Debug.Log("Boid created");
+        var notify = notifyBoidCreated;
+        if (notify != null)
+            notify(controller);
     }
 
     public override void OnBeat()
