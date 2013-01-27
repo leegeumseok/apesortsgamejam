@@ -157,64 +157,6 @@ MonoBehaviour:
   MediumEnemy: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
   SmallEnemy: {fileID: 100000, guid: b2547c7f7990c024f9a560a860c58782, type: 2}
   defaultGoal: {fileID: 0}
---- !u!1 &91831052
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 91831054}
-  - 131: {fileID: 91831053}
-  - 114: {fileID: 91831055}
-  m_Layer: 0
-  m_Name: HealthGUI
-  m_TagString: HealthUI
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!131 &91831053
-GUITexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 91831052}
-  m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: 75b92ce8c6b76f84ea4e69a78c6cb9b9, type: 3}
-  m_Color: {r: .5, g: .5, b: .5, a: .5}
-  m_PixelInset:
-    serializedVersion: 2
-    x: -64
-    y: -29
-    width: 128
-    height: 58
-  m_LeftBorder: 0
-  m_RightBorder: 0
-  m_TopBorder: 0
-  m_BottomBorder: 0
---- !u!4 &91831054
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 91831052}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .879999995, y: -.200000003, z: 0}
-  m_LocalScale: {x: -.129999995, y: 1, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
---- !u!114 &91831055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 91831052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 520b2d3bf7e3cfb4f8e99f7c0364ad3b, type: 3}
-  m_Name: 
-  mHealthBar: {fileID: 91831052}
 --- !u!1 &109346726
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +635,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 355d49026eb3eb147aed86eb89401e64, type: 3}
   m_Name: 
+  playerRenderer: {fileID: 0}
   mSpawnLocations:
   - {fileID: 2101544408}
   - {fileID: 239331948}
@@ -1947,6 +1890,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 830f96b140fd19e459c692cc8197c33c, type: 3}
   m_Name: 
+  IsPlaying: 0
 --- !u!4 &1489845775
 Transform:
   m_ObjectHideFlags: 0
@@ -2132,6 +2076,7 @@ GameObject:
   - 92: {fileID: 1671813518}
   - 124: {fileID: 1671813517}
   - 81: {fileID: 1671813516}
+  - 114: {fileID: 1671813521}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2203,6 +2148,24 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1102889721}
+--- !u!114 &1671813521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1671813515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82dfd6009beff46a9a3fbe13b75cf4bf, type: 3}
+  m_Name: 
+  customSkin: {fileID: 11400000, guid: 86a0de3d5c4e74c7cac0ff5c7b76f0e4, type: 2}
+  time: 0
+  points: 0
+  heartHealth: 0
+  heartHealthMax: 0
+  pulsePoints: 0
+  pulsePointsMax: 0
+  resources: 0
 --- !u!1001 &1691848079
 Prefab:
   m_ObjectHideFlags: 0
