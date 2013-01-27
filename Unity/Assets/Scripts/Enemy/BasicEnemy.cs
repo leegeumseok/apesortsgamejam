@@ -80,7 +80,7 @@ public class BasicEnemy : GenericEnemy
         if (nextAttack <= 0)
         {
             pedestal.SendMessage("OnDamage", heartDamage);
-            nextAttack += 1 / attacksPerSecond;
+            nextAttack = 1 / attacksPerSecond;
         }
     }
 }

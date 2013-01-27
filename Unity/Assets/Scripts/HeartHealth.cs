@@ -28,7 +28,7 @@ public class HeartHealth : MonoBehaviour
         if (nextRegeneratedHitPoint <= 0 && currentHealth < maxHealth)
         {
             currentHealth++;
-            nextRegeneratedHitPoint += 1 / regenerationPerSecond;
+            nextRegeneratedHitPoint = 1 / regenerationPerSecond;
         }
     }
 
