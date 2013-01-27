@@ -47,9 +47,8 @@ public class BoidController : MonoBehaviour
         foreach (Collider collider in goalColliderArray)
         {
             GameObject collidedObject = collider.gameObject;
-            if (collidedObject != this.gameObject
-                && (Player.Instance.Alive == false
-                    || collidedObject != Player.Instance.gameObject))
+            if (collidedObject != this.gameObject 
+                && IsPlayerCollision(collidedObject))
             {
                 goalList.Add(collider.gameObject);
             }
@@ -58,6 +57,7 @@ public class BoidController : MonoBehaviour
         {
             goalList.Add(primaryGoal);
         }
+
         // Set Up BoidScript
         boidScript.GoalList = goalList;
         boidScript.AvoidanceList = avoidanceList;
@@ -71,6 +71,13 @@ public class BoidController : MonoBehaviour
             Vector3 newForce = Vector3.Normalize(newVelocity) * acceleration * GlobalVariables.speedMultiplier / rigidbody.mass;
             transform.rigidbody.AddForce(newForce, ForceMode.Force);
         }
+    }
+
+    protected bool IsPlayerCollision(GameObject other)
+    {
+        return
+            Player.Instance.Alive == true
+            || other != Player.Instance.gameObject;
     }
 
     /*
