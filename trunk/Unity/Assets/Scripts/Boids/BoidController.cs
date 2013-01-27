@@ -8,7 +8,7 @@ public class BoidController : MonoBehaviour
     public float avoidanceFilterRange = 10;
     public LayerMask avoidanceMask = new LayerMask();
     public LayerMask goalMask = new LayerMask();
-    public GameObject primaryGoal;
+    public GameObject defaultGoal;
     public float acceleration = 10;
     public bool deathOnContact = false;
 
@@ -41,6 +41,10 @@ public class BoidController : MonoBehaviour
         // Handle Goal Stuff
         Collider[] goalColliderArray = Physics.OverlapSphere(transform.position, avoidanceFilterRange, goalMask);
         List<GameObject> goalList = new List<GameObject>();
+        if (defaultGoal != null)
+        {
+            goalList.Add(defaultGoal);
+        }
         foreach (Collider collider in goalColliderArray)
         {
             GameObject collidedObject = collider.gameObject;
@@ -49,10 +53,6 @@ public class BoidController : MonoBehaviour
             {
                 goalList.Add(collider.gameObject);
             }
-        }
-        if (primaryGoal != null)
-        {
-            goalList.Add(primaryGoal);
         }
 
         // Set Up BoidScript
