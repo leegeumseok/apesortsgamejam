@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour {
 	private float mGrabSpeed = 8f;
 	private float mHoldingDist = .5f;
 	public float mGrabRadius;
+	public float mGrabRecharge;
+	private float mGrabTimer;
 	
 	//Damage Variables
 	public float mGrabDamage;
@@ -116,7 +118,8 @@ public class PlayerController : MonoBehaviour {
 			switch(mRightState)
 			{
 			case MState.Idle:
-				if (Input.GetButtonDown("Fire2")|| Input.GetKeyDown("k"))
+				mGrabTimer += Time.deltaTime;
+				if ((Input.GetButtonDown("Fire2")|| Input.GetKeyDown("k")) && mGrabTimer > mGrabRecharge)
 				{
 					GrabEnter();	
 				}
@@ -266,6 +269,7 @@ public class PlayerController : MonoBehaviour {
 		mRightHand.renderer.enabled = false;
 		mRightState = MState.Idle;
 		mGrabItem = null;
+		mGrabTimer = 0;
 	}
 	
 	#endregion
