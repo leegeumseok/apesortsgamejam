@@ -46,7 +46,10 @@ public class BoidController : MonoBehaviour
         List<GameObject> goalList = new List<GameObject>();
         foreach (Collider collider in goalColliderArray)
         {
-            if (collider.gameObject != this.gameObject)
+            GameObject collidedObject = collider.gameObject;
+            if (collidedObject != this.gameObject
+                && (Player.Instance.Alive == false
+                    || collidedObject != Player.Instance.gameObject))
             {
                 goalList.Add(collider.gameObject);
             }
