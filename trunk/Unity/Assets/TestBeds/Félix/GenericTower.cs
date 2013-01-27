@@ -52,7 +52,7 @@ public class GenericTower : MonoBehaviour {
                 if (timeBeforeNextAttack <= 0)
                 {
                     Attack(target);
-                    timeBeforeNextAttack += 1 / attacksPerSecond;
+                    timeBeforeNextAttack = 1 / attacksPerSecond;
                 }
             }
         }
