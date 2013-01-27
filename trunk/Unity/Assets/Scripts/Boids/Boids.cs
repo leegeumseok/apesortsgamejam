@@ -51,11 +51,11 @@ public class Boids : MonoBehaviour
         protected set;
     }
 
-    public void UpdateVelocity()
+    public Vector3 UpdateVelocity()
     {
+        Vector3 newVelocity = new Vector3();
         if (enabled)
         {
-            Vector3 newVelocity = new Vector3();
             if (boundingMaxRangeSqd < Vector3.SqrMagnitude(BoundingCenter - transform.position))
             {
                 newVelocity = BoundingCenter - transform.position;
@@ -123,7 +123,7 @@ public class Boids : MonoBehaviour
                     newVelocity += cohesion;
                 }
             }
-            CurrentVelocity = newVelocity; 
         }
+        return newVelocity; 
     }
 }

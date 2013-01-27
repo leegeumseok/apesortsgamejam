@@ -19,11 +19,16 @@ public class EnemyAttack : MonoBehaviour {
     private float attackRangeSqd;
     private GameObject target;
     private bool WindingUp = false;
-    internal bool canAttack;
+    private LookForward lookScript;
+    internal bool canAttack = true;
+    public float attackCooldown;
+    private float resetDelay = 0;
+    private bool resetTrue = true;
 	// Use this for initialization
 	void Start () {
         boidScript = gameObject.GetComponent<Boids>();
-        attackRangeSqd = attackRange * attackRange;
+        lookScript = gameObject.GetComponent<LookForward>();
+        Reset();
 	}
 	
 	// Update is called once per frame
@@ -34,35 +39,40 @@ public class EnemyAttack : MonoBehaviour {
             target = boidScript.CurrentTarget;
         }
         windUpTimer -= Time.deltaTime;
-        if (target && canAttack)
+        resetDelay -= Time.deltaTime;
+        if (target && canAttack && Vector3.SqrMagnitude(target.transform.position - transform.position) < attackRangeSqd && !resetTrue && !WindingUp)
         {
-            if (Vector3.SqrMagnitude(target.transform.position - transform.position) < attackRangeSqd)
-            {
-                WindUp();
-            }
+            WindUp();
         }
+        else if (windUpTimer <= 0 && WindingUp && !resetTrue)
+        {
+            Attack();
+        }
+        Reset();
 	}
 
     private void WindUp()
     {
         boidScript.enabled = false;
-        if (!WindingUp)
-        {
-            windUpTimer = windupTime;
-            transform.LookAt(target.transform);
-        }
-        else if (windUpTimer <= 0)
-        {
-            Attack();
-        }
+        lookScript.enabled = false;
+        WindingUp = true;
+        particleWindUp.Play();
+        windUpTimer = windupTime;
+        transform.LookAt(target.transform);
     }
 
     private void Attack()
     {
+        Debug.Log("Attacking!");
+        resetDelay = attackCooldown;
+        resetTrue = true;
+        particleWindUp.Stop();
+        
         switch (attackType)
         {
             case AttackType.Smash:
                 Smash();
+                particleAttack.Play();
                 break;
             case AttackType.Shoot:
                 Shoot();
@@ -81,8 +91,6 @@ public class EnemyAttack : MonoBehaviour {
                 unit.SendMessage("AssignDamage", attackDamage);
                 if (unit.rigidbody)
                     unit.rigidbody.AddForce(attackForce * transform.forward, ForceMode.Impulse);
-                if (particleAttack)
-                    Instantiate(particleAttack, smashPosition, Quaternion.identity);
             }
         }
     }
@@ -94,7 +102,16 @@ public class EnemyAttack : MonoBehaviour {
 
     void Reset()
     {
-        boidScript.enabled = true;
-        WindingUp = false;
+        if (resetDelay <= 0 && resetTrue)
+        {
+            lookScript.enabled = true;
+            particleAttack.Stop();
+            particleWindUp.Stop();
+            boidScript.enabled = true;
+            WindingUp = false;
+            canAttack = true;
+            attackRangeSqd = attackRange * attackRange;
+            resetTrue = false;
+        }
     }
 }
