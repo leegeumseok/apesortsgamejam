@@ -30,7 +30,11 @@ public class BasicEnemy : GenericEnemy
 
     public override void OnGrabbed() { }
     public override void OnDamaged(int damage) { }
-    public override void OnDestroyed() { }
+
+    public override void OnDestroyed() 
+    {
+        base.OnDestroyed();
+    }
 
     // Probably won't use this directly, but I'll add it anyway
     public override void OnBeat() { }
