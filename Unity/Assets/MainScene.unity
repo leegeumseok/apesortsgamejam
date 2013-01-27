@@ -526,12 +526,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f7040d7846589488e67fa93ff73fae, type: 3}
   m_Name: 
   DEBUG: 0
+  mAreaRadius: 40
   mAcceleration: 1000
   mMaxSpeed: 13
   mRotSpeed: 6
   mPunchRadius: 1
-  mMaxPunchPower: 0
-  mMinPunchPower: 0
+  mMaxPunchPower: 50
+  mMinPunchPower: 30
   mGrabRadius: 3
   mGrabDamage: 1
   mPunchDamage: 5
@@ -830,6 +831,18 @@ Prefab:
     - target: {fileID: 11400000, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
       propertyPath: mRotSpeed
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
+      propertyPath: mMaxPunchPower
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
+      propertyPath: mMinPunchPower
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
+      propertyPath: mAreaRadius
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
