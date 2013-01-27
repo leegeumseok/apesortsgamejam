@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
 	
 	//Health Variables
 	public Transform mSpawnLocation;
+	public GameObject mHeartPulse;
 	public int mCurrentHealth;
 	private int mMaxHealth;
 	private int mSpawnSeconds = 5;
@@ -76,6 +77,7 @@ public class Player : MonoBehaviour
 	
 	public void Spawn()
 	{
+		GameObject clone;
 		mRigidbody.isKinematic = false;
 		mTransform.position = mSpawnLocation.position;
 		mCurrentHealth = mMaxHealth;
@@ -83,9 +85,10 @@ public class Player : MonoBehaviour
 		mGameObject.renderer.enabled = true;
 		mTransform.FindChild("Front").renderer.enabled = true;
 		Alive = true;
+		clone = Instantiate(mHeartPulse, mTransform.position, Quaternion.identity) as GameObject;		
 		
 	}
-	
+
 	void OnCollisionEnter(Collision collision)
 	{
 		Transform heldEnemy = mGameObject.GetComponent<PlayerController>().GrabItem;
