@@ -3752,7 +3752,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ffdc5362ebe4f84b84ec6be301911c1, type: 3}
   m_Name: 
-  pathToSong: C:\Users\Alex\Downloads\deadmau5 - Raise Your Weapon.mp3
+  pathToSong: C:\Users\GMGGPHHHM6\Desktop\11 D12 & Eminem - Fight Music.mp3
 --- !u!1 &1250871250
 GameObject:
   m_ObjectHideFlags: 0
@@ -4032,7 +4032,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 197670382cedaa14caed30862e512488, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 197670382cedaa14caed30862e512488, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4913,7 +4913,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1964696636
 Animator:
   m_ObjectHideFlags: 0

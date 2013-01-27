@@ -110,7 +110,6 @@ public class Player : MonoBehaviour
 		mCurrentHealth = mMaxHealth;
 		mGameObject.collider.enabled = true;
         playerRenderer.SetActive(true);
-		mTransform.FindChild("Front").renderer.enabled = true;
 		Alive = true;
 		clone = Instantiate(mHeartPulse, mTransform.position, Quaternion.identity) as GameObject;		
 		
@@ -139,9 +138,12 @@ public class Player : MonoBehaviour
 
     void AssignDamage(float damage)
     {
-        Debug.Log("Player just recieved " + damage + " damage!");
-        mCurrentHealth -= (int)damage;
-        if (mCurrentHealth <= 0)
-            Death();
+		if(Alive)
+		{
+	        Debug.Log("Player just recieved " + damage + " damage!");
+	        mCurrentHealth -= (int)damage;
+	        if (mCurrentHealth <= 0)
+	            Death();
+		}
     }
 }

@@ -92,7 +92,7 @@ public class EnemyAttack : MonoBehaviour {
         {
             if (unit.gameObject != gameObject)
             {
-                unit.SendMessage("AssignDamage", attackDamage);
+                unit.SendMessage("AssignDamage", attackDamage, SendMessageOptions.DontRequireReceiver);
                 if (unit.rigidbody)
                     unit.rigidbody.AddForce(attackForce * transform.forward, ForceMode.Impulse);
             }
