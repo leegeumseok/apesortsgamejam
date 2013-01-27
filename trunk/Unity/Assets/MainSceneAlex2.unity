@@ -392,8 +392,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06a66f6d2bbd7cd44ae6afc8ab27d980, type: 3}
   m_Name: 
-  spawnLocation: {fileID: 1250871251}
-  towerTemplate: {fileID: 400000, guid: f7f8e69d55f04d44685cd32518cff1aa, type: 2}
+  spawnLocation: {fileID: 1534081775}
+  towerTemplate: {fileID: 400022, guid: 1b841f6d2d0d9a442b87c5859e2af1ab, type: 2}
   resources: 20
   towerResourceCost: 10
   maxResources: 15
@@ -1330,8 +1330,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 512468602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.566456795, y: -11.1845474, z: 1.43307209}
-  m_LocalScale: {x: 10.49189, y: 10.49189, z: 10.49189}
+  m_LocalPosition: {x: -.566456795, y: -.903637052, z: 1.43307209}
+  m_LocalScale: {x: 10.49189, y: .463614672, z: 10.49189}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!54 &512468607
@@ -1420,7 +1420,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: ca459baaf01fed747b26e8bde3327851, type: 2}
+  - {fileID: 2100000, guid: 53fdbef83aa0c87448be7a0d7467eff9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -2147,6 +2147,14 @@ Prefab:
       propertyPath: playerRenderer
       value: 
       objectReference: {fileID: 649873629}
+    - target: {fileID: 11400002, guid: 67b2e6da4d958b04fbdc02f9de822f2d, type: 2}
+      propertyPath: towerTemplate
+      value: 
+      objectReference: {fileID: 400022, guid: 1b841f6d2d0d9a442b87c5859e2af1ab, type: 2}
+    - target: {fileID: 11400002, guid: 67b2e6da4d958b04fbdc02f9de822f2d, type: 2}
+      propertyPath: spawnLocation
+      value: 
+      objectReference: {fileID: 1534081775}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67b2e6da4d958b04fbdc02f9de822f2d, type: 2}
   m_RootGameObject: {fileID: 163589689}
@@ -4831,6 +4839,7 @@ GameObject:
   - 20: {fileID: 1671813519}
   - 92: {fileID: 1671813518}
   - 124: {fileID: 1671813517}
+  - 114: {fileID: 1671813516}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4838,6 +4847,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1671813516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1671813515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82dfd6009beff46a9a3fbe13b75cf4bf, type: 3}
+  m_Name: 
+  customSkin: {fileID: 11400000, guid: 86a0de3d5c4e74c7cac0ff5c7b76f0e4, type: 2}
+  time: 0
+  points: 0
+  heartHealth: 0
+  heartHealthMax: 0
+  pulsePoints: 0
+  pulsePointsMax: 0
+  resources: 0
+  respawnTimerCount: 0
+  outcome: 0
 --- !u!124 &1671813517
 Behaviour:
   m_ObjectHideFlags: 0
