@@ -16,7 +16,6 @@ public class GenericTower : MonoBehaviour {
     public GameObject bulletTemplate;
     public Transform bulletSpawnPoint;
     public LayerMask targetLayer;
-    public string fireAnimation;
 
     public event Action notifyOnDestroyed;
 

@@ -48,8 +48,6 @@ public class HeartHealth : MonoBehaviour
             currentHealth = 0;
             EndGame(GameOutcome.Lost);
         }
-
-        // TODO animate blood with particles or something
     }
 
     private void EndGame(GameOutcome outcome)
