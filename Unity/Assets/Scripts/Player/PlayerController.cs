@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody mRigidbody;
 	private Transform mTransform;
 	private GameObject mGameObject;
+	private GameObject mCamera;
 	
 	//Direction to move the player
 	private float mHorizInput;
@@ -60,7 +61,7 @@ public class PlayerController : MonoBehaviour {
 	public int mGrabDamage;
 	public int mPunchDamage;
 	
-	public float mPulseBonus;
+	public int mPulseBonus;
 	
 
 	private Player mPlayer;
@@ -92,6 +93,7 @@ public class PlayerController : MonoBehaviour {
 		mRightHand = mTransform.FindChild("RightHand");
 		mGameObject = gameObject;
 		mPlayer = GetComponent<Player>();
+		mCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
 	}
 	
@@ -229,7 +231,7 @@ public class PlayerController : MonoBehaviour {
 		{
 			Vector3 forward = mTransform.TransformDirection(Vector3.forward);
 			Vector3 toOther = hit.transform.position - mTransform.position;
-			if(hit.rigidbody && hit.tag != "Player" && Vector3.Dot(forward, toOther) > 0f)
+			if(hit.rigidbody && hit.tag == "Enemy" && Vector3.Dot(forward, toOther) > 0f)
 			{
 				
 				//Knock Enemy back
@@ -242,6 +244,7 @@ public class PlayerController : MonoBehaviour {
 				
 				//Increment pulse power
 				mPlayer.GetComponent<Player>().PulsePower+= mPulseBonus;
+				mCamera.GetComponent<GameStatsUI>().pulsePoints += mPulseBonus;
 			}
 		}
 	}

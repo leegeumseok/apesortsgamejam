@@ -395,6 +395,7 @@ MonoBehaviour:
   - {fileID: 445992643}
   mHeartPulse: {fileID: 100000, guid: 4ac2ddd93b39def408aaedbaf9a555cd, type: 2}
   mCurrentHealth: 3
+  mPulseMax: 50
   mPulsePower: 0
   Alive: 1
 --- !u!114 &163589693
@@ -424,7 +425,7 @@ MonoBehaviour:
   mGrabRecharge: .5
   mGrabDamage: 1
   mPunchDamage: 100
-  mPulseBonus: 0
+  mPulseBonus: 5
 --- !u!54 &163589694
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2031,6 +2032,10 @@ Prefab:
       propertyPath: playerRenderer
       value: 
       objectReference: {fileID: 649873629}
+    - target: {fileID: 11400006, guid: 67b2e6da4d958b04fbdc02f9de822f2d, type: 2}
+      propertyPath: mPulseBonus
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67b2e6da4d958b04fbdc02f9de822f2d, type: 2}
   m_RootGameObject: {fileID: 163589689}
