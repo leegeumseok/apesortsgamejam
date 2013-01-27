@@ -535,6 +535,7 @@ MonoBehaviour:
   mMinPunchPower: 50
   mPunchRecharge: .25
   mGrabRadius: 3
+  mGrabRecharge: .5
   mGrabDamage: 1
   mPunchDamage: 5
 --- !u!54 &403944016
@@ -1274,6 +1275,10 @@ Prefab:
     - target: {fileID: 11400000, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
       propertyPath: mPunchRecharge
       value: .25
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
+      propertyPath: mGrabRecharge
+      value: .5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d17730d1307a0c1439453e9d2f8cab7e, type: 2}
