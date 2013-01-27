@@ -606,7 +606,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 355d49026eb3eb147aed86eb89401e64, type: 3}
   m_Name: 
-  mSpawnLocation: {fileID: 1973831406}
+  mSpawnLocations: []
+  mHeartPulse: {fileID: 0}
   mCurrentHealth: 5
   Alive: 1
 --- !u!114 &403944022
@@ -636,7 +637,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 355d49026eb3eb147aed86eb89401e64, type: 3}
   m_Name: 
-  mSpawnLocation: {fileID: 0}
+  mSpawnLocations: []
+  mHeartPulse: {fileID: 0}
   mCurrentHealth: 5
   Alive: 1
 --- !u!1 &451312953
@@ -885,7 +887,7 @@ GameObject:
   - 23: {fileID: 512468603}
   - 54: {fileID: 512468607}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Pedestal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
