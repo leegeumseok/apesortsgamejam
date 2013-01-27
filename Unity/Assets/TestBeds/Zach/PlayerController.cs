@@ -35,7 +35,9 @@ public class PlayerController : MonoBehaviour {
 	
 	//Determines physics placed in punch
 	public float mPunchRadius;
-	public float mPunchPower;
+	public float mMaxPunchPower;
+	public float mMinPunchPower;
+	
 	
 	//Grab Variables
 	private Transform mGrabItem;
@@ -200,7 +202,8 @@ public class PlayerController : MonoBehaviour {
 				
 				//Knock Enemy back
 				float distance = Vector3.Magnitude(hit.transform.position-mLeftHand.position);
-				hit.rigidbody.AddForce((Vector3.Normalize(hit.transform.position-mLeftHand.position))*(mPunchPower/distance), ForceMode.Impulse);
+				float punchPower = Mathf.Min(mMaxPunchPower/distance, mMinPunchPower);
+				hit.rigidbody.AddForce((Vector3.Normalize(hit.transform.position-mLeftHand.position))*punchPower, ForceMode.Impulse);
 				
 			}
 		}
