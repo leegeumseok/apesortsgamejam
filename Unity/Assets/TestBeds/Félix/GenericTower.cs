@@ -18,11 +18,6 @@ public class GenericTower : MonoBehaviour {
 
     public event Action notifyOnDestroyed;
 
-    private float AttackDelay
-    {
-        get { return 1 / attacksPerSecond; }
-    }
-
     public virtual void OnDestroyed()
     {
         var onDestroyed = notifyOnDestroyed;
@@ -32,7 +27,7 @@ public class GenericTower : MonoBehaviour {
 
 	public void Start()
     {
-        timeBeforeNextAttack = AttackDelay;
+        timeBeforeNextAttack = 1 / attacksPerSecond;
         if (bulletDamage == 0)
             Debug.LogError("Bullets will not do any damage");
         if (bulletSpeed == 0)
@@ -57,7 +52,7 @@ public class GenericTower : MonoBehaviour {
                 if (timeBeforeNextAttack <= 0)
                 {
                     Attack(target);
-                    timeBeforeNextAttack = AttackDelay;
+                    timeBeforeNextAttack += 1 / attacksPerSecond;
                 }
             }
         }
