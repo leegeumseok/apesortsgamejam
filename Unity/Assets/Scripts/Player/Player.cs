@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
 	private int mSpawnSeconds = 5;
 	private float mDeathTimer;
 	private float mBounceBack = 5f;
+	private GameObject mHUD;
 
     public bool Alive = true;
 	
@@ -42,6 +43,7 @@ public class Player : MonoBehaviour
 		mGameObject = gameObject;
 		Player.Instance = this;
 		mMaxHealth = mCurrentHealth;
+		mHUD = GameObject.FindGameObjectWithTag("HealthUI");
 	}
 	
 	void Update()
@@ -110,6 +112,10 @@ public class Player : MonoBehaviour
 				if(heldEnemy.gameObject == collision.gameObject)
 					return;
 			mCurrentHealth--;
+			float currentHealth = mCurrentHealth;
+			float maxHealth = mMaxHealth;
+			currentHealth /= mMaxHealth;
+			mHUD.GetComponent<HealthUI>().SetHealth(currentHealth);
 			collision.rigidbody.AddForce((Vector3.Normalize(collision.transform.position-mTransform.position))*mBounceBack, ForceMode.Impulse);
 			if (mCurrentHealth <= 0)
 				Death();
