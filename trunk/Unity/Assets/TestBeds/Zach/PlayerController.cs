@@ -10,8 +10,6 @@ public class PlayerController : MonoBehaviour {
 	/*
 	 * Player Variables
 	 */
-	//Spawning
-	public Transform mSpawnLocation;
 	
 	//Speed
 	public float mAcceleration;
@@ -49,12 +47,7 @@ public class PlayerController : MonoBehaviour {
 	public float mGrabDamage;
 	public float mPunchDamage;
 	
-	//Health Variables
-	public int mCurrentHealth;
-	private int mMaxHealth;
-	private int mSpawnSeconds = 5;
-	private bool isDead = false;
-	private float mDeathTimer;
+
 	
 	
 	#endregion
@@ -71,8 +64,6 @@ public class PlayerController : MonoBehaviour {
 	private MState mLeftState = MState.Idle;
 	private MState mRightState = MState.Idle;
 	
-	//Getters and Setters
-	public bool IsDead { get { return isDead; } }
 
 	// Use this for initialization
 	void Awake () {
@@ -81,81 +72,68 @@ public class PlayerController : MonoBehaviour {
 		mTransform = transform;
 		mLeftHand = mTransform.FindChild("LeftHand");
 		mRightHand = mTransform.FindChild("RightHand");
-		mMaxHealth = mCurrentHealth;
 		mGameObject = gameObject;
-		
-		if(mSpawnLocation == null)
-		{
-			Debug.Log("You probably need to assign a spawn location");
-		}
-		
 
-	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-		Debug.Log(mCurrentHealth);
-		
-		if(!isDead)
+		//Left Hand States
+		switch(mLeftState)
 		{
-			//Left Hand States
-			switch(mLeftState)
+		case MState.Idle:
+			if (Input.GetButtonDown("Fire1") || Input.GetKeyDown("j"))
 			{
-			case MState.Idle:
-				if (Input.GetButtonDown("Fire1") || Input.GetKeyDown("j"))
-				{
-					AttackEnter();	
-				}
-				
-				break;
-			case MState.Attacking:
-				if (Input.GetButtonUp("Fire1")|| Input.GetKeyUp("j"))
-				{
-					AttackExit();	
-				}
-	
-				break;
-			default:
-				break;
+				AttackEnter();	
 			}
 			
-			//Right Hand States
-			switch(mRightState)
+			break;
+		case MState.Attacking:
+			if (Input.GetButtonUp("Fire1")|| Input.GetKeyUp("j"))
 			{
-			case MState.Idle:
-				if (Input.GetButtonDown("Fire2")|| Input.GetKeyDown("k"))
-				{
-					GrabEnter();	
-				}
-				
-				break;
-			case MState.Attacking:
-				if (Input.GetButtonUp("Fire2") || Input.GetKeyUp("k"))
-				{
-					GrabExit();	
-				}
-				
-				if (mGrabItem != null)
-				{
-					//Assign damage to gripped enemy
-					//mGrabItem.gameObject.SendMessage("ApplyDamage", mGrabDamage/Time.deltaTime);
-					
-					//Keep item in front of you
-					float distance = CalculateDistance(mGrabItem.position, mRightHand);
-					if (distance > 1f)
-						mGrabItem.position = Vector3.Lerp(mGrabItem.position,
-							mRightHand.position + mRightHand.forward*mHoldingDist, Time.deltaTime * mGrabSpeed);
-					
-					mGrabItem.LookAt(mTransform);
-				}
-				
-	
-				break;
-			default:
-				break;
+				AttackExit();	
 			}
+
+			break;
+		default:
+			break;
+		}
+		
+		//Right Hand States
+		switch(mRightState)
+		{
+		case MState.Idle:
+			if (Input.GetButtonDown("Fire2")|| Input.GetKeyDown("k"))
+			{
+				GrabEnter();	
+			}
+			
+			break;
+		case MState.Attacking:
+			if (Input.GetButtonUp("Fire2") || Input.GetKeyUp("k"))
+			{
+				GrabExit();	
+			}
+			
+			if (mGrabItem != null)
+			{
+				//Assign damage to gripped enemy
+				//mGrabItem.gameObject.SendMessage("ApplyDamage", mGrabDamage/Time.deltaTime);
+				
+				//Keep item in front of you
+				float distance = CalculateDistance(mGrabItem.position, mRightHand);
+				if (distance > 1f)
+					mGrabItem.position = Vector3.Lerp(mGrabItem.position,
+						mRightHand.position + mRightHand.forward*mHoldingDist, Time.deltaTime * mGrabSpeed);
+				
+				mGrabItem.LookAt(mTransform);
+			}
+			
+
+			break;
+		default:
+			break;
 		}
 	
 	}
@@ -168,19 +146,6 @@ public class PlayerController : MonoBehaviour {
 		//Get Direction Player is Moving
 		mHorizInput = Input.GetAxis("Horizontal");
 		mForwardInput = Input.GetAxis("Vertical");
-		
-		if(!isDead)
-			MovePlayer();
-		else
-		{
-			mDeathTimer += Time.deltaTime;
-			if (mDeathTimer > mSpawnSeconds)
-				Spawn();
-		}
-		
-		
-		
-		Debug.Log(mDeathTimer);
 		
 			
 	}
@@ -301,35 +266,5 @@ public class PlayerController : MonoBehaviour {
 	}
 	#endregion
 	
-	public void Death()
-	{
-		Debug.Log("Death");
-		mCurrentHealth = mMaxHealth;
-		mDeathTimer = 0;
-		mGameObject.renderer.enabled = false;
-		foreach (Transform child in mTransform)
-			child.renderer.enabled = false;
-		//GetComponentInChildren<Renderer>().enabled = false;
-		isDead = true;
-	}
-	
-	public void Spawn()
-	{
-		mTransform.position = mSpawnLocation.position;
-		mGameObject.renderer.enabled = true;
-		GetComponentInChildren<Renderer>().enabled = true;
 
-		isDead = false;
-	}
-	
-	
-	void OnCollisionEnter(Collision collision)
-	{
-		if(collision.gameObject.tag == "Enemy")
-		{
-			mCurrentHealth--;
-			if (mCurrentHealth <= 0)
-				Death();
-		}
-	}
 }
