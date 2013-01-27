@@ -610,10 +610,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f7040d7846589488e67fa93ff73fae, type: 3}
   m_Name: 
   DEBUG: 0
+  mWallResistance: 20
   mAreaRadius: 40
   mAcceleration: 1000
   mMaxSpeed: 13
   mRotSpeed: 6
+  PlayerPunch: {fileID: 0}
   mPunchRadius: 2
   mMaxPunchPower: 75
   mMinPunchPower: 50
