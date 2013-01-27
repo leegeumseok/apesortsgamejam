@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
 	 */
 	
 	//Speed
+	public float mWallResistance = 20f;
 	public float mAreaRadius;
 	public float mAcceleration;
 	public float mMaxSpeed;
@@ -182,7 +183,7 @@ public class PlayerController : MonoBehaviour {
 		
 		if(distance > mAreaRadius)
 		{
-			Vector3 forceDirection = Vector3.Normalize(Vector3.zero - mTransform.position)*10f;
+			Vector3 forceDirection = Vector3.Normalize(Vector3.zero - mTransform.position)*mWallResistance;
 			mRigidbody.AddForce(forceDirection, ForceMode.VelocityChange);
 		}
 		
