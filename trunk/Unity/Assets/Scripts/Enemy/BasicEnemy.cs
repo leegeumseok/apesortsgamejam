@@ -53,7 +53,7 @@ public class BasicEnemy : GenericEnemy
     }
 
     public override void OnSpawn() { }
-    public override void OnHit()  { }
+    public override void OnHit() { }
     public override void OnGrabbed() { }
 
     public override void OnDamaged(int damage)

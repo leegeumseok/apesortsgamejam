@@ -87,6 +87,7 @@ ModelImporter:
     7400002: Whip
     7400004: right punch
     9500000: //RootNode
+    11100000: //RootNode
     13700000: herod:Icosphere_003
     13700002: Icosphere_003
   materials:
@@ -148,8 +149,8 @@ ModelImporter:
       skeletonMaskElements: []
     - name: right punch
       takeName: Take 001
-      firstFrame: 262
-      lastFrame: 356
+      firstFrame: 289
+      lastFrame: 318
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -203,5 +204,5 @@ ModelImporter:
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   additionalBone: 1
-  animationType: 2
+  animationType: 1
   userData: 
