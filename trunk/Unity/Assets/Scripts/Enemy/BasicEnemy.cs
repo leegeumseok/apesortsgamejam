@@ -52,18 +52,33 @@ public class BasicEnemy : GenericEnemy
         }
     }
 
-    public override void OnSpawn() { }
-    public override void OnHit() { }
-    public override void OnGrabbed() { }
+    public override void OnSpawn() 
+    {
+        base.OnSpawn();
+    }
+
+    public override void OnHit() 
+    {
+        base.OnHit();
+    }
+
+    public override void OnGrabbed() 
+    {
+        base.OnGrabbed();
+    }
+
+    public override void OnReleased()
+    {
+        base.OnReleased();
+    }
 
     public override void OnDamaged(int damage)
     {
         base.OnDamaged(damage);
 
-        if (healthPoints < 100)
+        if (healthPoints <= 0)
         {
-            this.isDying = true;
-            this.deathTime = DEATH_DELAY;
+            this.OnDying();
         }
     }
 
@@ -72,8 +87,18 @@ public class BasicEnemy : GenericEnemy
         base.OnDestroyed();
     }
 
+    public override void OnDying()
+    {
+        base.OnDying();
+        this.isDying = true;
+        this.deathTime = DEATH_DELAY;
+    }
+
     // Probably won't use this directly, but I'll add it anyway
-    public override void OnBeat() { }
+    public override void OnBeat() 
+    {
+        base.OnBeat();
+    }
 
     private void CollideWithPedestal(GameObject pedestal)
     {

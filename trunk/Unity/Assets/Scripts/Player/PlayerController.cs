@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour {
 	private Transform mRightHand;
 
     public PlayerPunchAnim PlayerPunch = null;
+    public ParticleSystem PunchParticle = null;
     protected bool LeftHand = false;
     
 	
@@ -210,6 +211,7 @@ public class PlayerController : MonoBehaviour {
 	void AttackEnter() {
 		//mLeftHand.renderer.enabled = true;
 		mLeftState = MState.Attacking;
+        PunchParticle.Play();
 
         if (LeftHand == true)
             PlayerPunch.LeftPunch();
