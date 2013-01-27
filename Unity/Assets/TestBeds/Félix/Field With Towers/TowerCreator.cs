@@ -17,6 +17,17 @@ public class TowerCreator : MonoBehaviour {
     public float attackRange = 5;
     public float attacksPerSecond = 1.75f;
     public int ammunition = 50;
+
+    private GameStatsUI overlay;
+
+    private void Start()
+    {
+        var overlays = GameObject.FindGameObjectsWithTag("MainCamera");
+        if (overlays.Length > 0)
+        {
+            overlay = overlays[0].GetComponent<GameStatsUI>();
+        }
+    }
 	
 	// Update is called once per frame
     void Update()
@@ -34,6 +45,11 @@ public class TowerCreator : MonoBehaviour {
             controller.ammunition = ammunition;
 
             resources -= towerResourceCost;
+        }
+
+        if (overlay != null)
+        {
+            overlay.resources = resources;
         }
 	}
 
